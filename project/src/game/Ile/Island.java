@@ -73,5 +73,27 @@ public class Island {
         return zones;
     }
 
+    /**
+     *  submerge 3 random zones NOT  already submerged
+     * @return array of 3 randomly submerged zones
+     */
+    public Zone[] submerge3NotSubmergedZones(){
+        int i=0;
+        int j=0;
+        Zone[] zones = new Zone[3];
+        Random rand = new Random();
+        int k=0;
+        while(k<3) {
+            if(!plateau[i][j].isSubmerged()) {
+                i = rand.nextInt(length);
+                j = rand.nextInt(length);
+                plateau[i][j].submerge();
+                zones[k] = plateau[i][j];
+                k++;
+            }
+        }
+        return zones;
+    }
+
     // enf of class
 }
