@@ -1,25 +1,104 @@
 package game.Ile;
 
-public class Zone {
-    // Attributs
-    private boolean occupee;
-    private Ile ile;
+import game.Joueur.Artefacts;
+import game.Joueur.Player;
 
-    // Constructeur
-    public Zone(Plateau p) {
-        // Initialisation d'une case cliquable, de dimensions 40*40 pixels.
-        super(40, 40);
-        // Initialisation des attributs
-        this.occupee = false;
-        this.ile = p;
+import java.util.ArrayList;
+
+abstract class Zone {
+   // attributes
+    private enum Level {dry,flooded,submerged}
+    private Level state;
+    private Artefacts artefactContained; // null if it does not
+    private Ile ile;
+    private ArrayList<Player> players; // max 4
+    private Zone leftZone;
+    private Zone RightZone;
+    private Zone upperZone;
+    private Zone lowerZone;
+
+
+    public Zone(Level state, Artefacts artefactContained, Ile ile, ArrayList<Player> players, Zone leftZone, Zone rightZone, Zone upperZone, Zone lowerZone) {
+        this.state = state;
+        this.artefactContained = artefactContained;
+        this.ile = ile;
+        this.players = players;
+        this.leftZone = leftZone;
+        RightZone = rightZone;
+        this.upperZone = upperZone;
+        this.lowerZone = lowerZone;
     }
 
-    // Pour permettre à un objet [Plateau] de consulter l'état d'une case.
-    public boolean estOccupee() {return this.occupee;}
+    public Level getState() {
+        return state;
+    }
 
-    // Méthodes pour occuper ou libérer une case.
-    public void occupe() { this.occupee = true; }
-    public void libere() { this.occupee = false; }
+    public void setState(Level state) {
+        this.state = state;
+    }
 
+    public Artefacts getArtefactContained() {
+        return artefactContained;
+    }
 
+    public void setArtefactContained(Artefacts artefactContained) {
+        this.artefactContained = artefactContained;
+    }
+
+    public Ile getIle() {
+        return ile;
+    }
+
+    public void setIle(Ile ile) {
+        this.ile = ile;
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(ArrayList<Player> players) {
+        this.players = players;
+    }
+
+    public Zone getLeftZone() {
+        return leftZone;
+    }
+
+    @Override
+    public String toString() {
+        return "Zone{" +
+                "state=" + state +
+                ", artefactContained=" + artefactContained +
+                ", players=" + players +
+                '}';
+    }
+
+    public void setLeftZone(Zone leftZone) {
+        this.leftZone = leftZone;
+    }
+
+    public Zone getRightZone() {
+        return RightZone;
+    }
+
+    public void setRightZone(Zone rightZone) {
+        RightZone = rightZone;
+    }
+
+    public Zone getUpperZone() {
+        return upperZone;
+    }
+
+    public void setUpperZone(Zone upperZone) {
+        this.upperZone = upperZone;
+    }
+
+    public Zone getLowerZone() {
+        return lowerZone;
+    }
+
+    public void setLowerZone(Zone lowerZone) {
+        this.lowerZone = lowerZone;
+    }
 }
