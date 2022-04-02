@@ -12,7 +12,7 @@ public class Zone {
     private Level state;
     private Artefact artefact;
     private Key key;
-    private Ile ile;
+    private Island island;
     private ArrayList<Player> players; // max 4
     private Zone leftZone;
     private Zone RightZone;
@@ -20,11 +20,11 @@ public class Zone {
     private Zone lowerZone;
 
 
-    public Zone(Level state, Artefact artefactContained, Key key, Ile ile, Zone leftZone, Zone rightZone, Zone upperZone, Zone lowerZone) {
+    public Zone(Level state, Artefact artefactContained, Key key, Island island, Zone leftZone, Zone rightZone, Zone upperZone, Zone lowerZone) {
         this.state = state;
         this.artefact = artefactContained;
         this.key = key;
-        this.ile = ile;
+        this.island = island;
         this.players = new ArrayList<Player>();
         this.leftZone = leftZone;
         RightZone = rightZone;
@@ -48,12 +48,12 @@ public class Zone {
         this.artefact = artefact;
     }
 
-    public Ile getIle() {
-        return ile;
+    public Island getIle() {
+        return island;
     }
 
-    public void setIle(Ile ile) {
-        this.ile = ile;
+    public void setIle(Island island) {
+        this.island = island;
     }
 
     public ArrayList<Player> getPlayers() {
@@ -198,5 +198,12 @@ public class Zone {
 
     public boolean containsKey() {
         return this.key!=null;
+    }
+
+    /**
+     * submerge a zone
+     */
+    public void submerge() {
+        this.state=Level.submerged;
     }
 }

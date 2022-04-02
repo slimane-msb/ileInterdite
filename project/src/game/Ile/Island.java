@@ -3,13 +3,16 @@ package game.Ile;
 import game.Utils.Level;
 
 import java.util.ArrayList;
+import java.util.Random;
 
-public class Ile {
+import static java.lang.Math.random;
+
+public class Island {
     private int length;
     private Zone[][] plateau;
     private boolean submerged;
 
-    public Ile( int length, boolean submerged) {
+    public Island(int length, boolean submerged) {
         this.length=length;
         // construction of the island with submerged zones in the borders
         Level state;
@@ -31,24 +34,44 @@ public class Ile {
     @Override
     public String toString() {
         return "Ile{" +
-                "grille=" + grille +
+                "plateau=" + plateau +
                 ", submerged=" + submerged +
                 '}';
     }
 
-    public ArrayList<Zone> getGrille() {
-        return grille;
+    public Zone[][] getGrille() {
+        return plateau;
     }
 
-    public void setGrille(ArrayList<Zone> grille) {
-        this.grille = grille;
-    }
-
+    /**
+     *
+     * @return true if all the island (all zones) are submerged
+     */
     public boolean isSubmerged() {
-        return submerged;
+        for (int i=0;i<length;i++){
+            for (int j=0;i<length;j++){
+                if(!plateau[i][j].isSubmerged()) return false;
+            }
+        }
+        return true;
     }
 
-    public void setSubmerged(boolean submerged) {
-        this.submerged = submerged;
+    /**
+     *  submerge 3 random zones if not already submerged
+     * @return array of 3 randomly submerged zones
+     */
+    public Zone[] submerge3Zones(){
+        int i,j;
+        Zone[] zones = new Zone[3];
+        Random rand = new Random();
+        for (int k=0;k<3;k++) {
+            i = rand.nextInt(length);
+            j = rand.nextInt(length);
+            plateau[i][j].submerge();
+            zones[k]=plateau[i][j];
+        }
+        return zones;
     }
+
+    // enf of class
 }
