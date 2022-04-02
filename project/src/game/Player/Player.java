@@ -1,4 +1,4 @@
-package game.Joueur;
+package game.Player;
 
 import game.Ile.Zone;
 
@@ -6,7 +6,7 @@ public class Player {
     // attributes
     private int playerNb;
     private Zone postion;
-    // actions left is set in the game class and controlled by controller
+    // number of actions left is set in the game class and controlled by controller
 
 
     @Override

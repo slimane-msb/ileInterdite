@@ -1,13 +1,13 @@
 package game.Ile;
 
-import game.Joueur.Artefacts;
-import game.Joueur.Player;
+import game.Player.Artefacts;
+import game.Player.Player;
 
 import java.util.ArrayList;
 
-abstract class Zone {
+public class Zone {
    // attributes
-    private enum Level {dry,flooded,submerged}
+    public enum Level {dry,flooded,submerged};
     private Level state;
     private Artefacts artefactContained; // null if it does not
     private Ile ile;
@@ -55,6 +55,14 @@ abstract class Zone {
 
     public ArrayList<Player> getPlayers() {
         return players;
+    }
+
+    /**
+     *
+     * @return number of players on the zone
+     */
+    public int getNbPlayers() {
+        return players.size();
     }
 
     public void setPlayers(ArrayList<Player> players) {

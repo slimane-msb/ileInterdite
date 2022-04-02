@@ -1,4 +1,4 @@
-package game.Joueur;
+package game.Player;
 
 public class Action {
 }
