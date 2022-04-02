@@ -3,11 +3,11 @@ package game.Player;
 import game.Ile.Zone;
 import game.Utils.ItemType;
 
-public class Keys extends  Item{
+public class Key extends  Item{
     private boolean possessed;
     private  Player player;
 
-    public Keys(ItemType itemType, Zone postion, boolean possessed, Player player) {
+    public Key(ItemType itemType, Zone postion, boolean possessed, Player player) {
         super(itemType, postion);
         this.possessed = possessed;
         this.player = player;

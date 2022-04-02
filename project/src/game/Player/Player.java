@@ -2,19 +2,17 @@ package game.Player;
 
 import game.Ile.Zone;
 import game.Utils.Direction;
-import game.Utils.Level;
+import game.Utils.ItemType;
 
-import java.lang.reflect.Array;
-import java.security.Key;
 import java.util.ArrayList;
-
-import static game.Utils.Direction.up;
 
 public class Player {
     // attributes
     private int playerNb;
     private Zone postion;
-    private ArrayList<Keys> keys;
+    private ArrayList<Key> keys;
+    private ArrayList<Artefact> artefacts;
+
     // number of actions left is set in the game class and controlled by controller
 
 
@@ -29,7 +27,8 @@ public class Player {
     public Player(int playerNb, Zone postion) {
         this.playerNb = playerNb;
         this.postion = postion;
-        this.keys = new ArrayList<Keys>();
+        this.keys = new ArrayList<Key>();
+        this.artefacts=new ArrayList<Artefact>();
     }
 
     public int getPlayerNb() {
@@ -142,8 +141,31 @@ public class Player {
     }
 
 
+    /**
+     *
+     * @return true if the player took the artefact found in his current zone by having the corresponding key to this artefact, false if not
+     */
+    public boolean takeArtefacte(){
+        if (this.postion.containsArtefact()){
+            if(this.hasKey(this.postion.getArtefact().getItemType())){
+                this.artefacts.add(this.postion.getArtefact());
+                return true;
+            }
+        }
+        return false;
+    }
 
-
+    /**
+     *
+     * @param itemType (air, fire,water,lan) as ItemType.air
+     * @return true if the player has a key coressponding to this type of item, false if not
+     */
+    private boolean hasKey(ItemType itemType) {
+        for (Key key : this.keys){
+            if(key.getItemType()==itemType) return true;
+        }
+        return false;
+    }
 
 
     // end of class

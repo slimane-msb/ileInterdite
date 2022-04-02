@@ -1,6 +1,6 @@
 package game.Ile;
 
-import game.Player.Artefacts;
+import game.Player.Artefact;
 import game.Player.Player;
 import game.Utils.Level;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Zone {
    // attributes
     private Level state;
-    private Artefacts artefactContained; // null if it does not
+    private Artefact artefact;
     private Ile ile;
     private ArrayList<Player> players; // max 4
     private Zone leftZone;
@@ -18,9 +18,9 @@ public class Zone {
     private Zone lowerZone;
 
 
-    public Zone(Level state, Artefacts artefactContained, Ile ile,  Zone leftZone, Zone rightZone, Zone upperZone, Zone lowerZone) {
+    public Zone(Level state, Artefact artefactContained, Ile ile, Zone leftZone, Zone rightZone, Zone upperZone, Zone lowerZone) {
         this.state = state;
-        this.artefactContained = artefactContained;
+        this.artefact = artefactContained;
         this.ile = ile;
         this.players = new ArrayList<Player>();
         this.leftZone = leftZone;
@@ -37,12 +37,12 @@ public class Zone {
         this.state = state;
     }
 
-    public Artefacts getArtefactContained() {
-        return artefactContained;
+    public Artefact getArtefact() {
+        return artefact;
     }
 
-    public void setArtefactContained(Artefacts artefactContained) {
-        this.artefactContained = artefactContained;
+    public void setArtefact(Artefact artefact) {
+        this.artefact = artefact;
     }
 
     public Ile getIle() {
@@ -101,7 +101,7 @@ public class Zone {
     public String toString() {
         return "Zone{" +
                 "state=" + state +
-                ", artefactContained=" + artefactContained +
+                ", artefactContained=" + artefact +
                 ", players=" + players +
                 '}';
     }
@@ -171,5 +171,9 @@ public class Zone {
      */
     public void flood() {
         this.state=Level.dry;
+    }
+
+    public boolean containsArtefact() {
+        return this.artefact !=null;
     }
 }

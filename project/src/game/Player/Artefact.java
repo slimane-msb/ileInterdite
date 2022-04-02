@@ -4,7 +4,7 @@ import game.Ile.Zone;
 import game.Utils.ItemType;
 
 
-public class Artefacts extends  Item {
+public class Artefact extends  Item {
     private boolean found;
 
     @Override
@@ -22,7 +22,7 @@ public class Artefacts extends  Item {
         this.found = found;
     }
 
-    public Artefacts(ItemType itemType, Zone postion, boolean found) {
+    public Artefact(ItemType itemType, Zone postion, boolean found) {
         super(itemType, postion);
         this.found = found;
     }
