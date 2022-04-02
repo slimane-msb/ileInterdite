@@ -104,38 +104,15 @@ public class Player {
     public boolean toDry(Direction direction){
         switch (direction) {
             case up:
-                switch (this.postion.getUpperZone().getState()){
-                    case dry: case submerged: // action  to dry is not allowed si zone is either dry or submerged
-                        return false;
-                    case flooded:
-                        this.postion.getUpperZone().dry();
-                        return false;
-                }
-
+                return this.postion.getUpperZone().decreaseWaterLevel();
             case down:
-                switch (this.postion.getLowerZone().getState()){
-                    case dry: case submerged: // action  to dry is not allowed si zone is either dry or submerged
-                        return false;
-                    case flooded:
-                        this.postion.getUpperZone().dry();
-                        return false;
-                }
+                return this.postion.getLowerZone().decreaseWaterLevel();
             case right:
-                switch (this.postion.getRightZone().getState()){
-                    case dry: case submerged: // action  to dry is not allowed si zone is either dry or submerged
-                        return false;
-                    case flooded:
-                        this.postion.getUpperZone().dry();
-                        return false;
-                }
+                return this.postion.getRightZone().decreaseWaterLevel();
             case left:
-                switch (this.postion.getLeftZone().getState()){
-                    case dry: case submerged: // action  to dry is not allowed si zone is either dry or submerged
-                        return false;
-                    case flooded:
-                        this.postion.getUpperZone().dry();
-                        return false;
-                }
+                return this.postion.getLeftZone().decreaseWaterLevel();
+            case same:
+                return this.postion.decreaseWaterLevel();
         }
         return false;
     }
@@ -176,15 +153,7 @@ public class Player {
             this.keys.add(this.postion.getKey());
             return  true;
         }else{
-            // increase water level
-            switch (this.postion.getState()){
-                case dry:
-                    this.postion.flood();
-                    return false;
-                case flooded:
-                    this.postion.submerge();
-                    return false;
-            }
+            this.postion.increaseWaterLevel();
         }
         return false; // case zone is submerged
     }

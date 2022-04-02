@@ -162,25 +162,35 @@ public class Zone {
     }
 
     /**
-     * make the zone dry
+     * if state is submerged nothing  has to be changed
+     * @return true if the level has increased (zone state is changed), false if not
      */
-    public void dry() {
-        this.state=Level.dry;
+    public boolean increaseWaterLevel(){
+        switch(this.state){
+            case dry:
+                this.state=Level.flooded;
+                return true;
+            case flooded:
+                this.state=Level.submerged;
+                return true;
+        }
+        return false;
     }
 
     /**
-     * make the zone submerged
+     * if state is dry nothing has to be changed, if submerged state can not be changed
+     * @return true if the level has decreased (zone state is changed), false if not
      */
-    public void submerge() {
-        this.state=Level.dry;
+    public boolean decreaseWaterLevel(){
+        switch(this.state){
+            case flooded:
+                this.state=Level.dry;
+                return true;
+        }
+        return false;
     }
 
-    /**
-     * make the zone flooded
-     */
-    public void flood() {
-        this.state=Level.dry;
-    }
+
 
     public boolean containsArtefact() {
         return this.artefact !=null;
