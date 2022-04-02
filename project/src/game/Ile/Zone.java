@@ -118,6 +118,24 @@ public class Zone {
         this.lowerZone = lowerZone;
     }
 
+    /**
+     *
+     * @param player add player to the list of player on the zone
+     */
+    public void addPlayer(Player player){
+        this.players.add(player);
+    }
+
+    /**
+     *
+     * @param player remove the player from the list of players on the zobe
+     */
+    public void removePlayer(Player player){
+        this.players.remove(player);
+    }
+
+
+
 
 
 

@@ -39,6 +39,7 @@ public class Player {
         return postion;
     }
 
+
     public void setPlayerNb(int playerNb) {
         this.playerNb = playerNb;
     }
@@ -47,27 +48,57 @@ public class Player {
         this.postion = postion;
     }
 
+    /**
+     *
+     * @param direction take direction(up,left,down,right) and move the player to this corresponding zone if this last is not submerged
+     * @return true if the player has moved, false if not
+     */
     public boolean move(Direction direction){
         switch (direction) {
             case up:
-                if(this.postion.getUpperZone().isSubmerged()){
+                if(!this.postion.getUpperZone().isSubmerged()){
+                    this.postion.removePlayer(this);
                     this.postion=postion.getUpperZone();
+                    this.postion.addPlayer(this);
                     return true;
                 }else{
                     return false;
                 }
             case down:
-                this.postion=postion.getLowerZone();
-                break;
+                if(!this.postion.getLowerZone().isSubmerged()){
+                    this.postion.removePlayer(this);
+                    this.postion=postion.getLowerZone();
+                    this.postion.addPlayer(this);
+                    return true;
+                }else{
+                    return false;
+                }
             case right:
-                this.postion=postion.getRightZone();
-                break;
+                if(!this.postion.getRightZone().isSubmerged()){
+                    this.postion.removePlayer(this);
+                    this.postion=postion.getRightZone();
+                    this.postion.addPlayer(this);
+                    return true;
+                }else {
+                    return false;
+                }
             case left:
-                this.postion=postion.getLeftZone();
-                break;
+                if(!this.postion.getLeftZone().isSubmerged()){
+                    this.postion.removePlayer(this);
+                    this.postion=postion.getLeftZone();
+                    this.postion.addPlayer(this);
+                    return true;
+                }else{
+                    return false;
+                }
         }
-        return true;
+        return false;
     }
 
+    
 
+
+
+
+    // end of class
 }
