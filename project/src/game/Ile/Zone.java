@@ -1,6 +1,7 @@
 package game.Ile;
 
 import game.Player.Artefact;
+import game.Player.Key;
 import game.Player.Player;
 import game.Utils.Level;
 
@@ -10,6 +11,7 @@ public class Zone {
    // attributes
     private Level state;
     private Artefact artefact;
+    private Key key;
     private Ile ile;
     private ArrayList<Player> players; // max 4
     private Zone leftZone;
@@ -18,9 +20,10 @@ public class Zone {
     private Zone lowerZone;
 
 
-    public Zone(Level state, Artefact artefactContained, Ile ile, Zone leftZone, Zone rightZone, Zone upperZone, Zone lowerZone) {
+    public Zone(Level state, Artefact artefactContained, Key key, Ile ile, Zone leftZone, Zone rightZone, Zone upperZone, Zone lowerZone) {
         this.state = state;
         this.artefact = artefactContained;
+        this.key = key;
         this.ile = ile;
         this.players = new ArrayList<Player>();
         this.leftZone = leftZone;
@@ -134,7 +137,13 @@ public class Zone {
         this.lowerZone = lowerZone;
     }
 
+    public Key getKey() {
+        return key;
+    }
 
+    public void setKey(Key key) {
+        this.key = key;
+    }
 
     /**
      *
@@ -175,5 +184,9 @@ public class Zone {
 
     public boolean containsArtefact() {
         return this.artefact !=null;
+    }
+
+    public boolean containsKey() {
+        return this.key!=null;
     }
 }

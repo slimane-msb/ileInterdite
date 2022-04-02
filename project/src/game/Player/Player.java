@@ -160,12 +160,37 @@ public class Player {
      * @param itemType (air, fire,water,lan) as ItemType.air
      * @return true if the player has a key coressponding to this type of item, false if not
      */
-    private boolean hasKey(ItemType itemType) {
+    public boolean hasKey(ItemType itemType) {
         for (Key key : this.keys){
             if(key.getItemType()==itemType) return true;
         }
         return false;
     }
+
+    /**
+     * search for a key in the current zone, increase water level if any key is found
+     * @return true if key is found, false if not
+     */
+    public boolean searchKey(){
+        if(this.postion.containsKey()){
+            this.keys.add(this.postion.getKey());
+            return  true;
+        }else{
+            // increase water level
+            switch (this.postion.getState()){
+                case dry:
+                    this.postion.flood();
+                    return false;
+                case flooded:
+                    this.postion.submerge();
+                    return false;
+            }
+        }
+        return false; // case zone is submerged
+    }
+
+
+
 
 
     // end of class
