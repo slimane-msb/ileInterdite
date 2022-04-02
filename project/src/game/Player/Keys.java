@@ -1,6 +1,7 @@
 package game.Player;
 
 import game.Ile.Zone;
+import game.Utils.ItemType;
 
 public class Keys extends  Item{
     private boolean possessed;
@@ -35,5 +36,5 @@ public class Keys extends  Item{
         return player!=null;
     }
 
-    
+
 }

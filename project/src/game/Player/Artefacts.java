@@ -1,7 +1,7 @@
 package game.Player;
 
 import game.Ile.Zone;
-
+import game.Utils.ItemType;
 
 
 public class Artefacts extends  Item {

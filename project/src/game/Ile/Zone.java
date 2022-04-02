@@ -2,12 +2,12 @@ package game.Ile;
 
 import game.Player.Artefacts;
 import game.Player.Player;
+import game.Utils.Level;
 
 import java.util.ArrayList;
 
 public class Zone {
    // attributes
-    public enum Level {dry,flooded,submerged};
     private Level state;
     private Artefacts artefactContained; // null if it does not
     private Ile ile;
@@ -18,11 +18,11 @@ public class Zone {
     private Zone lowerZone;
 
 
-    public Zone(Level state, Artefacts artefactContained, Ile ile, ArrayList<Player> players, Zone leftZone, Zone rightZone, Zone upperZone, Zone lowerZone) {
+    public Zone(Level state, Artefacts artefactContained, Ile ile,  Zone leftZone, Zone rightZone, Zone upperZone, Zone lowerZone) {
         this.state = state;
         this.artefactContained = artefactContained;
         this.ile = ile;
-        this.players = players;
+        this.players = new ArrayList<Player>();
         this.leftZone = leftZone;
         RightZone = rightZone;
         this.upperZone = upperZone;
@@ -73,6 +73,14 @@ public class Zone {
         return leftZone;
     }
 
+    /**
+     *
+     * @return true is the zone is submerged
+     */
+    public boolean isSubmerged(){
+        return this.state==Level.submerged;
+    }
+
     @Override
     public String toString() {
         return "Zone{" +
@@ -109,4 +117,8 @@ public class Zone {
     public void setLowerZone(Zone lowerZone) {
         this.lowerZone = lowerZone;
     }
+
+
+
+
 }

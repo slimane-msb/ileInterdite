@@ -1,9 +1,10 @@
 package game.Player;
 
 import game.Ile.Zone;
+import game.Utils.ItemType;
 
 abstract class Item {
-    public enum ItemType {air, water, land, fire};
+
     private ItemType itemType;
     private Zone postion;
 
