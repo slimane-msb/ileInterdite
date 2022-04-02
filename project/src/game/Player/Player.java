@@ -2,6 +2,7 @@ package game.Player;
 
 import game.Ile.Zone;
 import game.Utils.Direction;
+import game.Utils.Level;
 
 import java.lang.reflect.Array;
 import java.security.Key;
@@ -52,6 +53,7 @@ public class Player {
      *
      * @param direction take direction(up,left,down,right) and move the player to this corresponding zone if this last is not submerged
      * @return true if the player has moved, false if not
+     * @Note: that the number of action is not decreased, this number is managed by the controller
      */
     public boolean move(Direction direction){
         switch (direction) {
@@ -95,7 +97,51 @@ public class Player {
         return false;
     }
 
-    
+    /**
+     *
+     * @param direction take direction(up,left,down,right) and try to dry the corresponding zone if this last is not submerged or already dry
+     * @return true if action (to dry) is taken, and false if not
+     */
+    public boolean toDry(Direction direction){
+        switch (direction) {
+            case up:
+                switch (this.postion.getUpperZone().getState()){
+                    case dry: case submerged: // action  to dry is not allowed si zone is either dry or submerged
+                        return false;
+                    case flooded:
+                        this.postion.getUpperZone().dry();
+                        return false;
+                }
+
+            case down:
+                switch (this.postion.getLowerZone().getState()){
+                    case dry: case submerged: // action  to dry is not allowed si zone is either dry or submerged
+                        return false;
+                    case flooded:
+                        this.postion.getUpperZone().dry();
+                        return false;
+                }
+            case right:
+                switch (this.postion.getRightZone().getState()){
+                    case dry: case submerged: // action  to dry is not allowed si zone is either dry or submerged
+                        return false;
+                    case flooded:
+                        this.postion.getUpperZone().dry();
+                        return false;
+                }
+            case left:
+                switch (this.postion.getLeftZone().getState()){
+                    case dry: case submerged: // action  to dry is not allowed si zone is either dry or submerged
+                        return false;
+                    case flooded:
+                        this.postion.getUpperZone().dry();
+                        return false;
+                }
+        }
+        return false;
+    }
+
+
 
 
 

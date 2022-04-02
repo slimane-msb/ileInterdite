@@ -81,6 +81,22 @@ public class Zone {
         return this.state==Level.submerged;
     }
 
+    /**
+     *
+     * @return true if the zone is flooded
+     */
+    public boolean isFlooded() {
+        return this.state==Level.flooded;
+    }
+
+    /**
+     *
+     * @return true if the zone is dry
+     */
+    public boolean isDry() {
+        return this.state==Level.dry;
+    }
+
     @Override
     public String toString() {
         return "Zone{" +
@@ -118,6 +134,8 @@ public class Zone {
         this.lowerZone = lowerZone;
     }
 
+
+
     /**
      *
      * @param player add player to the list of player on the zone
@@ -134,9 +152,24 @@ public class Zone {
         this.players.remove(player);
     }
 
+    /**
+     * make the zone dry
+     */
+    public void dry() {
+        this.state=Level.dry;
+    }
 
+    /**
+     * make the zone submerged
+     */
+    public void submerge() {
+        this.state=Level.dry;
+    }
 
-
-
-
+    /**
+     * make the zone flooded
+     */
+    public void flood() {
+        this.state=Level.dry;
+    }
 }
