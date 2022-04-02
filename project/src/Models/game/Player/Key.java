@@ -1,7 +1,7 @@
-package game.Player;
+package Models.game.Player;
 
-import game.Ile.Zone;
-import game.Utils.ItemType;
+import Models.game.Ile.Zone;
+import Models.game.Utils.ItemType;
 
 public class Key extends  Item{
     private boolean possessed;

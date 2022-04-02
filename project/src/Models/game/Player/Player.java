@@ -1,8 +1,8 @@
-package game.Player;
+package Models.game.Player;
 
-import game.Ile.Zone;
-import game.Utils.Direction;
-import game.Utils.ItemType;
+import Models.game.Ile.Zone;
+import Models.game.Utils.Direction;
+import Models.game.Utils.ItemType;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,7 @@ public class Player {
     private ArrayList<Key> keys;
     private ArrayList<Artefact> artefacts;
 
-    // number of actions left is set in the game class and controlled by controller
+    // number of actions left is set in the Models.game class and controlled by controller
 
 
     @Override

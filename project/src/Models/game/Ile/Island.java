@@ -1,11 +1,8 @@
-package game.Ile;
+package Models.game.Ile;
 
-import game.Utils.Level;
+import Models.game.Utils.Level;
 
-import java.util.ArrayList;
 import java.util.Random;
-
-import static java.lang.Math.random;
 
 public class Island {
     private int length;

@@ -1,4 +1,4 @@
-package game.Utils;
+package Models.game.Utils;
 
 public enum Direction {
     up,
