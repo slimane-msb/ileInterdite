@@ -1,4 +1,4 @@
-package Models.Joueur;
+package game.Joueur;
 
 public class Clefs {
 }

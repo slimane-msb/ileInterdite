@@ -1,4 +1,4 @@
-package Models.Ile;
+package game.Ile;
 
 public class Heliport {
 }
