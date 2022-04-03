@@ -1,4 +1,4 @@
-package View.Command;
+package View;
 import View.Texte;
 
 import javax.swing.JPanel;
@@ -12,6 +12,7 @@ import java.awt.event.MouseListener;
 public abstract class ViewCommand extends JPanel implements MouseListener {
 
     private Texte texte;
+    private Color color;
 
     public ViewCommand(String texte, int x, int y) {
 	this(x, y);
@@ -23,6 +24,14 @@ public abstract class ViewCommand extends JPanel implements MouseListener {
 	setPreferredSize(new Dimension(x, y));
 	addMouseListener(this);
 	setBackground(Color.WHITE);
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 
     public void changeTexte(String texte) {

@@ -1,14 +1,10 @@
 package View.Command;
 
-public class SearchKey extends ViewCommand {
+import View.ViewCommand;
+
+public class SearchKey extends Button {
 
     public SearchKey() {
-        super("searchKey", 80, 25);
-    }
-
-    public void leftClic() {
-    }
-
-    public void rightClic() {
+        super("searchKey",45,20,10,10);
     }
 }
