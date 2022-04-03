@@ -1,5 +1,6 @@
 package View.ViewGame;
 
+import Controller.Controller;
 import View.ViewUtil.Rectangle;
 
 import java.awt.*;
@@ -12,15 +13,15 @@ public class ViewZone extends Rectangle {
 
 
 
-    public ViewZone(int width, int height, ViewPlayer viewPlayer, ViewKey viewKey, ViewArteFact viewArteFact, Color colorState) {
-        this(width, height);
+    public ViewZone(Controller controller, int width, int height, ViewPlayer viewPlayer, ViewKey viewKey, ViewArteFact viewArteFact, Color colorState) {
+        this(controller, width, height);
         this.viewPlayer = viewPlayer;
         this.viewKey = viewKey;
         this.viewArteFact = viewArteFact;
     }
 
-    public ViewZone(int wdith, int height) {
-        super(Color.black, wdith, height);
+    public ViewZone(Controller controller, int wdith, int height) {
+        super(controller, Color.black, wdith, height);
     }
 
     /**

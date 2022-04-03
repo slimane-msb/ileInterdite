@@ -56,29 +56,29 @@ public class Island {
 
     /**
      *  submerge 3 random zones if not already submerged
-     * @return array of 3 randomly submerged zones
+     * @return array of 3 int corresponding to the number of the  submerged zones as (width*i+j)
      */
-    public Zone[] submerge3Zones(){
+    public int[] submerge3Zones(){
         int i,j;
-        Zone[] zones = new Zone[3];
+        int[] zonesNb = new int[3];
         Random rand = new Random();
         for (int k=0;k<3;k++) {
             i = rand.nextInt(length);
             j = rand.nextInt(length);
             this.zones[i][j].submerge();
-            zones[k]= this.zones[i][j];
+            zonesNb[k]= i*this.length+j;
         }
-        return zones;
+        return zonesNb;
     }
 
     /**
      *  submerge 3 random zones NOT  already submerged
-     * @return array of 3 randomly submerged zones
+     * @return @return array of 3 int corresponding to the number of the  submerged zones as (width*i+j)
      */
-    public Zone[] submerge3NotSubmergedZones(){
+    public int[] submerge3NotSubmergedZones(){
         int i=0;
         int j=0;
-        Zone[] zones = new Zone[3];
+        int[] zonesNb = new int[3];
         Random rand = new Random();
         int k=0;
         while(k<3) {
@@ -86,11 +86,11 @@ public class Island {
                 i = rand.nextInt(length);
                 j = rand.nextInt(length);
                 this.zones[i][j].submerge();
-                zones[k] = this.zones[i][j];
+                zonesNb[k] = i*this.length+j;
                 k++;
             }
         }
-        return zones;
+        return zonesNb;
     }
 
     public int getLength() {

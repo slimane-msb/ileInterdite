@@ -1,5 +1,8 @@
 package View.ViewUtil;
 
+import Controller.Controller;
+
+import javax.naming.ldap.Control;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import java.awt.Dimension;
@@ -10,19 +13,21 @@ import java.awt.event.MouseListener;
 
 public abstract class Rectangle extends JPanel implements MouseListener {
 
+    private Controller controller;
     private Texte texte;
     private Color color;
     private int width,height; // later
     private int x,y; // for postion :: later
     // private image later
 
-    public Rectangle(Color color, int width, int height, int x, int y) {
-        this(color,width,height);
+    public Rectangle(Controller controller, Color color, int width, int height, int x, int y) {
+        this(controller, color,width,height);
         // position rectangle in (x,y) cordiante
         // code here
     }
 
-    public Rectangle(Color color, int width, int height) {
+    public Rectangle(Controller controller,Color color, int width, int height) {
+        this.controller=controller;
         setPreferredSize(new Dimension(width, height));
         addMouseListener(this);
         this.texte = new Texte("");
