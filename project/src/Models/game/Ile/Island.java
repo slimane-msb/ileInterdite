@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Island {
     private int length;
-    private Zone[][] Zones;
+    private Zone[][] zones;
     private boolean submerged;
 
     public Island(int length) {
@@ -17,11 +17,11 @@ public class Island {
         for (int i=0;i<length;i++){
             for (int j=0;j<length;j++){
                 state = ( i==0 || j==0 || i==length-1|| j==length-1)?Level.submerged:Level.dry; // is in the borders
-                up=(i==0)?null: Zones[i-1][j];
-                down=(i==length-1)?null: Zones[i+1][j];
-                left=(j==0)?null: Zones[i][j-1];
-                right=(j==length-1)?null: Zones[i][j+1];
-                this.Zones[i][j]=new Zone(state,null,null,this,left,right,up,down);
+                up=(i==0)?null: zones[i-1][j];
+                down=(i==length-1)?null: zones[i+1][j];
+                left=(j==0)?null: zones[i][j-1];
+                right=(j==length-1)?null: zones[i][j+1];
+                this.zones[i][j]=new Zone(state,null,null,this,left,right,up,down);
             }
         }
 
@@ -31,13 +31,13 @@ public class Island {
     @Override
     public String toString() {
         return "Ile{" +
-                "plateau=" + Zones +
+                "plateau=" + zones +
                 ", submerged=" + submerged +
                 '}';
     }
 
     public Zone[][] getGrille() {
-        return Zones;
+        return zones;
     }
 
     /**
@@ -47,7 +47,7 @@ public class Island {
     public boolean isSubmerged() {
         for (int i=0;i<length;i++){
             for (int j=0;i<length;j++){
-                if(!Zones[i][j].isSubmerged()) return false;
+                if(!zones[i][j].isSubmerged()) return false;
             }
         }
         return true;
@@ -64,8 +64,8 @@ public class Island {
         for (int k=0;k<3;k++) {
             i = rand.nextInt(length);
             j = rand.nextInt(length);
-            Zones[i][j].submerge();
-            zones[k]= Zones[i][j];
+            this.zones[i][j].submerge();
+            zones[k]= this.zones[i][j];
         }
         return zones;
     }
@@ -81,11 +81,11 @@ public class Island {
         Random rand = new Random();
         int k=0;
         while(k<3) {
-            if(!Zones[i][j].isSubmerged()) {
+            if(!this.zones[i][j].isSubmerged()) {
                 i = rand.nextInt(length);
                 j = rand.nextInt(length);
-                Zones[i][j].submerge();
-                zones[k] = Zones[i][j];
+                this.zones[i][j].submerge();
+                zones[k] = this.zones[i][j];
                 k++;
             }
         }

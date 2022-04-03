@@ -2,6 +2,7 @@ package main;
 
 import Models.game.Ile.Island;
 import Views.Fenetre;
+import Views.VueIle;
 import Views.ZoneCliquable;
 
 public class Main {
@@ -11,7 +12,7 @@ public class Main {
         Island island = new Island(nb);
         Validation validation = new Validation(island);
         Indice indice = new Indice(island);
-        fenetre.ajouteElement(island);
+        fenetre.ajouteElement(new VueIle(island));
         fenetre.ajouteElement(validation);
         fenetre.ajouteElement(indice);
         fenetre.dessineFenetre();
