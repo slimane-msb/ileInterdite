@@ -35,9 +35,15 @@ public abstract class Rectangle extends JPanel implements MouseListener {
         setBackground(color);
     }
 
+
+    public Controller getController() {
+        return controller;
+    }
+
     public Color getColor() {
         return color;
     }
+
 
     public void setColor(Color color) {
         this.color = color;

@@ -36,13 +36,13 @@ public class Controller {
     /**
      * get the number of the zone we need to submerge, and then call the methode submergeView to color ble
      */
-//    public void endRoundClicked(){
-//        int[] zonesNb = island.submerge3Zones();
-//        this.viewIsland.submerge3ViewZones(
-//                this.viewIsland.getElement(zonesNb[0]),
-//                this.viewIsland.getElement(zonesNb[1]),
-//                this.viewIsland.getElement(zonesNb[2]));
-//    }
+    public void endRoundClicked(){
+        int[][] zonesNb = island.submerge3Zones();
+        this.viewIsland.submerge3ViewZones(
+                this.viewIsland.getViewZones(zonesNb[0][0],zonesNb[0][1]),
+                this.viewIsland.getViewZones(zonesNb[1][0],zonesNb[1][1]),
+                this.viewIsland.getViewZones(zonesNb[2][0],zonesNb[2][1]));
+    }
 
 
 

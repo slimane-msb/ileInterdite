@@ -20,6 +20,10 @@ public class Grid extends JPanel {
 	    this.add(element);
     }
 
+    private ViewZone getElement(int i){
+        return this.getElement(i);
+    }
+
    
 
 }

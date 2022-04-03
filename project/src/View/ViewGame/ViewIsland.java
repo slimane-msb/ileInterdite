@@ -6,15 +6,30 @@ import View.ViewUtil.Grid;
 public class ViewIsland extends Grid {
     private int length;
     private  Controller controller;
+    private ViewZone[][] viewZones;
     // Constructeur
     public ViewIsland(Controller controller, int length ) {
         super(length,length);
+        this.viewZones = new ViewZone[length][length];
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < length; j++) {
-                this.ajouteElement( new ViewZone(controller, length*6,length*6));
+                viewZones[i][j] = new ViewZone(controller, length*6,length*6);
+                this.ajouteElement(viewZones[i][j] );
             }
         }
     }
+
+    /**
+     *
+     * @param i index i in the grid
+     * @param j index j in the grid
+     * @return the view zone [i][j]
+     */
+    public ViewZone getViewZones(int i, int j) {
+        return viewZones[i][j];
+    }
+
+
 
     /**
      * set color of given zone to blue

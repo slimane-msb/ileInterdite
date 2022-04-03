@@ -17,4 +17,5 @@ public abstract class Button extends Rectangle {
 
     public void rightClic() {
     }
+
 }

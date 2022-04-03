@@ -56,17 +56,18 @@ public class Island {
 
     /**
      *  submerge 3 random zones if not already submerged
-     * @return array of 3 int corresponding to the number of the  submerged zones as (width*i+j)
+     * @return array of 3 int corresponding to the number of the  submerged zones as (int(i,j))
      */
-    public int[] submerge3Zones(){
+    public int[][] submerge3Zones(){
         int i,j;
-        int[] zonesNb = new int[3];
+        int[][] zonesNb = new int[3][2];
         Random rand = new Random();
         for (int k=0;k<3;k++) {
             i = rand.nextInt(length);
             j = rand.nextInt(length);
             this.zones[i][j].submerge();
-            zonesNb[k]= i*this.length+j;
+            zonesNb[k][0]= i;
+            zonesNb[k][1]= j;
         }
         return zonesNb;
     }
