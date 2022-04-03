@@ -12,8 +12,8 @@ public abstract class Rectangle extends JPanel implements MouseListener {
 
     private Texte texte;
     private Color color;
-    private int width,height;
-    private int x,y; // for postion
+    private int width,height; // later
+    private int x,y; // for postion :: later
     // private image later
 
     public Rectangle(Color color, int width, int height, int x, int y) {
@@ -36,6 +36,7 @@ public abstract class Rectangle extends JPanel implements MouseListener {
 
     public void setColor(Color color) {
         this.color = color;
+        setBackground(color);
     }
 
     public void changeTexte(String texte) {
