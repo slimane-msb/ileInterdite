@@ -1,4 +1,4 @@
-package Views;
+package View;
 
 public class ViewIsland extends Grid {
     private int length;

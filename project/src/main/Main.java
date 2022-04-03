@@ -1,18 +1,18 @@
 package main;
 
 import Model.Island.Island;
-import Views.Window;
-import Views.ViewIsland;
-import Views.ViewCommand;
+import View.*;
+import View.Command.SearchKey;
+import View.Command.ToDry;
 
 public class Main {
     public static void main(String[] args) {
         int nb = 8;
         Window window = new Window(nb + "ile interdite");
         Island island = new Island(nb);
-        SearchKey searchKey = new SearchKey(island);
-        ToDry indice = new ToDry(island);
-        window.ajouteElement(new ViewIsland(island));
+        SearchKey searchKey = new SearchKey();
+        ToDry indice = new ToDry();
+        window.ajouteElement(new ViewIsland(island.getLength()));
         //fenetre.ajouteElement(searchKey);
        // fenetre.ajouteElement(indice);
         window.dessineFenetre();
@@ -21,41 +21,6 @@ public class Main {
 
 
 
-
-class SearchKey extends ViewCommand {
-
-    private Island island;
-
-    public SearchKey(Island island) {
-        super("searchKey", 80, 25);
-        this.island = island;
-    }
-
-
-    public void clicGauche() {}
-
-    public void clicDroit() {}
-}
-
-/*
-
-  purpose of the button
-
-*/
-
-class ToDry extends ViewCommand {
-
-    private Island island;
-
-    public ToDry(Island p) {
-        super("toDry", 80, 25);
-        this.island = p;
-    }
-
-    public void clicGauche() {}
-
-    public void clicDroit() {}
-}
 
 
 

@@ -1,9 +1,12 @@
-package Controllers;
+package Controller;
 
 import Model.Island.Island;
-import Views.ViewIsland;
+import View.ViewIsland;
 
 public class Controleur {
     private Island island;
     private ViewIsland vueIsland;
 }
+
+
+
