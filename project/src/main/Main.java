@@ -10,10 +10,10 @@ public class Main {
         int nb = 8;
         Fenetre fenetre = new Fenetre(nb + "ile interdite");
         Island island = new Island(nb);
-        Validation validation = new Validation(island);
-        Indice indice = new Indice(island);
+        SearchKey searchKey = new SearchKey(island);
+        ToDry indice = new ToDry(island);
         fenetre.ajouteElement(new VueIle(island));
-        fenetre.ajouteElement(validation);
+        fenetre.ajouteElement(searchKey);
         fenetre.ajouteElement(indice);
         fenetre.dessineFenetre();
     }
@@ -22,12 +22,12 @@ public class Main {
 
 
 
-class Validation extends ZoneCliquable {
+class SearchKey extends ZoneCliquable {
 
     private Island island;
 
-    public Validation(Island island) {
-        super("Valider", 80, 25);
+    public SearchKey(Island island) {
+        super("searchKey", 80, 25);
         this.island = island;
     }
 
@@ -43,12 +43,12 @@ class Validation extends ZoneCliquable {
 
 */
 
-class Indice extends ZoneCliquable {
+class ToDry extends ZoneCliquable {
 
     private Island island;
 
-    public Indice(Island p) {
-        super("Indice", 80, 25);
+    public ToDry(Island p) {
+        super("toDry", 80, 25);
         this.island = p;
     }
 

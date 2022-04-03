@@ -11,6 +11,7 @@ public class Island {
 
     public Island(int length) {
         this.length=length;
+        this.zones=new Zone[length][length];
         // construction of the island with submerged zones in the borders
         Level state;
         Zone left,right,up,down;
