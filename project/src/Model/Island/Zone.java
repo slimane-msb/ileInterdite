@@ -15,7 +15,7 @@ public class Zone {
     private Island island;
     private ArrayList<Player> players; // max 4
     private Zone leftZone;
-    private Zone RightZone;
+    private Zone rightZone;
     private Zone upperZone;
     private Zone lowerZone;
 
@@ -27,7 +27,7 @@ public class Zone {
         this.island = island;
         this.players = new ArrayList<Player>();
         this.leftZone = leftZone;
-        RightZone = rightZone;
+        this.rightZone = rightZone;
         this.upperZone = upperZone;
         this.lowerZone = lowerZone;
     }
@@ -114,11 +114,11 @@ public class Zone {
     }
 
     public Zone getRightZone() {
-        return RightZone;
+        return rightZone;
     }
 
     public void setRightZone(Zone rightZone) {
-        RightZone = rightZone;
+        this.rightZone = rightZone;
     }
 
     public Zone getUpperZone() {

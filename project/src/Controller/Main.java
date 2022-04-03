@@ -1,12 +1,12 @@
-package main;
+package Controller;
 
-import Controller.Controleur;
+import Controller.Controller;
 import Model.Island.Island;
 
 public class Main {
     public static void main(String[] args) {
         Island island = new Island(10);
-        Controleur controleur = new Controleur(island);
+        Controller controller = new Controller(island);
     }
 }
 

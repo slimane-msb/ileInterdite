@@ -7,7 +7,7 @@ import View.Button.ToDry;
 import View.ViewGame.ViewIsland;
 import View.ViewUtil.Window;
 
-public class Controleur {
+public class Controller {
 
     private int length;
     private Window window;
@@ -16,7 +16,7 @@ public class Controleur {
     private EndRound endRound;
     private ToDry toDry;
 
-    public Controleur( Island island) {
+    public Controller(Island island) {
         this.length=island.getLength();
         this.window = new Window(island.getLength() + "ile interdite");
         this.island = island;

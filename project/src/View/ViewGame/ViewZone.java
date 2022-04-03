@@ -9,7 +9,6 @@ public class ViewZone extends Rectangle {
     private ViewPlayer viewPlayer;
     private ViewKey viewKey;
     private ViewArteFact viewArteFact;
-    private Color colorState;
 
 
 
@@ -18,7 +17,6 @@ public class ViewZone extends Rectangle {
         this.viewPlayer = viewPlayer;
         this.viewKey = viewKey;
         this.viewArteFact = viewArteFact;
-        this.colorState = colorState;
     }
 
     public ViewZone(int wdith, int height) {
@@ -29,21 +27,21 @@ public class ViewZone extends Rectangle {
      * if the zone is dry the color become black
      */
     public void setColorDry(){
-        this.colorState=Color.BLACK;
+        super.setColor(Color.BLACK);
     }
 
     /**
      * if the zone is flooded the color become white
      */
     public void setColorFlooded(){
-        this.colorState=Color.white;
+        super.setColor(Color.white);
     }
 
     /**
      * if the zone is subme the color become black
      */
     public void setColorSubmerged(){
-        this.colorState=Color.blue;
+        super.setColor(Color.blue);
     }
 
     public ViewPlayer getViewPlayer() {
@@ -74,14 +72,16 @@ public class ViewZone extends Rectangle {
     }
 
     public Color getColorState() {
-        return colorState;
+        return super.getColor();
     }
 
     public void setColorState(Color colorState) {
-        this.colorState = colorState;
+        super.setColor( colorState);
     }
 
-    public void leftClic() {}
+    public void leftClic() {
+        super.setColor(Color.green);
+    }
 
     public void rightClic() { }
 
