@@ -13,8 +13,8 @@ public class Main {
         SearchKey searchKey = new SearchKey(island);
         ToDry indice = new ToDry(island);
         fenetre.ajouteElement(new VueIle(island));
-        fenetre.ajouteElement(searchKey);
-        fenetre.ajouteElement(indice);
+        //fenetre.ajouteElement(searchKey);
+       // fenetre.ajouteElement(indice);
         fenetre.dessineFenetre();
     }
 }
