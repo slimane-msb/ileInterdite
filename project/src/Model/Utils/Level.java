@@ -1,4 +1,4 @@
-package Models.game.Utils;
+package Model.Utils;
 
 public enum Level {
     dry,

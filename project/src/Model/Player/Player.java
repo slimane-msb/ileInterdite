@@ -1,8 +1,8 @@
-package Models.game.Player;
+package Model.Player;
 
-import Models.game.Ile.Zone;
-import Models.game.Utils.Direction;
-import Models.game.Utils.ItemType;
+import Model.Island.Zone;
+import Model.Utils.Direction;
+import Model.Utils.ItemType;
 
 import java.util.ArrayList;
 

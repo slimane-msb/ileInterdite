@@ -1,9 +1,9 @@
-package Models.game.Ile;
+package Model.Island;
 
-import Models.game.Player.Artefact;
-import Models.game.Player.Key;
-import Models.game.Player.Player;
-import Models.game.Utils.Level;
+import Model.Player.Artefact;
+import Model.Player.Key;
+import Model.Player.Player;
+import Model.Utils.Level;
 
 import java.util.ArrayList;
 

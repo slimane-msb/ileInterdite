@@ -8,7 +8,7 @@ import java.awt.GridLayout;
 /**
  * Classe des fenetres graphiques.
  */
-public class Fenetre extends JFrame {
+public class Window extends JFrame {
 
     /**
      * Ensemble des elements contenus dans la fenetre graphique.
@@ -23,7 +23,7 @@ public class Fenetre extends JFrame {
      *
      * @param nom Nom de la fenetre.
      */
-    public Fenetre(String nom) {
+    public Window(String nom) {
 	super(nom);
 	this.elements = new JPanel();
 	this.add(elements);

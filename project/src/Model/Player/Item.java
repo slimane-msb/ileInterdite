@@ -1,7 +1,7 @@
-package Models.game.Player;
+package Model.Player;
 
-import Models.game.Ile.Zone;
-import Models.game.Utils.ItemType;
+import Model.Island.Zone;
+import Model.Utils.ItemType;
 
 abstract class Item {
 

@@ -2,9 +2,9 @@ package Views;
 
 import java.awt.*;
 
-public class VueZone extends ZoneCliquable {
+public class ViewZone extends ViewCommand {
 
-    public VueZone(String texte, int x, int y) {
+    public ViewZone(String texte, int x, int y) {
         super(texte, x, y);
     }
     public void clicGauche() {

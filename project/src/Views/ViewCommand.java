@@ -1,5 +1,4 @@
 package Views;
-import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import java.awt.Dimension;
@@ -11,7 +10,7 @@ import java.awt.event.MouseListener;
 /**
  * Classe pour une zone carrée pouvant recevoir des clics de souris.
  */
-public abstract class ZoneCliquable extends JPanel implements MouseListener {
+public abstract class ViewCommand extends JPanel implements MouseListener {
 
     private Texte texte;
 
@@ -22,13 +21,13 @@ public abstract class ZoneCliquable extends JPanel implements MouseListener {
      * @param x Première dimension de la case
      * @param y Deuxième dimention de la case
      */
-    public ZoneCliquable(String texte, int x, int y) {
+    public ViewCommand(String texte, int x, int y) {
 	this(x, y);
 	this.texte = new Texte(texte);
 	this.add(this.texte);
     }
 
-    public ZoneCliquable(int x, int y) {
+    public ViewCommand(int x, int y) {
 	setPreferredSize(new Dimension(x, y));
 	addMouseListener(this);
 	setBackground(Color.WHITE);

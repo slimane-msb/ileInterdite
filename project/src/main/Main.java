@@ -1,28 +1,28 @@
 package main;
 
-import Models.game.Ile.Island;
-import Views.Fenetre;
-import Views.VueIle;
-import Views.ZoneCliquable;
+import Model.Island.Island;
+import Views.Window;
+import Views.ViewIsland;
+import Views.ViewCommand;
 
 public class Main {
     public static void main(String[] args) {
         int nb = 8;
-        Fenetre fenetre = new Fenetre(nb + "ile interdite");
+        Window window = new Window(nb + "ile interdite");
         Island island = new Island(nb);
         SearchKey searchKey = new SearchKey(island);
         ToDry indice = new ToDry(island);
-        fenetre.ajouteElement(new VueIle(island));
+        window.ajouteElement(new ViewIsland(island));
         //fenetre.ajouteElement(searchKey);
        // fenetre.ajouteElement(indice);
-        fenetre.dessineFenetre();
+        window.dessineFenetre();
     }
 }
 
 
 
 
-class SearchKey extends ZoneCliquable {
+class SearchKey extends ViewCommand {
 
     private Island island;
 
@@ -43,7 +43,7 @@ class SearchKey extends ZoneCliquable {
 
 */
 
-class ToDry extends ZoneCliquable {
+class ToDry extends ViewCommand {
 
     private Island island;
 

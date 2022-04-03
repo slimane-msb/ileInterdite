@@ -1,6 +1,6 @@
-package Models.game.Ile;
+package Model.Island;
 
-import Models.game.Utils.Level;
+import Model.Utils.Level;
 
 import java.util.Random;
 

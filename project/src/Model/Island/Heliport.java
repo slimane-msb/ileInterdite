@@ -1,8 +1,8 @@
-package Models.game.Ile;
+package Model.Island;
 
-import Models.game.Player.Artefact;
-import Models.game.Player.Key;
-import Models.game.Utils.Level;
+import Model.Player.Artefact;
+import Model.Player.Key;
+import Model.Utils.Level;
 
 public class Heliport extends Zone{
 
