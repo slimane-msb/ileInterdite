@@ -1,4 +1,6 @@
-package View;
+package View.ViewGame;
+
+import View.ViewUtil.Grid;
 
 public class ViewIsland extends Grid {
     private int length;

@@ -1,6 +1,6 @@
-package View.Command;
+package View.Button;
 
-import View.ViewCommand;
+import View.ViewUtil.ViewCommand;
 
 public abstract class Button extends ViewCommand {
     private String text;

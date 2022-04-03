@@ -1,4 +1,4 @@
-package View;
+package View.ViewGame;
 
 public class ViewPlayer {
 }

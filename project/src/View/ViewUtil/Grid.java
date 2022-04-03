@@ -1,4 +1,4 @@
-package View;
+package View.ViewUtil;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import java.awt.GridLayout;

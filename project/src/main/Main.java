@@ -2,9 +2,6 @@ package main;
 
 import Controller.Controleur;
 import Model.Island.Island;
-import View.*;
-import View.Command.SearchKey;
-import View.Command.ToDry;
 
 public class Main {
     public static void main(String[] args) {

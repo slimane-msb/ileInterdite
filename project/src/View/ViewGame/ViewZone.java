@@ -1,4 +1,6 @@
-package View;
+package View.ViewGame;
+
+import View.ViewUtil.ViewCommand;
 
 import java.awt.*;
 

@@ -1,11 +1,11 @@
 package Controller;
 
 import Model.Island.Island;
-import View.Command.EndRound;
-import View.Command.SearchKey;
-import View.Command.ToDry;
-import View.ViewIsland;
-import View.Window;
+import View.Button.EndRound;
+import View.Button.SearchKey;
+import View.Button.ToDry;
+import View.ViewGame.ViewIsland;
+import View.ViewUtil.Window;
 
 public class Controleur {
 

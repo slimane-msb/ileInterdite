@@ -1,5 +1,5 @@
-package View;
-import View.Texte;
+package View.ViewUtil;
+import View.ViewUtil.Texte;
 
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;

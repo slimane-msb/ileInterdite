@@ -1,4 +1,4 @@
-package View;
+package View.ViewUtil;
 
 import javax.swing.JLabel;
 

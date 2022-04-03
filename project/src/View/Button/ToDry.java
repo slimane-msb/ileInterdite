@@ -1,6 +1,4 @@
-package View.Command;
-
-import View.ViewCommand;
+package View.Button;
 
 public class ToDry extends Button {
 
