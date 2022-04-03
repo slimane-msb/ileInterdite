@@ -1,4 +1,4 @@
-package IG;
+package Views;
 
 import javax.swing.JLabel;
 import javax.swing.JComponent;
