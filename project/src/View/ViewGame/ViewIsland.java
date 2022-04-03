@@ -9,7 +9,7 @@ public class ViewIsland extends Grid {
         super(length,length);
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < length; j++) {
-                this.ajouteElement( new ViewZone("",i,j));
+                this.ajouteElement( new ViewZone("",length*6,length*6));
             }
         }
     }

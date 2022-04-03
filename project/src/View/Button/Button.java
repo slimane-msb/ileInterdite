@@ -1,15 +1,14 @@
 package View.Button;
 
-import View.ViewUtil.ViewCommand;
+import View.ViewUtil.Rectangle;
 
-public abstract class Button extends ViewCommand {
-    private String text;
-    private int width,height;
-    private int x,y; // for postion
+import java.awt.*;
 
+public abstract class Button extends Rectangle {
 
     public Button(String text, int width, int height, int x, int y) {
-        super(text,width,height);
+        super(Color.WHITE,width,height);
+        super.changeTexte(text);
     }
 
     public void leftClic() {

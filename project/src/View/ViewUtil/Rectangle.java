@@ -1,5 +1,4 @@
 package View.ViewUtil;
-import View.ViewUtil.Texte;
 
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -9,21 +8,26 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 
-public abstract class ViewCommand extends JPanel implements MouseListener {
+public abstract class Rectangle extends JPanel implements MouseListener {
 
     private Texte texte;
     private Color color;
+    private int width,height;
+    private int x,y; // for postion
+    // private image later
 
-    public ViewCommand(String texte, int x, int y) {
-	this(x, y);
-	this.texte = new Texte(texte);
-	this.add(this.texte);
+    public Rectangle(Color color, int width, int height, int x, int y) {
+        this(color,width,height);
+        // position rectangle in (x,y) cordiante
+        // code here
     }
 
-    public ViewCommand(int x, int y) {
-	setPreferredSize(new Dimension(x, y));
-	addMouseListener(this);
-	setBackground(Color.WHITE);
+    public Rectangle(Color color, int width, int height) {
+        setPreferredSize(new Dimension(width, height));
+        addMouseListener(this);
+        this.texte = new Texte("");
+        this.add(this.texte);
+        setBackground(color);
     }
 
     public Color getColor() {
@@ -54,14 +58,7 @@ public abstract class ViewCommand extends JPanel implements MouseListener {
     public void mousePressed(MouseEvent e) {}
     public void mouseReleased(MouseEvent e) {}
 
-
-
-
 }
 
-/*
 
-  purpose of the button
-
-*/
 
