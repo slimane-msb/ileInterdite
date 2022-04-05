@@ -4,12 +4,11 @@ import Model.Island.Zone;
 import Model.Utils.ItemType;
 
 public class Key extends  Item{
-    private boolean possessed;
+
     private  Player player;
 
-    public Key(ItemType itemType, Zone postion, boolean possessed, Player player) {
+    public Key(ItemType itemType, Zone postion, Player player) {
         super(itemType, postion);
-        this.possessed = possessed;
         this.player = player;
     }
 
@@ -24,7 +23,7 @@ public class Key extends  Item{
     @Override
     public String toString() {
         return "Keys{" +
-                "found=" + possessed +
+                "found="  +
                 '}';
     }
 
