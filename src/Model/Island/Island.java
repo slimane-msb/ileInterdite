@@ -63,6 +63,7 @@ public class Island {
         int[][] zonesNb = new int[3][2];
         Random rand = new Random();
         for (int k=0;k<3;k++) {
+            //test
             i = rand.nextInt(length);
             j = rand.nextInt(length);
             this.zones[i][j].submerge();
