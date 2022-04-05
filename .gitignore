@@ -14,8 +14,8 @@ bin-release/
 *.apk
 
 #intelJ
-*.iml
-*.xml
+# *.iml
+# *.xml
 
 #java out 
 *.class
