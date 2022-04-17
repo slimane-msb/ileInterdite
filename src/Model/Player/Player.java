@@ -3,6 +3,7 @@ package Model.Player;
 import Model.Island.Zone;
 import Model.Utils.Direction;
 import Model.Utils.ItemType;
+import java.util.Random;
 
 import java.util.ArrayList;
 
@@ -141,13 +142,21 @@ public class Player {
      * @return true if key is found, false if not
      */
     public boolean searchKey(){
-        if(this.postion.containsKey()){
-            this.keys.add(this.postion.getKey());
-            return  true;
-        }else{
-            this.postion.increaseWaterLevel();
+        float difficulty = this.postion.getIle().getDifficulty();
+        ArrayList<Key> keysNotFound = this.postion.getIle().getKeys();
+        Random randomGenerator = new Random();
+
+        if(keysNotFound.isEmpty()){
+            return false;
         }
-        return false; // case zone is submerged
+
+        if(randomGenerator.nextFloat() <= difficulty){
+            int keyIndex = randomGenerator.nextInt(keysNotFound.size());
+            this.keys.add(keysNotFound.get(keyIndex));
+            this.postion.getIle().removeKey(keyIndex);
+            return true;
+        }
+        return false;
     }
 
 
