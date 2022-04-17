@@ -1,16 +1,22 @@
 package Model.Island;
 
+import Model.Player.Key;
+import Model.Utils.ItemType;
 import Model.Utils.Level;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Island {
+    private float difficulty;
     private int length;
     private Zone[][] zones;
     private boolean submerged;
+    private ArrayList<Key> keys;
 
-    public Island(int length) {
+    public Island(int length, float difficulty) {
         this.length=length;
+        this.difficulty = difficulty;
         this.zones=new Zone[length][length];
         // construction of the island with submerged zones in the borders
         Level state;
@@ -27,6 +33,12 @@ public class Island {
         }
 
         this.submerged = false;
+
+        this.keys = new ArrayList<Key>();
+        this.keys.add(new Key(ItemType.air, null));
+        this.keys.add(new Key(ItemType.earth, null));
+        this.keys.add(new Key(ItemType.water, null));
+        this.keys.add(new Key(ItemType.fire, null));
     }
 
     @Override
@@ -39,6 +51,10 @@ public class Island {
 
     public Zone[][] getGrille() {
         return zones;
+    }
+
+    public float getDifficulty(){
+        return this.difficulty;
     }
 
     /**
@@ -83,6 +99,17 @@ public class Island {
 
     public Zone getZone(int i, int j) {
         return this.zones[i][j];
+    }
+
+    public ArrayList<Key> getKeys(){
+        return this.keys;
+    }
+    public void removeKey(int index){
+        for(int i = 0; i < this.keys.size(); i++) {
+            if(i == index){
+                this.keys.remove(this.keys.get(index));
+            }
+        }
     }
 
     // enf of class
