@@ -145,7 +145,7 @@ public class Player {
     }
 
     /**
-     * search for a key in the current zone, increase water level if any key is found
+     * search for a key in the current zone, increase water level if any key is not found
      * @return true if key is found, false if not
      */
     public boolean searchKey(){

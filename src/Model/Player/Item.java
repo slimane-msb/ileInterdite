@@ -22,6 +22,7 @@ abstract class Item {
                 '}';
     }
 
+
     public ItemType getItemType() {
         return itemType;
     }
