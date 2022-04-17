@@ -13,7 +13,6 @@ public class Zone {
     private Artefact artefact;
     private Key key;
     private Island island;
-    private ArrayList<Player> players; // max 4
     private Zone leftZone;
     private Zone rightZone;
     private Zone upperZone;
@@ -25,7 +24,6 @@ public class Zone {
         this.artefact = artefactContained;
         this.key = key;
         this.island = island;
-        this.players = new ArrayList<Player>();
         this.leftZone = leftZone;
         this.rightZone = rightZone;
         this.upperZone = upperZone;
@@ -54,22 +52,6 @@ public class Zone {
 
     public void setIle(Island island) {
         this.island = island;
-    }
-
-    public ArrayList<Player> getPlayers() {
-        return players;
-    }
-
-    /**
-     *
-     * @return number of players on the zone
-     */
-    public int getNbPlayers() {
-        return players.size();
-    }
-
-    public void setPlayers(ArrayList<Player> players) {
-        this.players = players;
     }
 
     public Zone getLeftZone() {
@@ -105,7 +87,6 @@ public class Zone {
         return "Zone{" +
                 "state=" + state +
                 ", artefactContained=" + artefact +
-                ", players=" + players +
                 '}';
     }
 
@@ -143,22 +124,6 @@ public class Zone {
 
     public void setKey(Key key) {
         this.key = key;
-    }
-
-    /**
-     *
-     * @param player add player to the list of player on the zone
-     */
-    public void addPlayer(Player player){
-        this.players.add(player);
-    }
-
-    /**
-     *
-     * @param player remove the player from the list of players on the zobe
-     */
-    public void removePlayer(Player player){
-        this.players.remove(player);
     }
 
     /**
