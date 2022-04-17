@@ -8,9 +8,8 @@ abstract class Item {
     private ItemType itemType;
     private Zone postion;
 
-    public Item(ItemType itemType, Zone postion) {
+    public Item(ItemType itemType) {
         this.itemType = itemType;
-        this.postion = postion;
     }
 
 
