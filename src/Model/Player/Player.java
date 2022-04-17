@@ -58,36 +58,28 @@ public class Player {
         switch (direction) {
             case up:
                 if(!this.postion.getUpperZone().isSubmerged()){
-                    this.postion.removePlayer(this);
                     this.postion=postion.getUpperZone();
-                    this.postion.addPlayer(this);
                     return true;
                 }else{
                     return false;
                 }
             case down:
                 if(!this.postion.getLowerZone().isSubmerged()){
-                    this.postion.removePlayer(this);
                     this.postion=postion.getLowerZone();
-                    this.postion.addPlayer(this);
                     return true;
                 }else{
                     return false;
                 }
             case right:
                 if(!this.postion.getRightZone().isSubmerged()){
-                    this.postion.removePlayer(this);
                     this.postion=postion.getRightZone();
-                    this.postion.addPlayer(this);
                     return true;
                 }else {
                     return false;
                 }
             case left:
                 if(!this.postion.getLeftZone().isSubmerged()){
-                    this.postion.removePlayer(this);
                     this.postion=postion.getLeftZone();
-                    this.postion.addPlayer(this);
                     return true;
                 }else{
                     return false;

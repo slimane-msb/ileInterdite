@@ -11,9 +11,6 @@ public class Heliport extends Zone{
         super(state, artefactContained, key, island, leftZone, rightZone, upperZone, lowerZone);
     }
 
-    public boolean isHasAllPlayers() {
-        return this.getNbPlayers()==3;
-    }
 
 
    // if (player.getZone() isInstanceOf heleport)
