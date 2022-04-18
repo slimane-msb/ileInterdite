@@ -7,8 +7,8 @@ public class Key extends  Item{
 
     private  Player player;
 
-    public Key(ItemType itemType, Zone postion, Player player) {
-        super(itemType, postion);
+    public Key(ItemType itemType, Player player) {
+        super(itemType);
         this.player = player;
     }
 

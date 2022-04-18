@@ -22,8 +22,8 @@ public class Artefact extends  Item {
         this.found = found;
     }
 
-    public Artefact(ItemType itemType, Zone postion, boolean found) {
-        super(itemType, postion);
+    public Artefact(ItemType itemType, boolean found) {
+        super(itemType);
         this.found = found;
     }
 }
