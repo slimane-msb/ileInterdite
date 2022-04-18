@@ -1,11 +1,13 @@
 package Controller;
 
 import Model.Island.Island;
+import Model.Utils.Direction;
 import View.Button.EndRound;
 import View.Button.SearchKey;
 import View.Button.ToDry;
 import View.ViewGame.ViewIsland;
 import View.ViewUtil.Window;
+
 
 public class Controller {
 
@@ -15,27 +17,29 @@ public class Controller {
     private ViewIsland viewIsland;
     private SearchKey searchKey;
     private EndRound endRound;
+    private Movement action;
     private ToDry toDry;
     //manage rounds
-    private int playerIndex=0;
-    private int nbAction =3;
-    private int currRound=0;
+    private int playerIndex = 0;
+    private int nbAction = 3;
+    private int currRound = 0;
 
     public Controller(Island island) {
-        this.length=island.getLength();
+        this.length = island.getLength();
         this.window = new Window(island.getLength() + "ile interdite");
         this.island = island;
         this.searchKey = new SearchKey(this);
         this.toDry = new ToDry(this);
         this.endRound = new EndRound(this);
-        this.viewIsland = new  ViewIsland(this,island.getLength());
+        this.viewIsland = new ViewIsland(this, island.getLength());
         this.window.ajouteElement(viewIsland);
         this.window.ajouteElement(endRound);
         this.window.dessineFenetre();
+        this.action = new Movement(this, this.window);
     }
 
     private String gameStateString() {
-        return "player: "+playerIndex+" Nb actions left: "+ (3-nbAction);
+        return "player: " + playerIndex + " Nb actions left: " + (3 - nbAction);
     }
 
     public int getLength() {
@@ -94,29 +98,43 @@ public class Controller {
         this.toDry = toDry;
     }
 
+    public Movement getAction() { return action;}
+
+    public void setAction(Movement action) {this.action = action; }
+
     /**
      * get the number of the zone we need to submerge, and then call the methode submergeView to color ble
      */
-    public void endRound(){
+    public void endRound() {
         int[][] zonesNb = island.submerge3NotSubmergedZones();
         this.viewIsland.submerge3ViewZones(
-                this.viewIsland.getViewZones(zonesNb[0][0],zonesNb[0][1]),
-                this.viewIsland.getViewZones(zonesNb[1][0],zonesNb[1][1]),
-                this.viewIsland.getViewZones(zonesNb[2][0],zonesNb[2][1]));
+                this.viewIsland.getViewZones(zonesNb[0][0], zonesNb[0][1]),
+                this.viewIsland.getViewZones(zonesNb[1][0], zonesNb[1][1]),
+                this.viewIsland.getViewZones(zonesNb[2][0], zonesNb[2][1]));
     }
 
-    public void actionMade(){
-        if (currRound==2){
-            playerIndex=(playerIndex+1)%4;
+    public void actionMade() {
+        if (currRound == 2) {
+            playerIndex = (playerIndex + 1) % 4;
             this.endRound();
         }
-        currRound=(currRound+1)%3;
+        currRound = (currRound + 1) % 3;
 
     }
 
+    public void move(Direction dir){ //en fonction de la position de player
+        //TODO emilie
+    }
 
+    public void dry(Direction dir){
+        //TODO emilie
+    }
 
+    public void searchKey(){
+        //TODO emilie
+    }
 }
+
 
 
 
