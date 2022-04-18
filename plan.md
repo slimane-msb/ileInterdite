@@ -12,7 +12,7 @@
 #slim
 1. submerge the borders (last one is not submerged )
 2. changer les zone au marron sable
-4. add player to player
+4. add player to player!
 
 
 # later : 
@@ -22,7 +22,7 @@
 
 
 notes: 
-1. on commiting to github: consider putting a keyword (model, view, controller) where the code has been changed
+1. on committing to github: consider putting a keyword (model, view, controller) where the code has been changed
     * exemple : git commit -m "view : submerge the borders && change the zones colors"
 
 

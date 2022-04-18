@@ -1,6 +1,7 @@
 package Model.Island;
 
 import Model.Player.Key;
+import Model.Player.Player;
 import Model.Utils.ItemType;
 import Model.Utils.Level;
 
@@ -11,13 +12,21 @@ public class Island {
     private float difficulty;
     private int length;
     private Zone[][] zones;
+    private Zone helicop;
     private boolean submerged;
     private ArrayList<Key> keys;
+    private ArrayList<Player> players;
+
 
     public Island(int length, float difficulty) {
         this.length=length;
         this.difficulty = difficulty;
-        this.zones=new Zone[length][length];
+        this.zones = new Zone[length][length];
+        this.players = new ArrayList<Player>();
+        // construction of players
+        for (int i=0;i<4;i++){
+            this.addPlayer(new Player(i,helicop));
+        }
         // construction of the island with submerged zones in the borders
         Level state;
         Zone left,right,up,down;
@@ -31,6 +40,9 @@ public class Island {
                 this.zones[i][j]=new Zone(state,null,null,this,left,right,up,down);
             }
         }
+
+        // choosing the fisrt zone as helicop
+        this.helicop=zones[0][0];
 
         this.submerged = false;
 
@@ -119,6 +131,27 @@ public class Island {
         }
     }
 
+    // players getters setters
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(ArrayList<Player> players) {
+        this.players = players;
+    }
+
+    /**
+     * add a player to the list of players on the island
+     * @param player
+     */
+    public void addPlayer(Player player){
+        this.players.add(player);
+    }
+
+    public void removePlayer(Player player){
+        this.players.remove(player);
+    }
 
 
     // enf of class
