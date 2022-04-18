@@ -114,9 +114,12 @@ public class Island {
         for(int i = 0; i < this.keys.size(); i++) {
             if(i == index){
                 this.keys.remove(this.keys.get(index));
+
             }
         }
     }
+
+
 
     // enf of class
 }
