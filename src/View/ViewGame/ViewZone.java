@@ -1,6 +1,7 @@
 package View.ViewGame;
 
 import Controller.Controller;
+import Model.Utils.Level;
 import View.ViewUtil.Rectangle;
 
 import java.awt.*;
@@ -13,15 +14,15 @@ public class ViewZone extends Rectangle {
 
 
 
-    public ViewZone(Controller controller, int width, int height, ViewPlayer viewPlayer, ViewKey viewKey, ViewArteFact viewArteFact, Color colorState) {
-        this(controller, width, height);
+    public ViewZone(Controller controller, int width, int height, ViewPlayer viewPlayer, ViewKey viewKey, ViewArteFact viewArteFact, Color colorState, int i, int j) {
+        this(controller, width, height, i, j);
         this.viewPlayer = viewPlayer;
         this.viewKey = viewKey;
         this.viewArteFact = viewArteFact;
     }
 
-    public ViewZone(Controller controller, int wdith, int height) {
-        super(controller, Color.black, wdith, height);
+    public ViewZone(Controller controller, int wdith, int height, int i, int j) {
+        super(controller,getColorFromLevel(controller.getIsland().getZone(i,j).getState()), wdith, height);
     }
 
     /**
@@ -74,6 +75,18 @@ public class ViewZone extends Rectangle {
 
     public Color getColorState() {
         return super.getColor();
+    }
+
+    public static Color getColorFromLevel(Level level){
+        switch (level) {
+            case dry:
+                return Color.orange;
+            case flooded:
+                return Color.CYAN;
+            case submerged:
+                return Color.blue;
+        }
+        return Color.BLACK; // to notice bugs
     }
 
     public void setColorState(Color colorState) {

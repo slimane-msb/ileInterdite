@@ -43,8 +43,14 @@ public class Island {
 
     @Override
     public String toString() {
+        String zonesstr="";
+        for (int i=0;i<length;i++){
+            for (int j=0;j<length;j++){
+                zonesstr+=i+j+":"+this.zones[i][j].toString()+"\n";
+            }
+        }
         return "Ile{" +
-                "plateau=" + zones +
+                "plateau=" + zonesstr +
                 ", submerged=" + submerged +
                 '}';
     }

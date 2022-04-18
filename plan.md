@@ -10,7 +10,11 @@
 
 #slim
 1. submerge the borders (last one is not submerged )
-2. changer les zone au marronsable 
+2. changer les zone au marron sable 
+
+
+# later : 
+1. simulate the real game 
 
 
 

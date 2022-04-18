@@ -33,6 +33,62 @@ public class Controller {
         this.window.dessineFenetre();
     }
 
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public Window getWindow() {
+        return window;
+    }
+
+    public void setWindow(Window window) {
+        this.window = window;
+    }
+
+    public Island getIsland() {
+        return island;
+    }
+
+    public void setIsland(Island island) {
+        this.island = island;
+    }
+
+    public ViewIsland getViewIsland() {
+        return viewIsland;
+    }
+
+    public void setViewIsland(ViewIsland viewIsland) {
+        this.viewIsland = viewIsland;
+    }
+
+    public SearchKey getSearchKey() {
+        return searchKey;
+    }
+
+    public void setSearchKey(SearchKey searchKey) {
+        this.searchKey = searchKey;
+    }
+
+    public EndRound getEndRound() {
+        return endRound;
+    }
+
+    public void setEndRound(EndRound endRound) {
+        this.endRound = endRound;
+    }
+
+    public ToDry getToDry() {
+        return toDry;
+    }
+
+    public void setToDry(ToDry toDry) {
+        this.toDry = toDry;
+    }
+
     /**
      * get the number of the zone we need to submerge, and then call the methode submergeView to color ble
      */

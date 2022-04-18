@@ -1,6 +1,7 @@
 package View.ViewGame;
 
 import Controller.Controller;
+import Model.Utils.Level;
 import View.ViewUtil.Grid;
 
 public class ViewIsland extends Grid {
@@ -13,7 +14,7 @@ public class ViewIsland extends Grid {
         this.viewZones = new ViewZone[length][length];
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < length; j++) {
-                viewZones[i][j] = new ViewZone(controller, length*6,length*6);
+                viewZones[i][j] = new ViewZone(controller,length*6,length*6,i,j);
                 this.ajouteElement(viewZones[i][j] );
             }
         }
