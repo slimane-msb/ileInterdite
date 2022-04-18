@@ -6,13 +6,13 @@
 4. listnerClavier + listner dans controller (sans attribut controller dans view )
 5. editer le diagrame de class en rapport a ce qui a ete change par emilie
 6. add heliport zone
+7. *si tu arrive a voir pourquoi* : problem: ca ferme pas la fenetre quand on clique sur EXIT apres avoir cliqué sur endOFround pleusieur fois << a voir dans le code view.windows>>
+8. *si tu sais le faire* : ajouter un text car ca suprrime tout quand j'ajoute un text 
 
 
 
 #slim
-1. submerge the borders (last one is not submerged )
-2. changer les zone au marron sable
-4. add player to player!
+1. add last week work to readme
 
 
 # later : 

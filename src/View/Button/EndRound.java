@@ -14,7 +14,7 @@ public class EndRound extends Button {
     @Override
     public void leftClic() {
         super.setColor(Color.green);
-        super.getController().endRoundClicked();
+        super.getController().endRound();
     }
 
 
