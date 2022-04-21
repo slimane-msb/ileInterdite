@@ -15,6 +15,7 @@ public class ViewIsland extends Grid {
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < length; j++) {
                 viewZones[i][j] = new ViewZone(controller,length*6,length*6,i,j);
+                //
                 this.ajouteElement(viewZones[i][j] );
             }
         }
@@ -51,5 +52,7 @@ public class ViewIsland extends Grid {
         sebmergeViewZone(viewZone2);
         sebmergeViewZone(viewZone3);
     }
+
+    //
 
 }
