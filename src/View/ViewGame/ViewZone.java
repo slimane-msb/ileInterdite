@@ -11,6 +11,7 @@ public class ViewZone extends Rectangle {
     private ViewPlayer viewPlayer;
     private ViewKey viewKey;
     private ViewArteFact viewArteFact;
+    // 4 zone
 
 
 

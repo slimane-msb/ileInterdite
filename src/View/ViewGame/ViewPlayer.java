@@ -37,7 +37,7 @@ public class ViewPlayer {
 
     /**
      *
-     * @param i the index of the player in the island player list, set the color by his index to distinguish them 
+     * @param i the index of the player in the island player list, set the color by his index to distinguish them
      */
     public void setColor(int i) {
         switch (i){
