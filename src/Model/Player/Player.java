@@ -3,12 +3,15 @@ package Model.Player;
 import Model.Island.Zone;
 import Model.Utils.Direction;
 import Model.Utils.ItemType;
+
+import java.awt.*;
 import java.util.Random;
 
 import java.util.ArrayList;
 
 public class Player {
     // attributes
+    private Color color;
     private int playerNb;
     private Zone postion;
     private ArrayList<Key> keys;
@@ -25,9 +28,10 @@ public class Player {
                 '}';
     }
 
-    public Player(int playerNb, Zone postion) {
+    public Player(int playerNb, Zone postion, Color c) {
         this.playerNb = playerNb;
         this.postion = postion;
+        this.color = c;
         this.keys = new ArrayList<Key>();
         this.artefacts=new ArrayList<Artefact>();
     }
@@ -40,6 +44,7 @@ public class Player {
         return postion;
     }
 
+    public Color getColor() { return color; }
 
     public void setPlayerNb(int playerNb) {
         this.playerNb = playerNb;
@@ -48,6 +53,8 @@ public class Player {
     public void setPostion(Zone postion) {
         this.postion = postion;
     }
+
+    public void setColor(Color color) { this.color = color; }
 
     /**
      *
