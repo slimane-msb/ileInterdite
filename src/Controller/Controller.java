@@ -121,7 +121,7 @@ public class Controller {
         currRound = (currRound + 1) % 3;
 
     }
-
+    //à refaire
     public void move(Direction dir){ //en fonction de la position de player
         //TODO emilie
     }
