@@ -5,6 +5,7 @@ import Model.Player.Player;
 import Model.Utils.ItemType;
 import Model.Utils.Level;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -22,11 +23,6 @@ public class Island {
         this.length=length;
         this.difficulty = difficulty;
         this.zones = new Zone[length][length];
-        this.players = new ArrayList<Player>();
-        // construction of players
-        for (int i=0;i<4;i++){
-            this.addPlayer(new Player(i,helicop));
-        }
         // construction of the island with submerged zones in the borders
         Level state;
         Zone left,right,up,down;
@@ -39,7 +35,14 @@ public class Island {
                 right=(j==length-1)?null: zones[i][j+1];
                 this.zones[i][j]=new Zone(state,null,null,this,left,right,up,down);
             }
+
         }
+        this.players = new ArrayList<Player>();
+        // construction of players
+        this.addPlayer(new Player(0, getZone(0, 0), Color.RED));
+        this.addPlayer(new Player(0, getZone(0, 0), Color.GREEN));
+        this.addPlayer(new Player(0, getZone(0, 0), Color.YELLOW));
+        this.addPlayer(new Player(0, getZone(0, 0), Color.MAGENTA));
 
         // choosing the fisrt zone as helicop
         this.helicop=zones[0][0];
