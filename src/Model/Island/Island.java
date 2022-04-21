@@ -39,10 +39,9 @@ public class Island {
         }
         this.players = new ArrayList<Player>();
         // construction of players
-        this.addPlayer(new Player(0, getZone(0, 0), Color.RED));
-        this.addPlayer(new Player(0, getZone(0, 0), Color.GREEN));
-        this.addPlayer(new Player(0, getZone(0, 0), Color.YELLOW));
-        this.addPlayer(new Player(0, getZone(0, 0), Color.MAGENTA));
+        for (int i=0;i<4;i++){
+            this.addPlayer(new Player(i,helicop));
+        }
 
         // choosing the fisrt zone as helicop
         this.helicop=zones[0][0];

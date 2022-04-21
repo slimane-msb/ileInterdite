@@ -19,11 +19,15 @@
 
 # later : 
 1. simulate the real game 
+2. changer player color 
 
 
+# changement : 
+1. il doit y avoir aucun lien entre le model et la view, c'est la raison pour laquelle une couleur dans le model est un int, et ensuit tu dois convirtir cette a une couleur dans la view, c'est l'exemple de dry flooded...pour dsitinguer les players, tu void utiliser l'index du joueur, et tu vas dire if i==0 then color him as blue player... ( c'est fait )
 
 
 notes: 
 1. on committing to github: consider putting a keyword (model, view, controller) where the code has been changed
     * exemple : git commit -m "view : submerge the borders && change the zones colors"
+2. consider adding documentation to let me know what the code does in 10second instead of 1h 
 
