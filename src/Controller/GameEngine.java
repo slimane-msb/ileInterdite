@@ -29,10 +29,9 @@ public class GameEngine {  //choix de pas implement runnalble donc pas de thread
         gameStatus = GameStatus.START_SCREEN;
         //camera = new Camera();
         uiManager = new UIManager(this, WIDTH, HEIGHT);
-        soundManager = new SoundManager();
         mapManager = new MapManager();
 
-        JFrame frame = new JFrame("Super Mario Bros.");
+        JFrame frame = new JFrame("L'île interdite");
         frame.add(uiManager);
         frame.addKeyListener(inputManager);
         frame.addMouseListener(inputManager);
