@@ -154,4 +154,7 @@ public class UIManager extends JPanel{
     }
 
 
+    public int changeSelectedLevel(int index, boolean up) {
+        levelSelection.changeSelectedMap(index, up);  //TODO classe level selection
+    }
 }
