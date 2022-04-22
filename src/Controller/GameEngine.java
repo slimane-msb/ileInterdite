@@ -27,7 +27,6 @@ public class GameEngine {  //choix de pas implement runnalble donc pas de thread
         imageLoader = new ImageLoader();
         InputManager inputManager = new InputManager(this);
         gameStatus = GameStatus.START_SCREEN;
-        //camera = new Camera();
         uiManager = new UIManager(this, WIDTH, HEIGHT);
         mapManager = new MapManager();
 
