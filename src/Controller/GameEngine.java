@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Island.Island;
 import Model.Utils.Direction;
 import View.ImageLoader;
 import View.StartScreenSelection;
@@ -11,7 +12,7 @@ import java.awt.*;
 public class GameEngine {  //choix de pas implement runnalble donc pas de thread et met methodes en public au lieu de private
     private final static int WIDTH = 1000, HEIGHT = 700;
 
-    private MapManager mapManager;
+    private Island island;
     private UIManager uiManager;
     private GameStatus gameStatus;
     private boolean isRunning;
@@ -28,7 +29,6 @@ public class GameEngine {  //choix de pas implement runnalble donc pas de thread
         InputManager inputManager = new InputManager(this);
         gameStatus = GameStatus.START_SCREEN;
         uiManager = new UIManager(this, WIDTH, HEIGHT);
-        mapManager = new MapManager();
 
         JFrame frame = new JFrame("L'île interdite");
         frame.add(uiManager);
@@ -58,36 +58,33 @@ public class GameEngine {  //choix de pas implement runnalble donc pas de thread
         selectedLevel = uiManager.changeSelectedLevel(selectedLevel, up);
     }
 
-    private void createMap(String path) {
-        boolean loaded = mapManager.createMap(imageLoader, path);
-        if(loaded){
-            setGameStatus(GameStatus.RUNNING);
-        }
+    private void createIsland() {
+        setGameStatus(GameStatus.RUNNING);
+        Island island = new Island(10, setLevel(getSelectedLevel()));
 
-        else
-            setGameStatus(GameStatus.START_SCREEN);
     }
 
-    private void render() {
-        uiManager.repaint();
+    private float setLevel(int selectedLevel) {
+        if (selectedLevel == 0){
+            return (float) 0.6;
+        }
+        else if (selectedLevel == 1){
+            return (float) 0.5;
+        }
+        else return (float) 0.4;
     }
 
     private void gameLoop() {
-        updateLocations();
 
         if (isGameOver()) {
             setGameStatus(GameStatus.GAME_OVER);
         }
 
-        if (mapManager.endLevel()) {
+        if (isWinning()) {
             setGameStatus(GameStatus.MISSION_PASSED);
         }
     }
 
-
-    private void updateLocations() {
-        mapManager.updateLocations();
-    }
 
     public void selectLevel(boolean selectUp) {
         changeSelectedLevel(selectUp);
@@ -97,13 +94,20 @@ public class GameEngine {  //choix de pas implement runnalble donc pas de thread
     public void startGame() {
         if (gameStatus != GameStatus.GAME_OVER) {
             setGameStatus(GameStatus.RUNNING);
+            createIsland();
         }
     }
 
     private boolean isGameOver() {
-        if(gameStatus == GameStatus.RUNNING)
-            return mapManager.isGameOver();
-        return false;
+        if (island.isSubmerged()){
+            gameStatus = GameStatus.GAME_OVER;
+        }
+        return (gameStatus == GameStatus.GAME_OVER);
+    }
+
+    private boolean isWinning() {
+        //TODO (condition pour mettre status en mission passed) emilie
+        return (gameStatus == GameStatus.MISSION_PASSED);
     }
 
     public ImageLoader getImageLoader() {
@@ -122,14 +126,6 @@ public class GameEngine {  //choix de pas implement runnalble donc pas de thread
         return selectedLevel;
     }
 
-    public void drawMap(Graphics2D g2) {
-        mapManager.drawMap(g2);
-    }
-
-    public MapManager getMapManager() {
-        return mapManager;
-    }
-
     public void move(Direction dir){ //en fonction de la position de player
         //TODO emilie
     }
@@ -145,6 +141,30 @@ public class GameEngine {  //choix de pas implement runnalble donc pas de thread
     public void takeArtefact(){
         //TODO emilie
     }
+
+    /**
+    public void endRound() {
+        int[][] zonesNb = island.submerge3NotSubmergedZones();
+        this.ViewIsland.submerge3ViewZones(
+                this.viewIsland.getViewZones(zonesNb[0][0], zonesNb[0][1]),
+                this.viewIsland.getViewZones(zonesNb[1][0], zonesNb[1][1]),
+                this.viewIsland.getViewZones(zonesNb[2][0], zonesNb[2][1]));
+    }
+
+     proposition : dans le uiManager : le simple fait d'avoir changé l'état des zones devrait changer leur affichage
+     public void endRound(){
+        island.submerge3NotSubmergedZones();
+     }
+
+
+    public void actionMade() {
+        if (currRound == 2) {
+            playerIndex = (playerIndex + 1) % 4;
+            this.endRound();
+        }
+        currRound = (currRound + 1) % 3;
+
+    } */
 
 
 
