@@ -21,7 +21,7 @@ public class InputManager implements KeyListener, MouseListener {
         if (keyCode == KeyEvent.VK_UP) {
             System.out.println("UP");
             if(status == GameStatus.START_SCREEN) {
-                System.out.println(" sur ecran accueil"); //TODO
+                System.out.println(" sur ecran accueil"); //TODO affichage
                 engine.selectLevel(true);
             }
             else
