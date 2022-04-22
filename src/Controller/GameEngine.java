@@ -74,17 +74,6 @@ public class GameEngine {  //choix de pas implement runnalble donc pas de thread
         else return (float) 0.4;
     }
 
-    private void gameLoop() {
-
-        if (isGameOver()) {
-            setGameStatus(GameStatus.GAME_OVER);
-        }
-
-        if (isWinning()) {
-            setGameStatus(GameStatus.MISSION_PASSED);
-        }
-    }
-
 
     public void selectLevel(boolean selectUp) {
         changeSelectedLevel(selectUp);
