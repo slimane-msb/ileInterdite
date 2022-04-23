@@ -153,5 +153,9 @@ public class UIManager extends JPanel{
         g2.drawImage(selectIcon, 375, row * 70 + 440, null);
     }
 
+    public int changeSelectedLevel(int index, boolean up) {
+        levelSelection.changeSelectedMap(index, up);  //TODO classe level selection
+        return 0;
+    }
 
 }
