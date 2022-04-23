@@ -1,7 +1,7 @@
 package View;
 
-import Controller.GameEngine;
-import Controller.GameStatus;
+import manager.GameEngine;
+import manager.GameStatus;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +17,7 @@ public class UIManager extends JPanel{
     private BufferedImage heartIcon;
     private BufferedImage coinIcon;
     private BufferedImage selectIcon;
+    private view.MapSelection mapSelection;
 
     public UIManager(GameEngine engine, int width, int height) {
         setPreferredSize(new Dimension(width, height));
@@ -24,10 +25,13 @@ public class UIManager extends JPanel{
         setMinimumSize(new Dimension(width, height));
 
         this.engine = engine;
-        ImageLoader loader = engine.getImageLoader();
+        view.ImageLoader loader = engine.getImageLoader();
+
+        mapSelection = new view.MapSelection();
 
         BufferedImage sprite = loader.loadImage("/sprite.png");
-        this.heartIcon = loader.loadImage("/artefact-icon.png");
+        this.heartIcon = loader.loadImage("/heart-icon.png");
+        this.coinIcon = loader.getSubImage(sprite, 1, 5, 48, 48);
         this.selectIcon = loader.loadImage("/select-icon.png");
         this.startScreenImage = loader.loadImage("/start-screen.png");
         this.helpScreenImage = loader.loadImage("/help-screen.png");
@@ -35,7 +39,7 @@ public class UIManager extends JPanel{
         this.gameOverScreen = loader.loadImage("/game-over.png");
 
         try {
-            InputStream in = getClass().getResourceAsStream("/media/font/ile-font.ttf");
+            InputStream in = getClass().getResourceAsStream("/media/font/player-font.ttf");
             gameFont = Font.createFont(Font.TRUETYPE_FONT, in);
         } catch (FontFormatException | IOException e) {
             gameFont = new Font("Verdana", Font.PLAIN, 12);
@@ -53,6 +57,9 @@ public class UIManager extends JPanel{
         if(gameStatus == GameStatus.START_SCREEN){
             drawStartScreen(g2);
         }
+        else if(gameStatus == GameStatus.MAP_SELECTION){
+            drawMapSelectionScreen(g2);
+        }
         else if(gameStatus == GameStatus.ABOUT_SCREEN){
             drawAboutScreen(g2);
         }
@@ -63,7 +70,10 @@ public class UIManager extends JPanel{
             drawGameOverScreen(g2);
         }
         else {
+            Point camLocation = engine.getCameraLocation();
+            g2.translate(-camLocation.x, -camLocation.y);
             engine.drawMap(g2);
+            g2.translate(camLocation.x, camLocation.y);
 
             drawPoints(g2);
             drawRemainingLives(g2);
@@ -153,9 +163,24 @@ public class UIManager extends JPanel{
         g2.drawImage(selectIcon, 375, row * 70 + 440, null);
     }
 
-    public int changeSelectedLevel(int index, boolean up) {
-        levelSelection.changeSelectedMap(index, up);  //TODO classe level selection
-        return 0;
+    private void drawMapSelectionScreen(Graphics2D g2){
+        g2.setFont(gameFont.deriveFont(50f));
+        g2.setColor(Color.WHITE);
+        mapSelection.draw(g2);
+        int row = engine.getSelectedMap();
+        int y_location = row*100+300-selectIcon.getHeight();
+        g2.drawImage(selectIcon, 375, y_location, null);
     }
 
+    public String selectMapViaMouse(Point mouseLocation) {
+        return mapSelection.selectMap(mouseLocation);
+    }
+
+    public String selectMapViaKeyboard(int index){
+        return mapSelection.selectMap(index);
+    }
+
+    public int changeSelectedMap(int index, boolean up){
+        return mapSelection.changeSelectedMap(index, up);
+    }
 }

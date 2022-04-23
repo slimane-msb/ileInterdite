@@ -2,12 +2,8 @@ package Controller;
 
 import Model.Island.Island;
 import Model.Utils.Direction;
-import View.ImageLoader;
-import View.StartScreenSelection;
-import View.UIManager;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class GameEngine {  //choix de pas implement runnalble donc pas de thread et met methodes en public au lieu de private
     private final static int WIDTH = 1000, HEIGHT = 700;
