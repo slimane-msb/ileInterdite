@@ -1,5 +1,4 @@
 package View.ViewUtil;
-import View.ViewGame.ViewZone;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -21,7 +20,7 @@ public class Grid extends JPanel {
 	    this.add(element);
     }
 
-    private ViewZone getElement(int i){
+    private ViewZone2 getElement(int i){
         return this.getElement(i);
     }
 

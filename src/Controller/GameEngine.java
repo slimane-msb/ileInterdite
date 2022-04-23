@@ -117,10 +117,14 @@ public class GameEngine {  //choix de pas implement runnalble donc pas de thread
 
     public void dry(Direction dir){
         //TODO emilie
+
     }
 
     public void searchKey(){
         //TODO emilie
+        // if key= z
+        // curr player.searchkeu
+        // this.action made()
     }
 
     public void takeArtefact(){
@@ -141,7 +145,7 @@ public class GameEngine {  //choix de pas implement runnalble donc pas de thread
         island.submerge3NotSubmergedZones();
      }
 
-
+*/
     public void actionMade() {
         if (currRound == 2) {
             playerIndex = (playerIndex + 1) % 4;
@@ -149,7 +153,7 @@ public class GameEngine {  //choix de pas implement runnalble donc pas de thread
         }
         currRound = (currRound + 1) % 3;
 
-    } */
+    }
 
 
 

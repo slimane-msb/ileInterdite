@@ -1,22 +1,22 @@
 package View.ViewGame;
 
 import Controller.Controller;
-import Model.Utils.Level;
 import View.ViewUtil.Grid;
 
 public class ViewIsland extends Grid {
     private int length;
     private  Controller controller;
-    private ViewZone[][] viewZones;
-    // Constructeur
+    private ViewZone[][] viewZone2s;
+
+    
     public ViewIsland(Controller controller, int length ) {
         super(length,length);
-        this.viewZones = new ViewZone[length][length];
+        this.viewZone2s = new ViewZone[length][length];
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < length; j++) {
-                viewZones[i][j] = new ViewZone(controller,length*6,length*6,i,j);
+                viewZone2s[i][j] = new ViewZone(controller,length*6,length*6,i,j);
                 //
-                this.ajouteElement(viewZones[i][j] );
+                this.ajouteElement(viewZone2s[i][j] );
             }
         }
     }
@@ -28,7 +28,7 @@ public class ViewIsland extends Grid {
      * @return the view zone [i][j]
      */
     public ViewZone getViewZones(int i, int j) {
-        return viewZones[i][j];
+        return viewZone2s[i][j];
     }
 
 
@@ -45,12 +45,12 @@ public class ViewIsland extends Grid {
      * set color of given 3 zones to blue
      * @param viewZone a view of zone 1
      * @param viewZone2 a view of zone 2
-     * @param viewZone3 a view of zone 3
+     * @param viewZone23 a view of zone 3
      */
-    public void submerge3ViewZones(ViewZone viewZone,ViewZone viewZone2,ViewZone viewZone3){
+    public void submerge3ViewZones(ViewZone viewZone, ViewZone viewZone2, ViewZone viewZone23){
         sebmergeViewZone(viewZone);
         sebmergeViewZone(viewZone2);
-        sebmergeViewZone(viewZone3);
+        sebmergeViewZone(viewZone23);
     }
 
     //

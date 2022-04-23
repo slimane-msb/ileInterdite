@@ -1,7 +1,7 @@
 package View;
 
-import manager.GameEngine;
-import manager.GameStatus;
+import Controller.GameEngine;
+import Controller.GameStatus;
 
 import javax.swing.*;
 import java.awt.*;

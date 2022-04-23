@@ -1,4 +1,9 @@
 package View.ViewGame;
 
-public class ViewKey {
+import java.awt.image.BufferedImage;
+
+public class ViewKey extends ViewArteFact{
+    public ViewKey(double x, double y, BufferedImage image) {
+        super(x, y, image);
+    }
 }

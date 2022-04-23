@@ -122,6 +122,7 @@ public class Controller {
 
     }
 
+
     public void move(Direction dir){ //en fonction de la position de player
         //TODO emilie
     }

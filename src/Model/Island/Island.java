@@ -93,7 +93,7 @@ public class Island {
 
     /**
      *  submerge 3 random zones NOT  already submerged
-     * @return @return array of 3 int corresponding to the number of the  submerged zones as (width*i+j)
+     * @return @return array of 3 int corresponding to the number of the  submerged zones as [i,j]
      */
     public int[][] submerge3NotSubmergedZones(){
         int i,j;
