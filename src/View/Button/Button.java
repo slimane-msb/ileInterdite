@@ -1,7 +1,6 @@
 package View.Button;
 
 import Controller.Controller;
-import View.ViewUtil.Rectangle;
 
 import java.awt.*;
 

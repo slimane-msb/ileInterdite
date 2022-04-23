@@ -1,8 +1,12 @@
 package Controller;
 
+
 public enum GameStatus {
     GAME_OVER,
+    PAUSED,
     RUNNING,
-    START_SCREEN, //sur lequel on fait le choix du niveau de difficulté
-    MISSION_PASSED
+    START_SCREEN,
+    HELP_SCREEN,
+    MISSION_PASSED,
+    ABOUT_SCREEN
 }

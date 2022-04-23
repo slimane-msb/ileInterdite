@@ -1,4 +1,4 @@
-package View;
+package View.ViewUtil;
 
 public enum StartScreenSelection {
     START_GAME(0),

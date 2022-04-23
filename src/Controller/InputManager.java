@@ -7,95 +7,72 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class InputManager implements KeyListener, MouseListener {
-    private GameEngine engine;
+public class InputManager implements KeyListener, MouseListener{
 
-    InputManager(GameEngine engine) {
-        this.engine = engine; }
+    private Controller controller;
+
+    InputManager(Controller controller) {
+        this.controller = controller; }
 
     @Override
     public void keyPressed(KeyEvent event) {
         int keyCode = event.getKeyCode();
-        GameStatus status = engine.getGameStatus();
+        GameStatus status = controller.getGameStatus();
+        ButtonAction currentAction = ButtonAction.NO_ACTION;
 
         if (keyCode == KeyEvent.VK_UP) {
-            System.out.println("UP");
-            if(status == GameStatus.START_SCREEN) {
-                System.out.println(" sur ecran accueil"); //TODO affichage
-                engine.selectLevel(true);
-            }
+            if(status == GameStatus.START_SCREEN )
+                currentAction = ButtonAction.GO_UP;
             else
-                engine.move(Direction.up);
+                currentAction = ButtonAction.JUMP;
         }
         else if(keyCode == KeyEvent.VK_DOWN){
-            System.out.println("DOWN");
-            if(status == GameStatus.START_SCREEN) {
-                System.out.println(" sur ecran accueil"); //TODO
-                engine.selectLevel(false);
-            }
-            else
-                engine.move(Direction.down);
-        }
-        else if (keyCode == KeyEvent.VK_LEFT) {
-            System.out.println("LEFT");
-            engine.move(Direction.left);
+            if(status == GameStatus.START_SCREEN )
+                currentAction = ButtonAction.GO_DOWN;
         }
         else if (keyCode == KeyEvent.VK_RIGHT) {
-            System.out.println("RIGHT");
-            engine.move(Direction.right);
+            currentAction = ButtonAction.M_RIGHT;
+        }
+        else if (keyCode == KeyEvent.VK_LEFT) {
+            currentAction = ButtonAction.M_LEFT;
         }
         else if (keyCode == KeyEvent.VK_ENTER) {
-            System.out.println("ENTER");
-            if(status == GameStatus.START_SCREEN) {
-                System.out.println(" sur ecran accueil"); //TODO
-                engine.startGame();
-            }
+            currentAction = ButtonAction.SELECT;
+        }
+        else if (keyCode == KeyEvent.VK_ESCAPE) {
+            if(status == GameStatus.RUNNING  )
+                currentAction = ButtonAction.PAUSE_RESUME;
             else
-                engine.takeArtefact();
-        }
-        else if (keyCode == KeyEvent.VK_SPACE) {
-            System.out.println("SPACE");
-            engine.searchKey();
-        }
+                currentAction = ButtonAction.GO_TO_START_SCREEN;
 
-        else if (keyCode == KeyEvent.VK_Z) {
-            System.out.println("Z");
-            engine.dry(Direction.up);
         }
-        else if (keyCode == KeyEvent.VK_X) {
-            System.out.println("X");
-            engine.dry(Direction.down);
-        }
-        else if (keyCode == KeyEvent.VK_Q) {
-            System.out.println("Q");
-            engine.dry(Direction.left);
-        }
-        else if (keyCode == KeyEvent.VK_D) {
-            System.out.println("D");
-            engine.dry(Direction.right);
-        }
-        else if (keyCode == KeyEvent.VK_S) {
-            System.out.println("S");
-            engine.dry(Direction.same);
+        else if (keyCode == KeyEvent.VK_SPACE){
+            currentAction = ButtonAction.FIRE;
         }
 
 
-    }
-
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        //TODO voir pour nextround si on le gère ici ou dans la view (à la création du bouton)
+        notifyInput(currentAction);
     }
 
     @Override
-    public void keyReleased(KeyEvent event) {}
+    public void keyReleased(KeyEvent event) {
+        if(event.getKeyCode() == KeyEvent.VK_RIGHT || event.getKeyCode() == KeyEvent.VK_LEFT)
+            notifyInput(ButtonAction.ACTION_COMPLETED);
+    }
+
+    private void notifyInput(ButtonAction action) {
+        if(action != ButtonAction.NO_ACTION)
+            controller.receiveInput(action);
+    }
 
     @Override
     public void keyTyped(KeyEvent arg0) {}
 
     @Override
     public void mouseClicked(MouseEvent e) {}
+
+    @Override
+    public void mousePressed(MouseEvent e) {}
 
     @Override
     public void mouseReleased(MouseEvent e) {}

@@ -2,40 +2,57 @@ package Controller;
 
 import Model.Island.Island;
 import Model.Utils.Direction;
-import View.Button.EndRound;
-import View.Button.SearchKey;
-import View.Button.ToDry;
 import View.ViewGame.ViewIsland;
-import View.ViewUtil.Window;
+import View.ViewUtil.ImageLoader;
+import View.ViewUtil.StartScreenSelection;
+import View.ViewUtil.UIManager;
+
+import javax.swing.*;
+import java.awt.*;
 
 
 public class Controller {
 
     private int length;
-    private Window window;
     private Island island;
     private ViewIsland viewIsland;
-    private SearchKey searchKey;
-    private EndRound endRound;
-    private Movement action;
-    private ToDry toDry;
     //manage rounds
     private int playerIndex = 0;
     private int nbAction = 3;
     private int currRound = 0;
 
+    // view attribute
+    private final static int WIDTH = 1000, HEIGHT = 700;
+    private UIManager uiManager;
+    private GameStatus gameStatus;
+    private ImageLoader imageLoader;
+    private int selectedLevel = 0;
+    private StartScreenSelection startScreenSelection = StartScreenSelection.START_GAME;
+
+
     public Controller(Island island) {
         this.length = island.getLength();
-        this.window = new Window(island.getLength() + "ile interdite");
+
         this.island = island;
-        this.searchKey = new SearchKey(this);
-        this.toDry = new ToDry(this);
-        this.endRound = new EndRound(this);
         this.viewIsland = new ViewIsland(this, island.getLength());
-        this.window.ajouteElement(viewIsland);
-        this.window.ajouteElement(endRound);
-        this.window.dessineFenetre();
-        this.action = new Movement(this, this.window);
+        this.initView();
+    }
+
+    private void initView() {
+        imageLoader = new ImageLoader();
+        InputManager inputManager = new InputManager(this);
+        gameStatus = GameStatus.START_SCREEN;
+        uiManager = new UIManager(this, WIDTH, HEIGHT);
+
+        JFrame frame = new JFrame("L'île interdite");
+        frame.add(uiManager);
+        frame.addKeyListener(inputManager);
+        frame.addMouseListener(inputManager);
+        frame.pack();
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 
     private String gameStateString() {
@@ -50,13 +67,7 @@ public class Controller {
         this.length = length;
     }
 
-    public Window getWindow() {
-        return window;
-    }
 
-    public void setWindow(Window window) {
-        this.window = window;
-    }
 
     public Island getIsland() {
         return island;
@@ -74,33 +85,6 @@ public class Controller {
         this.viewIsland = viewIsland;
     }
 
-    public SearchKey getSearchKey() {
-        return searchKey;
-    }
-
-    public void setSearchKey(SearchKey searchKey) {
-        this.searchKey = searchKey;
-    }
-
-    public EndRound getEndRound() {
-        return endRound;
-    }
-
-    public void setEndRound(EndRound endRound) {
-        this.endRound = endRound;
-    }
-
-    public ToDry getToDry() {
-        return toDry;
-    }
-
-    public void setToDry(ToDry toDry) {
-        this.toDry = toDry;
-    }
-
-    public Movement getAction() { return action;}
-
-    public void setAction(Movement action) {this.action = action; }
 
     /**
      * get the number of the zone we need to submerge, and then call the methode submergeView to color ble
@@ -125,6 +109,10 @@ public class Controller {
 
     public void move(Direction dir){ //en fonction de la position de player
         //TODO emilie
+        //TODO emilie
+        // if key= z
+        // curr player.searchkeu
+        // this.action made()
     }
 
     public void dry(Direction dir){
@@ -134,7 +122,57 @@ public class Controller {
     public void searchKey(){
         //TODO emilie
     }
+
+    // view controlller methdoes
+    private void reset() {
+        setGameStatus(GameStatus.START_SCREEN);
+    }
+    public void setGameStatus(GameStatus gameStatus) {
+        this.gameStatus = gameStatus;
+    }
+
+    public void drawIsland(Graphics2D g2) {
+        this.viewIsland.drawIsland(g2);
+    }
+
+    public GameStatus getGameStatus() {
+        return gameStatus;
+    }
+
+    private void selectOption(boolean selectUp) {
+        startScreenSelection = startScreenSelection.select(selectUp);
+    }
+
+    // we gonna manage inputs
+    public void receiveInput(ButtonAction input) {
+
+        if (gameStatus == GameStatus.START_SCREEN) {
+            if (input == ButtonAction.SELECT && startScreenSelection == StartScreenSelection.START_GAME) {
+                //start
+            } else if (input == ButtonAction.SELECT && startScreenSelection == StartScreenSelection.VIEW_ABOUT) {
+                //setGameStatus(GameStatus.ABOUT_SCREEN);
+            } else if (input == ButtonAction.SELECT && startScreenSelection == StartScreenSelection.VIEW_HELP) {
+                //setGameStatus(GameStatus.HELP_SCREEN);
+            } else if (input == ButtonAction.GO_UP) {
+                selectOption(true);
+            } else if (input == ButtonAction.GO_DOWN) {
+                selectOption(false);
+            }
+        }
+    }
+
+    public ImageLoader getImageLoader() {
+        return imageLoader;
+    }
+    public StartScreenSelection getStartScreenSelection() {
+        return startScreenSelection;
+    }
+
+
 }
+
+
+
 
 
 
