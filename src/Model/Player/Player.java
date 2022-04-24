@@ -69,7 +69,7 @@ public class Player {
          * @Note: that the number of action is not decreased, this number is managed by the controller
      */
     public boolean move(Direction direction){
-        System.out.println("player ---> "+this.position);
+
         switch (direction) {
             case up:
                 if (this.position.getUpperZone() == null || this.position.getUpperZone().isSubmerged()){

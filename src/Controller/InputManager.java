@@ -21,60 +21,60 @@ public class InputManager implements KeyListener, MouseListener{
         ButtonAction currentAction = ButtonAction.NO_ACTION;
 
         if (keyCode == KeyEvent.VK_UP) {
-            System.out.println("UP");
+
             currentAction = ButtonAction.UP;
         }
         else if(keyCode == KeyEvent.VK_DOWN){
-            System.out.println("DOWN");
+
             currentAction = ButtonAction.DOWN;
         }
         else if (keyCode == KeyEvent.VK_RIGHT) {
-            System.out.println("RIGHT");
+
             currentAction = ButtonAction.RIGHT;
         }
         else if (keyCode == KeyEvent.VK_LEFT) {
-            System.out.println("LEFT");
+
             currentAction = ButtonAction.LEFT;
         }
         else if (keyCode == KeyEvent.VK_A) {
-            System.out.println("a");
+
             currentAction = ButtonAction.GETARTEFACT;
         }
         else if (keyCode == KeyEvent.VK_ENTER) {
-            System.out.println("VK_ENTER");
+
             currentAction = ButtonAction.SELECT;
         }
         else if ((keyCode == KeyEvent.VK_G)) {
-            System.out.println("vk g");
+
             currentAction = ButtonAction.SHAREP1;
         }
         else if (keyCode == KeyEvent.VK_ESCAPE) {
-            System.out.println("ESC");
+
             currentAction = ButtonAction.GO_TO_START_SCREEN;
 
         }
         else if (keyCode == KeyEvent.VK_SPACE){
-            System.out.println("SPACE");
+
             currentAction = ButtonAction.KEY;
         }
         else if (keyCode == KeyEvent.VK_Z) {
-            System.out.println("Z");
+
             currentAction = ButtonAction.DRY_UP;
         }
         else if (keyCode == KeyEvent.VK_X) {
-            System.out.println("X");
+
             currentAction = ButtonAction.DRY_DOWN;
         }
         else if (keyCode == KeyEvent.VK_Q) {
-            System.out.println("Q");
+
             currentAction = ButtonAction.DRY_LEFT;
         }
         else if (keyCode == KeyEvent.VK_D) {
-            System.out.println("D");
+
             currentAction = ButtonAction.DRY_RIGHT;
         }
         else if (keyCode == KeyEvent.VK_S) {
-            System.out.println("S");
+
             currentAction = ButtonAction.DRY_ON;
         }
 

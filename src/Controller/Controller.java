@@ -42,7 +42,7 @@ public class Controller implements Runnable{
         this.island = island;
         this.initView();
         this.viewIsland = new ViewIsland(this, island.getLength());
-        System.out.println("good to go");
+
     }
 
     private void initView() {
@@ -116,12 +116,11 @@ public class Controller implements Runnable{
      * get the number of the zone we need to submerge, and then call the methode submergeView to color ble
      */
     public void endRound() {
-       //island.submerge3NotSubmergedZones();
+       island.submerge3NotSubmergedZones();
     }
 
     public void actionMade() {
         nbActionDone = (nbActionDone + 1) % 3;
-        System.out.println(nbActionDone);
         if (nbActionDone == 0) {
             playerIndex = (playerIndex + 1) % 4;
             this.endRound();
@@ -131,37 +130,37 @@ public class Controller implements Runnable{
 
 
     public void move(Direction dir){ //en fonction de la position de player
-        System.out.println(island.getPlayer(playerIndex).getPosition());
+
         if (island.getPlayer(playerIndex).move(dir)){
-            System.out.println(island.getPlayer(playerIndex).getPosition());
-            System.out.println("deplacement effectué");
+
+
         }
-        System.out.println(island.getPlayer(playerIndex).getPosition());
+
     }
 
     public void dry(Direction dir){
         if (island.getPlayer(playerIndex).toDry(dir)){
-            System.out.println("zone assechée");
+
         }
     }
 
     public void searchKey(){
         if (island.getPlayer(playerIndex).searchKey()){
-            System.out.println("clé trouvé");
+
         }
         else{
             island.submerge3NotSubmergedZones();
-            System.out.println("pas de chance : pas trouvé de clé => zones submergées");
+
         }
     }
 
     public void takeArtefact(){
-        System.out.println(island.getPlayer((playerIndex)));
-        System.out.println(island.getPlayer(playerIndex).getPosition().getArtefact());
+
+
         if (island.getPlayer(playerIndex).takeArtefact()){
-            System.out.println("artefact récuperé");
+
         }
-        System.out.println(island.getPlayer((playerIndex)));
+
     }
 
     // view controlller methdoes

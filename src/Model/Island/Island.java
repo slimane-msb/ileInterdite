@@ -23,7 +23,7 @@ public class Island {
 
     public Island(int length) {
         this.length=length;
-        this.difficulty = (float) 1.0;
+        this.difficulty = (float) 0.75;
         this.zones = new Zone[length][length];
         // construction of the island with submerged zones in the borders
         Zone left,right,up,down;
@@ -48,7 +48,7 @@ public class Island {
             }
 
         }
-        System.out.println(this);
+
 
 
 
@@ -99,7 +99,7 @@ public class Island {
         Artefact a = new Artefact(type, false,this.getZone(i,j));
         this.getArtefacts().add(a);
         this.getZone(i, j).setArtefact(a);
-        System.out.println(a.getPostion());
+
     }
 
     @Override
