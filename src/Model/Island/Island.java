@@ -31,12 +31,11 @@ public class Island {
         Zone left,right,up,down;
         for (int i=0;i<length;i++){
             for (int j=0;j<length;j++){
-                state = ( i==0 || j==0 || i==length-1|| j==length-1)?Level.submerged:Level.dry; // is in the borders
                 up=(i==0)?null: zones[i-1][j];
                 down=(i==length-1)?null: zones[i+1][j];
                 left=(j==0)?null: zones[i][j-1];
                 right=(j==length-1)?null: zones[i][j+1];
-                this.zones[i][j]=new Zone(state,null,null,this,left,right,up,down);
+                this.zones[i][j]=new Zone(Level.dry,null,null,this,left,right,up,down);
             }
 
         }
