@@ -67,10 +67,11 @@ public class UIManager extends JPanel{
         }
         else {
             drawIsland(g2);
-            drawPlayerKeyText(g2);
             drawListOfPlayersNotif(g2);
-            drawRoundForText(g2);
             drawPlayerRound(g2);
+            drawText(g2,"player Keys: ",2*getWidth()/3,50);
+            drawText(g2,"its round for: ",2*getWidth()/3-10,getHeight()*2/3);
+            //drawText(g2,"player Keys: ",2*getWidth()/3,50);
 
             // add more like draw point...
 
@@ -90,12 +91,14 @@ public class UIManager extends JPanel{
         curPlayerView.draw(g2);
     }
 
-    private void drawRoundForText(Graphics2D g2) {
+
+
+    private void drawText(Graphics2D g2, String text, int x, int y) {
         g2.setFont(gameFont.deriveFont(25f));
         g2.setColor(Color.WHITE);
-        String displayedStr = "its round for: " ;
+        String displayedStr = text ;
         int stringLength = g2.getFontMetrics().stringWidth(displayedStr);
-        g2.drawString(displayedStr, 2*getWidth()/3-10, getHeight()*2/3);
+        g2.drawString(displayedStr, x, y);
     }
 
     private void drawIsland(Graphics2D g2) {
@@ -142,13 +145,7 @@ public class UIManager extends JPanel{
         g2.drawString(displayedStr, (getWidth()-stringLength)/2, getHeight()/2);
     }
 
-    private void drawPlayerKeyText(Graphics2D g2){
-        g2.setFont(gameFont.deriveFont(25f));
-        g2.setColor(Color.WHITE);
-        String displayedStr = "player Keys: " ;//+ controller.getScore();
-        int stringLength = g2.getFontMetrics().stringWidth(displayedStr);
-        g2.drawString(displayedStr, 2*getWidth()/3, 50);
-    }
+
 
     private void drawListOfPlayersNotif(Graphics2D g2){
        for (ViewPlayer viewPlayer : this.controller.getViewIsland().getViewPlayers())
