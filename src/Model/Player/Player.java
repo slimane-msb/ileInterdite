@@ -118,7 +118,7 @@ public class Player {
      *
      * @return true if the player took the artefact found in his current zone by having the corresponding key to this artefact, false if not
      */
-    public boolean takeArtefacte(){
+    public boolean takeArtefact(){
         if (this.postion.containsArtefact()){
             if(this.hasKey(this.postion.getArtefact().getItemType())){
                 this.artefacts.add(this.postion.getArtefact());
