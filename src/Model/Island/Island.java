@@ -12,6 +12,7 @@ import java.util.Random;
 
 public class Island {
     private float difficulty;
+    private Random rand;
     private int length;
     private Zone[][] zones;
     private Zone helicop;
@@ -39,11 +40,13 @@ public class Island {
             }
 
         }
+
         this.players = new ArrayList<Player>();
-        // construction of players
-        for (int i=0;i<4;i++){
-            this.addPlayer(new Player(i,helicop));
-        }
+        this.players.add(new Player(0, getZone(0, 0)));
+        this.players.add(new Player(0, getZone(0, length-1)));
+        this.players.add(new Player(0, getZone(length-1, 0)));
+        this.players.add(new Player(0, getZone(length-1, length-1)));
+
 
         // adding key and artefact just for testing
         Key k = new Key(ItemType.air,this.players.get(0));
@@ -51,10 +54,7 @@ public class Island {
 
         Key k2 = new Key(ItemType.air,this.players.get(2));
         Key t2 = new Key(ItemType.water,this.players.get(2));
-
         // end test
-        // choosing the fisrt zone as helicop
-        this.helicop=zones[0][0];
 
         this.submerged = false;
 
@@ -65,11 +65,35 @@ public class Island {
         this.keys.add(new Key(ItemType.fire, null));
 
         this.artefacts = new ArrayList<Artefact>();
-        this.artefacts.add(new Artefact(ItemType.air, false));
-        this.artefacts.add(new Artefact(ItemType.earth, false));
-        this.artefacts.add(new Artefact(ItemType.water, false));
-        this.artefacts.add(new Artefact(ItemType.fire, false));
+        createArtefact(ItemType.air);
+        createArtefact(ItemType.earth);
+        createArtefact(ItemType.water);
+        createArtefact(ItemType.fire);
 
+        // choosing the fisrt zone as helicop
+        createHelicop();
+
+    }
+
+    public void createHelicop(){
+        this.rand = new Random();
+        int i = rand.nextInt(6);
+        int j = rand.nextInt(6);
+        this.setHelicop(this.getZone(i, j));
+    }
+
+    public void setHelicop(Zone helicop) {
+        this.helicop = helicop;
+    }
+
+    public void createArtefact(ItemType type){
+        Artefact a = new Artefact(type, false);
+        this.getArtefacts().add(a);
+        this.rand = new Random();
+        int i = rand.nextInt(6);
+        int j = rand.nextInt(6);
+
+        this.getZone(i, j).setArtefact(a);
     }
 
     @Override
@@ -119,7 +143,6 @@ public class Island {
     public int[][] submerge3NotSubmergedZones(){
         int i,j;
         int[][] zonesNb = new int[3][2];
-        Random rand = new Random();
         for (int k=0;k<3;k++) {
             i = rand.nextInt(length);
             j = rand.nextInt(length);
