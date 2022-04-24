@@ -6,6 +6,12 @@ import java.io.File;
 import java.io.IOException;
 
 public class ImageLoader {
+    private String path;
+
+
+    public ImageLoader(){
+        this.path ="";
+    }
 
     public BufferedImage loadImage(String path){
         BufferedImage imageToReturn = null;

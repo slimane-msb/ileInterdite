@@ -25,11 +25,11 @@ public class UIManager extends JPanel{
         this.controller = controller;
         ImageLoader loader = this.controller.getImageLoader();
 
-        this.selectIcon = loader.loadImage("/select-icon.png");
-        this.startScreenImage = loader.loadImage("/start-screen.png");
-        this.helpScreenImage = loader.loadImage("/help-screen.png");
-        this.aboutScreenImage = loader.loadImage("/about-screen.png");
-        this.gameOverScreen = loader.loadImage("/game-over.png");
+        this.selectIcon = loader.loadImage("/gameStatus/select-icon.png");
+        this.startScreenImage = loader.loadImage("/gameStatus/start-screen.png");
+        this.helpScreenImage = loader.loadImage("/gameStatus/help-screen.png");
+        this.aboutScreenImage = loader.loadImage("/gameStatus/about-screen.png");
+        this.gameOverScreen = loader.loadImage("/gameStatus/game-over.png");
 
         try {
             InputStream in = getClass().getResourceAsStream("/media/font/player-font.ttf");

@@ -35,12 +35,13 @@ public class Controller {
         this.length = island.getLength();
 
         this.island = island;
-        this.viewIsland = new ViewIsland(this, island.getLength());
         this.initView();
+        this.viewIsland = new ViewIsland(this, island.getLength());
     }
 
     private void initView() {
-        imageLoader = new ImageLoader();
+        this.imageLoader = new ImageLoader();
+        System.out.println("we are here");
         InputManager inputManager = new InputManager(this);
         gameStatus = GameStatus.START_SCREEN;
         uiManager = new UIManager(this, WIDTH, HEIGHT);
@@ -163,7 +164,7 @@ public class Controller {
     }
 
     public ImageLoader getImageLoader() {
-        return imageLoader;
+        return this.imageLoader;
     }
     public StartScreenSelection getStartScreenSelection() {
         return startScreenSelection;

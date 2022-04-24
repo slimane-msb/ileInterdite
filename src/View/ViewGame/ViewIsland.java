@@ -18,8 +18,9 @@ public class ViewIsland {
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < length; j++) {
                 //load images
-                BufferedImage dryImage = loader.loadImage("/zones/"+i+j+".png");
-                BufferedImage floodedImage = loader.loadImage("/zones/"+i+j+"f.png");
+                int imgIndex = (j*length+i)%14;
+                BufferedImage dryImage = loader.loadImage("/zones/"+imgIndex+".png");
+                BufferedImage floodedImage = loader.loadImage("/zones/"+imgIndex+"f.png");
                 viewZones[i][j] = new ViewZone(i*controller.getIMAGELENGTH(), j* controller.getIMAGELENGTH(), dryImage, floodedImage);
             }
         }
