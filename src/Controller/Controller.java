@@ -20,14 +20,11 @@ public class Controller implements Runnable{
     private int length;
     private Island island;
     private ViewIsland viewIsland;
+
     //manage rounds
     private int playerIndex = 0;
     private int nbAction = 3;
     private int currRound = 0;
-
-    public int getNbAction() {
-        return nbAction;
-    }
 
     // view attribute
     private final static int WIDTH = 1268, HEIGHT = 708;
@@ -97,7 +94,9 @@ public class Controller implements Runnable{
         this.length = length;
     }
 
-
+    public int getNbAction() {
+        return nbAction;
+    }
 
     public Island getIsland() {
         return island;
@@ -137,20 +136,32 @@ public class Controller implements Runnable{
     }
 
 
-    public void move(){ //en fonction de la position de player
-        //TODO emilie
-        //TODO emilie
-        // if key= z
-        // curr player.searchkeu
-        // this.action made()
+    public void move(Direction dir){ //en fonction de la position de player
+        if (island.getPlayer(playerIndex).move(dir)){
+            System.out.println("deplacement effectué");
+        }
     }
 
-    public void dry(){
-        //TODO emilie
+    public void dry(Direction dir){
+        if (island.getPlayer(playerIndex).toDry(dir)){
+            System.out.println("zone assechée");
+        }
     }
 
     public void searchKey(){
-        //TODO emilie
+        if (island.getPlayer(playerIndex).searchKey()){
+            System.out.println("clé trouvé");
+        }
+        else{
+            island.submerge3NotSubmergedZones();
+            System.out.println("pas de chance : pas trouvé de clé => zones submergées");
+        }
+    }
+
+    public void takeArtefact(){
+        if (island.getPlayer(playerIndex).takeArtefact()){
+            System.out.println("artefact récuperé");
+        }
     }
 
     // view controlller methdoes
@@ -196,17 +207,17 @@ public class Controller implements Runnable{
         // running
         else if (gameStatus == GameStatus.RUNNING) {
             if (input == ButtonAction.JUMP) {
-                this.move();
+                this.move(Direction.up);
             } else if (input == ButtonAction.M_RIGHT) {
-                this.move();
+                this.move(Direction.up);
             } else if (input == ButtonAction.M_LEFT) {
-                this.move();
+                this.move(Direction.up);
             } else if (input == ButtonAction.ACTION_COMPLETED) {
-                this.move();
+                this.move(Direction.up);
             } else if (input == ButtonAction.FIRE) {
-                this.move();
+                this.move(Direction.up);
             } else if (input == ButtonAction.PAUSE_RESUME) {
-                this.move();
+                this.move(Direction.up);
             }
         }
         else if(gameStatus == GameStatus.GAME_OVER && input == ButtonAction.GO_TO_START_SCREEN){
@@ -280,10 +291,22 @@ public class Controller implements Runnable{
     }
 
     private boolean isGameOver() {
-        if(gameStatus == GameStatus.RUNNING)
-            return island.isGameOver();
+        if(gameStatus == GameStatus.RUNNING && island.isGameOver()){
+            this.setGameStatus(GameStatus.GAME_OVER);
+            return true;
+        }
         return false;
     }
+
+    private boolean isWinning(){
+        if(gameStatus == GameStatus.RUNNING && island.isWinning()) {
+            this.setGameStatus(GameStatus.MISSION_PASSED);
+            return true;
+        }
+        return false;
+    }
+
+
 
     public int getCurrPlayerIndex() {
         return  this.playerIndex;
@@ -297,6 +320,11 @@ public class Controller implements Runnable{
         return this.getCurrPlayer().getKeys();
     }
 
+
+    public static void main(String... args) {
+        Island island = new Island(6);
+        new Controller(island);
+    }
 }
 
 
