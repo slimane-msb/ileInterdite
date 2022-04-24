@@ -2,6 +2,8 @@ package View.ViewUtil;
 
 import Controller.Controller;
 import Controller.GameStatus;
+import Model.Player.Artefact;
+import Model.Player.Item;
 import Model.Player.Key;
 import View.ViewGame.ViewArteFact;
 import View.ViewGame.ViewPlayer;
@@ -70,16 +72,16 @@ public class UIManager extends JPanel{
             drawIsland(g2);
             drawListOfPlayersNotif(g2);
             int half = (2*getWidth()/3);
-            drawPlayer(g2,half+250,(getHeight()*2/3)-73,controller.getCurrPlayerIndex() ); // player for notif (current player
+            int halfH = (getHeight()*2/3);
+            drawPlayer(g2,half+250,(halfH)-73,controller.getCurrPlayerIndex() ); // player for notif (current player
             drawText(g2,"player artefact: ",half-58,50);
             drawText(g2,"its round for: ",half-100,getHeight()*2/3);
             drawText(g2,"Nb Actions Left : "+controller.getNbAction(),half-122,(getHeight()*2/3)+70);
-            drawText(g2,"Keys:",half-130,(getHeight()*2/3)+140);
+            drawText(g2,"Keys:",half-130,(halfH)+140);
 
             // draw player keys:
-            drawCurrPlayerKeys(g2, (getHeight()*2/3)+140 , half-130+100 );
-            //drawPlayerArtefact(g2);
-
+            drawPlayersArtefact(g2,(half/3)-73+105,50);
+            drawCurrPlayerKeys(g2,half-130+105,(halfH)+140);
 
             // add more like draw point...
 
@@ -91,36 +93,54 @@ public class UIManager extends JPanel{
         g2.dispose();
     }
 
-    private void drawPlayerArtefact(Graphics2D g2, double x, double y, int index) {
-        // get keys
-        // for each key, switch then print with corresponding image
-        // shortcut for viewKey
+    private void drawPlayerKeys(Graphics2D g2, double x, double y, int index) {
         int i=0;
         for (Key key: controller.getIsland().getPlayers().get(index).getKeys()){
-            switch (key.getItemType()){
-                case air:
-                    ViewArteFact vLand = new ViewArteFact(x+i,y,controller.getViewIsland().getLand().getImage());
-                    vLand.draw(g2);
-                    break;
-                case water:
-                    ViewArteFact vWater = new ViewArteFact(x+i,y,controller.getViewIsland().getWater().getImage());
-                    vWater.draw(g2);
-                    break;
-                case earth:
-                    ViewArteFact vAir = new ViewArteFact(x+i,y,controller.getViewIsland().getAir().getImage());
-                    vAir.draw(g2);
-                    break;
-                case fire:
-                    ViewArteFact vFire = new ViewArteFact(x+i,y,controller.getViewIsland().getFire().getImage());
-                    vFire.draw(g2);
-                    break;
-            }
+            drawItem(g2,x+i,y,key);
             i+=100;
         }
     }
 
+    private void drawPlayerArtefacts(Graphics2D g2, double x, double y, int index) {
+        int i=0;
+        for (Artefact artefact: controller.getIsland().getPlayers().get(index).getArtefacts()){
+            drawItem(g2,x+i,y,artefact);
+            i+=100;
+        }
+    }
+
+    private void drawItem(Graphics2D g2, double x, double y, Item item) {
+        switch (item.getItemType()){
+            case air:
+                ViewArteFact vLand = new ViewArteFact(x,y,controller.getViewIsland().getLand().getImage());
+                vLand.draw(g2);
+                break;
+            case water:
+                ViewArteFact vWater = new ViewArteFact(x,y,controller.getViewIsland().getWater().getImage());
+                vWater.draw(g2);
+                break;
+            case earth:
+                ViewArteFact vAir = new ViewArteFact(x,y,controller.getViewIsland().getAir().getImage());
+                vAir.draw(g2);
+                break;
+            case fire:
+                ViewArteFact vFire = new ViewArteFact(x,y,controller.getViewIsland().getFire().getImage());
+                vFire.draw(g2);
+                break;
+        }
+
+    }
+
     private void drawCurrPlayerKeys(Graphics2D g2,double x, double y) {
-       drawPlayerArtefact(g2,x,y,controller.getCurrPlayerIndex());
+       drawPlayerKeys(g2,x,y,controller.getCurrPlayerIndex());
+    }
+
+    private void drawPlayersArtefact(Graphics2D g2,double x, double y){
+        int j=0;
+        for (int i=0;i<4;i++){
+            drawPlayerArtefacts(g2,x,y+j,i);
+            j +=105;
+        }
     }
 
     private void drawPlayer(Graphics2D g2, double x, double y, int index){

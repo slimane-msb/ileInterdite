@@ -3,7 +3,7 @@ package Model.Player;
 import Model.Island.Zone;
 import Model.Utils.ItemType;
 
-abstract class Item {
+public abstract class Item {
 
     private ItemType itemType;
     private Zone postion;

@@ -166,6 +166,17 @@ public class Player {
         return this.keys;
     }
 
+    public void setKeys(ArrayList<Key> keys) {
+        this.keys = keys;
+    }
+
+    public ArrayList<Artefact> getArtefacts() {
+        return artefacts;
+    }
+
+    public void setArtefacts(ArrayList<Artefact> artefacts) {
+        this.artefacts = artefacts;
+    }
 
     // end of class
 }
