@@ -17,12 +17,13 @@ public class Island {
     private Zone helicop;
     private boolean submerged;
     private ArrayList<Key> keys;
+    private ArrayList<Artefact> artefacts;
     private ArrayList<Player> players;
 
 
-    public Island(int length, float difficulty) {
+    public Island(int length) {
         this.length=length;
-        this.difficulty = difficulty;
+        this.difficulty = (float) 0.4;
         this.zones = new Zone[length][length];
         // construction of the island with submerged zones in the borders
         Level state;
@@ -62,6 +63,13 @@ public class Island {
         this.keys.add(new Key(ItemType.earth, null));
         this.keys.add(new Key(ItemType.water, null));
         this.keys.add(new Key(ItemType.fire, null));
+
+        this.artefacts = new ArrayList<Artefact>();
+        this.artefacts.add(new Artefact(ItemType.air, false));
+        this.artefacts.add(new Artefact(ItemType.earth, false));
+        this.artefacts.add(new Artefact(ItemType.water, false));
+        this.artefacts.add(new Artefact(ItemType.fire, false));
+
     }
 
     @Override
@@ -84,6 +92,10 @@ public class Island {
 
     public float getDifficulty(){
         return this.difficulty;
+    }
+
+    public void setDifficulty(float difficulty) {
+        this.difficulty = difficulty;
     }
 
     /**
@@ -142,10 +154,36 @@ public class Island {
         }
     }
 
+    public boolean isGameOver() {
+        if (this.isSubmerged()){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isWinning() {
+        for (Artefact artefact : this.getArtefacts()) {
+            if (!artefact.isFound()) {
+                return false;
+            }
+        }
+        for (Player player : this.getPlayers()){
+            if(player.getPostion() != this.getHelicop()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
     // players getters setters
 
     public ArrayList<Player> getPlayers() {
         return players;
+    }
+
+    public Player getPlayer(int index){
+        return this.getPlayers().get(index);
     }
 
     public void setPlayers(ArrayList<Player> players) {
@@ -164,12 +202,9 @@ public class Island {
         this.players.remove(player);
     }
 
+    public ArrayList<Artefact> getArtefacts() { return artefacts; }
 
-    public boolean isGameOver() {
-        // TO-DO
-        return false;
-    }
-
+    public Zone getHelicop() { return helicop; }
 
     // enf of class
 }
