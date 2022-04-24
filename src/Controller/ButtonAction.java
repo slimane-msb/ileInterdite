@@ -1,17 +1,20 @@
 package Controller;
 
 public enum ButtonAction {
-    JUMP,
-    M_RIGHT,
-    M_LEFT,
-    CROUCH,
-    FIRE,
+    UP,
+    DOWN,
+    RIGHT,
+    LEFT,
+    KEY,
+    DRY_UP,
+    DRY_DOWN,
+    DRY_LEFT,
+    DRY_RIGHT,
+    DRY_ON,
     START,
-    PAUSE_RESUME,
     ACTION_COMPLETED,
+    PAUSE_RESUME,
     SELECT,
-    GO_UP,
-    GO_DOWN,
     GO_TO_START_SCREEN,
     NO_ACTION
 }

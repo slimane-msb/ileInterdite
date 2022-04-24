@@ -2,7 +2,6 @@ package Controller;
 
 import Model.Utils.Direction;
 
-import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -22,44 +21,60 @@ public class InputManager implements KeyListener, MouseListener{
         ButtonAction currentAction = ButtonAction.NO_ACTION;
 
         if (keyCode == KeyEvent.VK_UP) {
-            if(status == GameStatus.START_SCREEN )
-                currentAction = ButtonAction.GO_UP;
-            else
-                currentAction = ButtonAction.JUMP;
+            System.out.println("UP");
+            currentAction = ButtonAction.UP;
         }
         else if(keyCode == KeyEvent.VK_DOWN){
-            if(status == GameStatus.START_SCREEN )
-                currentAction = ButtonAction.GO_DOWN;
+            System.out.println("DOWN");
+            currentAction = ButtonAction.DOWN;
         }
         else if (keyCode == KeyEvent.VK_RIGHT) {
-            currentAction = ButtonAction.M_RIGHT;
+            System.out.println("RIGHT");
+            currentAction = ButtonAction.RIGHT;
         }
         else if (keyCode == KeyEvent.VK_LEFT) {
-            currentAction = ButtonAction.M_LEFT;
+            System.out.println("LEFT");
+            currentAction = ButtonAction.LEFT;
         }
         else if (keyCode == KeyEvent.VK_ENTER) {
+            System.out.println("ENTER");
             currentAction = ButtonAction.SELECT;
         }
         else if (keyCode == KeyEvent.VK_ESCAPE) {
-            if(status == GameStatus.RUNNING  )
-                currentAction = ButtonAction.PAUSE_RESUME;
-            else
-                currentAction = ButtonAction.GO_TO_START_SCREEN;
+            System.out.println("ESC");
+            currentAction = ButtonAction.GO_TO_START_SCREEN;
 
         }
         else if (keyCode == KeyEvent.VK_SPACE){
-            currentAction = ButtonAction.FIRE;
+            System.out.println("SPACE");
+            currentAction = ButtonAction.KEY;
         }
-
+        else if (keyCode == KeyEvent.VK_Z) {
+            System.out.println("Z");
+            currentAction = ButtonAction.DRY_UP;
+        }
+        else if (keyCode == KeyEvent.VK_X) {
+            System.out.println("X");
+            currentAction = ButtonAction.DRY_DOWN;
+        }
+        else if (keyCode == KeyEvent.VK_Q) {
+            System.out.println("Q");
+            currentAction = ButtonAction.DRY_LEFT;
+        }
+        else if (keyCode == KeyEvent.VK_D) {
+            System.out.println("D");
+            currentAction = ButtonAction.DRY_RIGHT;
+        }
+        else if (keyCode == KeyEvent.VK_S) {
+            System.out.println("S");
+            currentAction = ButtonAction.DRY_ON;
+        }
 
         notifyInput(currentAction);
     }
 
     @Override
-    public void keyReleased(KeyEvent event) {
-        if(event.getKeyCode() == KeyEvent.VK_RIGHT || event.getKeyCode() == KeyEvent.VK_LEFT)
-            notifyInput(ButtonAction.ACTION_COMPLETED);
-    }
+    public void keyReleased(KeyEvent event) { }
 
     private void notifyInput(ButtonAction action) {
         if(action != ButtonAction.NO_ACTION) {
