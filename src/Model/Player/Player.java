@@ -182,5 +182,21 @@ public class Player {
         this.artefacts = artefacts;
     }
 
+    public ArrayList<Zone> possibleNeighbors(){
+        ArrayList<Zone> possN = new ArrayList<>();
+        if (this.position.getLeftZone()!=null) possN.add(this.position.getLeftZone());
+        if (this.position.getRightZone()!=null) possN.add(this.position.getRightZone());
+        if (this.position.getUpperZone()!=null) possN.add(this.position.getUpperZone());
+        if (this.position.getLowerZone()!=null) possN.add(this.position.getLowerZone());
+        return  possN;
+    }
+
+    public boolean isBlocked() {
+        for (Zone neighbor: this.possibleNeighbors()){
+            if(!neighbor.isSubmerged()) return false;
+        }
+        return  true;
+    }
+
     // end of class
 }

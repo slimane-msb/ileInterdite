@@ -36,8 +36,12 @@ public class InputManager implements KeyListener, MouseListener{
             System.out.println("LEFT");
             currentAction = ButtonAction.LEFT;
         }
+        else if (keyCode == KeyEvent.VK_A) {
+            System.out.println("a");
+            currentAction = ButtonAction.GETARTEFACT;
+        }
         else if (keyCode == KeyEvent.VK_ENTER) {
-            System.out.println("ENTER");
+            System.out.println("VK_ENTER");
             currentAction = ButtonAction.SELECT;
         }
         else if (keyCode == KeyEvent.VK_ESCAPE) {

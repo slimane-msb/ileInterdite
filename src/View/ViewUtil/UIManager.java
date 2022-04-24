@@ -81,8 +81,8 @@ public class UIManager extends JPanel{
             drawText(g2,"Keys:",half-130,(halfH)+140);
 
             // draw player keys:
-            drawPlayersArtefact(g2,(half/3)-73+105,50);
-            drawCurrPlayerKeys(g2,half-130+105,(halfH)+140);
+            drawPlayersArtefact(g2,controller.getWidth()*2/3.5+110,controller.getIMAGELENGTH()-40);
+            drawCurrPlayerKeys(g2,half-130+115,(halfH)+130);
 
             // draw real active players
             drawListOfPlayers(g2);
@@ -107,7 +107,7 @@ public class UIManager extends JPanel{
     private void drawListOfPlayers(Graphics2D g2) {
         int i=0;
         for (ViewPlayer viewPlayer: controller.getViewIsland().getViewPlayers()){
-            viewPlayer.setX(this.controller.getIsland().getPlayer(i).getPosition().getX()*controller.getIMAGELENGTH());
+            viewPlayer.setX(this.controller.getIsland().getPlayer(i).getPosition().getX()*controller.getIMAGELENGTH()+i*8-8);
             viewPlayer.setY(this.controller.getIsland().getPlayer(i++).getPosition().getY()*controller.getIMAGELENGTH());
             viewPlayer.draw(g2);
         }
@@ -123,7 +123,7 @@ public class UIManager extends JPanel{
 
     private void drawPlayerArtefacts(Graphics2D g2, double x, double y, int index) {
         int i=0;
-        for (Artefact artefact: controller.getIsland().getPlayers().get(index).getArtefacts()){
+        for (Artefact artefact: controller.getIsland().getPlayer(index).getArtefacts()){
             drawItem(g2,x+i,y,artefact);
             i+=100;
         }

@@ -38,7 +38,7 @@ public class ViewIsland {
             for (int j = 0; j < length; j++) {
                 //load images
                 // load first image as helicop
-                int imgIndex = (j*length+i)%14;
+                int imgIndex = (j*length+i)%9;
                 boolean heliport = i==controller.getIsland().getHelicop().getX() && j==controller.getIsland().getHelicop().getY();
                 BufferedImage dryImage;
                 BufferedImage floodedImage;

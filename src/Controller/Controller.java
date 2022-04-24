@@ -213,9 +213,12 @@ public class Controller implements Runnable{
             } else if (input == ButtonAction.LEFT) {
                 this.move(Direction.left);
 
-            } else if (input == ButtonAction.SELECT) {
+            } else if (input == ButtonAction.GETARTEFACT) {
                 this.takeArtefact();
-            } else if (input == ButtonAction.KEY) {
+            } else if (input == ButtonAction.SELECT) {
+                this.nbActionDone=2;
+                this.endRound();
+            }  else if (input == ButtonAction.KEY) {
                 this.searchKey();
             } else if (input == ButtonAction.DRY_ON) {
                 this.dry(Direction.same);

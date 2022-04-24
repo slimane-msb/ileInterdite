@@ -15,6 +15,9 @@ public enum ButtonAction {
     ACTION_COMPLETED,
     PAUSE_RESUME,
     SELECT,
+    GETARTEFACT,
     GO_TO_START_SCREEN,
-    NO_ACTION
+    ENDOFROUND,
+    NO_ACTION;
+
 }
