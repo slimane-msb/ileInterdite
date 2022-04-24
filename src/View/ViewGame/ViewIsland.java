@@ -25,7 +25,7 @@ public class ViewIsland {
         this.viewPlayers = new ArrayList<ViewPlayer>();
         // loading the 4 players
         for (int i=1;i<5;i++)
-            this.viewPlayers.add(new ViewPlayer(0,0, loader.loadImage("/player/"+i+".png") ));
+            this.viewPlayers.add(new ViewPlayer(controller.getWidth()*2/3.5,i*(controller.getIMAGELENGTH()-40), loader.loadImage("/player/"+i+".png") ));
         // loading the 4 artefact
         this.land = new ViewArteFact(0,0,loader.loadImage("/artefact/land.png"));
         this.water = new ViewArteFact(0,0,loader.loadImage("/artefact/water.png"));

@@ -217,6 +217,14 @@ public class Controller implements Runnable{
 
     }
 
+    public int getWidth(){
+        return  WIDTH;
+    }
+
+    public int getHeight(){
+        return  HEIGHT;
+    }
+
     public ImageLoader getImageLoader() {
         return this.imageLoader;
     }
