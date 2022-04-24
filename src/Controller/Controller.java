@@ -166,7 +166,7 @@ public class Controller implements Runnable{
 
     // view controlller methdoes
     private void reset() {
-        setIsland(new Island(6));
+        setIsland(new Island(length));
         setGameStatus(GameStatus.START_SCREEN);
     }
     public void setGameStatus(GameStatus gameStatus) {
@@ -237,7 +237,6 @@ public class Controller implements Runnable{
             this.actionMade();
         }
         else if(input == ButtonAction.GO_TO_START_SCREEN){
-            setGameStatus(GameStatus.START_SCREEN);
             reset();
         }
     }

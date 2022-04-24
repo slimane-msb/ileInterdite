@@ -65,9 +65,6 @@ public class UIManager extends JPanel{
         else if(gameStatus == GameStatus.HELP_SCREEN){
             drawHelpScreen(g2);
         }
-        else if(gameStatus == GameStatus.GAME_OVER){
-            drawGameOverScreen(g2);
-        }
         else {
             drawIsland(g2);
 
@@ -76,7 +73,7 @@ public class UIManager extends JPanel{
             int halfH = (getHeight()*2/3);
             drawPlayer(g2,half+250,(halfH)-73,controller.getCurrPlayerIndex() ); // player for notif (current player
             drawText(g2,"player artefact: ",half-58,50);
-            drawText(g2,"its round for: ",half-100,getHeight()*2/3);
+            drawText(g2,"it's round for: ",half-100,getHeight()*2/3);
             drawText(g2,"Nb Actions Left : "+controller.getNbActionsLeft(),half-122,(getHeight()*2/3)+70);
             drawText(g2,"Keys:",half-130,(halfH)+140);
 
@@ -91,6 +88,8 @@ public class UIManager extends JPanel{
 
             if(gameStatus == GameStatus.MISSION_PASSED){
                 drawVictoryScreen(g2);
+            }else if(gameStatus == GameStatus.GAME_OVER){
+                drawGameOverScreen(g2);
             }
         }
 
@@ -244,21 +243,11 @@ public class UIManager extends JPanel{
     }
 
     private void drawGameOverScreen(Graphics2D g2) {
-        g2.drawImage(gameOverScreen, 0, 0, null);
         g2.setFont(gameFont.deriveFont(50f));
         g2.setColor(new Color(130, 48, 48));
-        String acquiredPoints = "game over!: " ;
+        String acquiredPoints = "GAME OVER!: " ;
         int stringLength = g2.getFontMetrics().stringWidth(acquiredPoints);
-        int stringHeight = g2.getFontMetrics().getHeight();
-        g2.drawString(acquiredPoints, (getWidth()-stringLength)/2, getHeight()-stringHeight*2);
-    }
-
-    private void drawPauseScreen(Graphics2D g2) {
-        g2.setFont(gameFont.deriveFont(50f));
-        g2.setColor(Color.WHITE);
-        String displayedStr = "PAUSED";
-        int stringLength = g2.getFontMetrics().stringWidth(displayedStr);
-        g2.drawString(displayedStr, (getWidth()-stringLength)/2, getHeight()/2);
+        g2.drawString(acquiredPoints, (getWidth()-stringLength)/2, getHeight()/2);
     }
 
 

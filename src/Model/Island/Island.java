@@ -16,7 +16,6 @@ public class Island {
     private int length;
     private Zone[][] zones;
     private Zone helicop;
-    private boolean submerged;
     private ArrayList<Key> keys;
     private ArrayList<Artefact> artefacts;
     private ArrayList<Player> players;
@@ -60,7 +59,7 @@ public class Island {
         this.players.add(new Player(0, getZone(length-1, 0)));
         this.players.add(new Player(0, getZone(length-1, length-1)));
 
-        this.submerged = false;
+
 
         this.keys = new ArrayList<Key>();
         this.keys.add(new Key(ItemType.air, null));
@@ -113,7 +112,6 @@ public class Island {
         }
         return "Ile{" +
                 "plateau=" + zonesstr +
-                ", submerged=" + submerged +
                 '}';
     }
 
@@ -171,9 +169,6 @@ public class Island {
                     player.move(dirs.get(rnd));
                     dirs.remove(dirs.get(rnd));
                 }
-                if(player.getPosition().isSubmerged() && dirs.size()==0){
-                    this.submerged=true;
-                }
             }
             zonesNb[k][0]= i;
             zonesNb[k][1]= j;
@@ -205,7 +200,7 @@ public class Island {
         for (Player player : this.players){
             if ( player.isBlocked()) return  true;
         }
-        if (this.isSubmerged() || this.submerged ){
+        if (this.isSubmerged()  || this.getHelicop().isSubmerged() ){
             return true;
         }
         return false;

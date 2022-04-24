@@ -132,6 +132,7 @@ public class Player {
     public boolean takeArtefact(){
         if (this.position.containsArtefact()){
             if(this.hasKey(this.position.getArtefact().getItemType())){
+                this.position.getArtefact().setFound(true);
                 this.artefacts.add(this.position.getArtefact());
                 this.position.setArtefact(null);
                 return true;
