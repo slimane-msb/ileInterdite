@@ -278,6 +278,9 @@ public class Controller implements Runnable{
         return false;
     }
 
+    public int getCurrPlayer() {
+        return  this.playerIndex;
+    }
 }
 
 

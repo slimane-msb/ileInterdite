@@ -5,6 +5,7 @@ import Controller.GameStatus;
 import View.ViewGame.ViewPlayer;
 
 import javax.swing.*;
+import javax.swing.text.View;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -68,6 +69,8 @@ public class UIManager extends JPanel{
             drawIsland(g2);
             drawPlayerKeyText(g2);
             drawListOfPlayersNotif(g2);
+            drawRoundForText(g2);
+            drawPlayerRound(g2);
 
             // add more like draw point...
 
@@ -77,6 +80,22 @@ public class UIManager extends JPanel{
         }
 
         g2.dispose();
+    }
+
+    private void drawPlayerRound(Graphics2D g2) {
+        ViewPlayer curPlayerView = new ViewPlayer(
+                getWidth()*1.7/3,
+                getHeight()*3/4,
+                   this.controller.getViewIsland().getViewPlayers().get(controller.getCurrPlayer()).getImage());
+        curPlayerView.draw(g2);
+    }
+
+    private void drawRoundForText(Graphics2D g2) {
+        g2.setFont(gameFont.deriveFont(25f));
+        g2.setColor(Color.WHITE);
+        String displayedStr = "its round for: " ;
+        int stringLength = g2.getFontMetrics().stringWidth(displayedStr);
+        g2.drawString(displayedStr, 2*getWidth()/3-10, getHeight()*2/3);
     }
 
     private void drawIsland(Graphics2D g2) {
