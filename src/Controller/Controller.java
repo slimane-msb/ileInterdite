@@ -172,15 +172,16 @@ public class Controller implements Runnable{
             if (input == ButtonAction.SELECT && startScreenSelection == StartScreenSelection.START_GAME) {
                 //start
             } else if (input == ButtonAction.SELECT && startScreenSelection == StartScreenSelection.VIEW_ABOUT) {
-                //setGameStatus(GameStatus.ABOUT_SCREEN);
+                setGameStatus(GameStatus.ABOUT_SCREEN);
             } else if (input == ButtonAction.SELECT && startScreenSelection == StartScreenSelection.VIEW_HELP) {
-                //setGameStatus(GameStatus.HELP_SCREEN);
+                setGameStatus(GameStatus.HELP_SCREEN);
             } else if (input == ButtonAction.GO_UP) {
                 selectOption(true);
             } else if (input == ButtonAction.GO_DOWN) {
                 selectOption(false);
             }
         }
+        // if not in start screen a lot of theings will happen the whole gam eactually
 
 
     }
