@@ -6,13 +6,11 @@ import java.util.ArrayList;
 
 public class ViewZone extends GameObjectView {
     private ViewArteFact viewArteFact;
-    private ArrayList<ViewPlayer> viewPlayers;
     private BufferedImage floodedImage;
     private BufferedImage dryImage;
 
     public ViewZone(double x, double y, BufferedImage dryImage, BufferedImage floodedImage) {
         super(x, y, dryImage);
-        this.viewPlayers = new ArrayList<ViewPlayer>();
         this.floodedImage = floodedImage;
         this.dryImage = dryImage;
 
@@ -44,40 +42,28 @@ public class ViewZone extends GameObjectView {
     public void draw(Graphics g) {
         super.draw(g);
         if (this.viewArteFact!=null) this.viewArteFact.draw(g);
-        for (ViewPlayer viewPlayer : this.viewPlayers){
-            viewPlayer.draw(g);
-        }
     }
 
-    public void addViewPlayer(ViewPlayer viewPlayer){
-        this.viewPlayers.add(viewPlayer);
-        viewPlayer.setX(this.getX());
-        viewPlayer.setY(this.getY());
-    }
-
-    public void removeViewPlayer(ViewPlayer viewPlayer){
-        this.viewPlayers.remove(viewPlayer);
-    }
 
 
     /**
      * if the zone is dry the image will be back to original version
      */
-    public void setColorDry(){
+    public void setDru(){
         super.setImage(this.dryImage);
     }
 
     /**
      * if the zone is flooded the image become same with blue color on it
      */
-    public void setColorFlooded(BufferedImage imageFlooded){
+    public void setFlooded(){
         super.setImage(this.floodedImage);
     }
 
     /**
      * if the zone is submerged the image will desapear
      */
-    public void setColorSubmerged(BufferedImage imageSubmerged){
+    public void setSubmerged(){
         super.setImage(null);
     }
 

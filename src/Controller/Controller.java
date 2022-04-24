@@ -138,6 +138,7 @@ public class Controller implements Runnable{
         if (island.getPlayer(playerIndex).move(dir)){
             System.out.println("deplacement effectué");
         }
+        this.actionMade(); // a faire pour les autre aussi
     }
 
     public void dry(Direction dir){

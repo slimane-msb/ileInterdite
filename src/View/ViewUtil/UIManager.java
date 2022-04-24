@@ -97,7 +97,9 @@ public class UIManager extends JPanel{
     }
 
     private void drawListOfPlayers(Graphics2D g2) {
-
+        for (ViewPlayer viewPlayer: controller.getViewIsland().getViewPlayers()){
+            viewPlayer.draw(g2);
+        }
     }
 
     private void drawPlayerKeys(Graphics2D g2, double x, double y, int index) {

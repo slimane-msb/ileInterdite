@@ -25,7 +25,8 @@ public class ViewIsland {
         this.viewPlayers = new ArrayList<ViewPlayer>();
         // loading the 4 players
         for (int i=1;i<5;i++)
-            this.viewPlayers.add(new ViewPlayer(0,0, loader.loadImage("/player/"+i+".png") ));// x y will be set in heliport
+            this.viewPlayers.add(new ViewPlayer(controller.getIsland().getPlayer(i-1).getPostion().getX()*controller.getIMAGELENGTH(),controller.getIsland().getPlayer(i-1).getPostion().getY()*controller.getIMAGELENGTH(), loader.loadImage("/player/"+i+".png") ));
+        ;
         // loading the 4 artefact
         int k =0;
         this.land = new ViewArteFact(0,(k++)*controller.getIMAGELENGTH(),loader.loadImage("/artefact/land.png"));
@@ -52,10 +53,7 @@ public class ViewIsland {
                 viewZones[i][j] = new ViewZone(i*controller.getIMAGELENGTH(), j* controller.getIMAGELENGTH(), dryImage, floodedImage);
             }
         }
-        for (int i=0;i<4;i++) {
-            this.viewZones[0][i].addViewPlayer(this.viewPlayers.get(i));
-        }
-
+        
         // later it's gonna be done in ctroller // once it's picked remove it from zone, set zone attribute not artefect itself, it gonna printed on list
         this.viewZones[1][2].setViewArtefact(this.land);
         this.viewZones[3][1].setViewArtefact(this.water);
@@ -64,7 +62,7 @@ public class ViewIsland {
 
 
         // testing: adding some keys to player
-        
+
 
 
     }

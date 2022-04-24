@@ -27,7 +27,6 @@ public class Island {
         this.difficulty = (float) 0.4;
         this.zones = new Zone[length][length];
         // construction of the island with submerged zones in the borders
-        Level state;
         Zone left,right,up,down;
         for (int i=0;i<length;i++){
             for (int j=0;j<length;j++){
@@ -36,9 +35,14 @@ public class Island {
                 left=(j==0)?null: zones[i][j-1];
                 right=(j==length-1)?null: zones[i][j+1];
                 this.zones[i][j]=new Zone(Level.dry,null,null,this,left,right,up,down);
+                this.zones[i][j].setX(i);
+                this.zones[i][j].setY(j);
+
             }
 
         }
+
+
 
         this.players = new ArrayList<Player>();
         this.players.add(new Player(0, getZone(0, 0)));

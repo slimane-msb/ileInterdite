@@ -17,6 +17,8 @@ public class Zone {
     private Zone rightZone;
     private Zone upperZone;
     private Zone lowerZone;
+    private int x;
+    private int y;
 
 
     public Zone(Level state, Artefact artefactContained, Key key, Island island, Zone leftZone, Zone rightZone, Zone upperZone, Zone lowerZone) {
@@ -171,4 +173,21 @@ public class Zone {
     public void submerge() {
         this.state=Level.submerged;
     }
+
+    public double getX() {
+        return  this.x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
 }
+
