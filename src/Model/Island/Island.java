@@ -156,5 +156,11 @@ public class Island {
     }
 
 
+    public boolean isGameOver() {
+        // TO-DO
+        return false;
+    }
+
+
     // enf of class
 }

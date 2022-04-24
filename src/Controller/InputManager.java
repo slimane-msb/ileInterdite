@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Utils.Direction;
 
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -61,8 +62,9 @@ public class InputManager implements KeyListener, MouseListener{
     }
 
     private void notifyInput(ButtonAction action) {
-        if(action != ButtonAction.NO_ACTION)
+        if(action != ButtonAction.NO_ACTION) {
             controller.receiveInput(action);
+        }
     }
 
     @Override

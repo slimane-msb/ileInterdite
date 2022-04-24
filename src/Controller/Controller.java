@@ -11,7 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class Controller {
+public class Controller implements Runnable{
 
     private int length;
     private Island island;
@@ -22,13 +22,17 @@ public class Controller {
     private int currRound = 0;
 
     // view attribute
-    private final static int WIDTH = 1000, HEIGHT = 700;
+    private final static int WIDTH = 1268, HEIGHT = 708;
     private int IMAGELENGTH = 125;
     private UIManager uiManager;
     private GameStatus gameStatus;
     private ImageLoader imageLoader;
     private int selectedLevel = 0;
     private StartScreenSelection startScreenSelection = StartScreenSelection.START_GAME;
+
+    // update attribute
+    private boolean isRunning;
+    private Thread thread;
 
 
     public Controller(Island island) {
@@ -41,7 +45,6 @@ public class Controller {
 
     private void initView() {
         this.imageLoader = new ImageLoader();
-        System.out.println("we are here");
         InputManager inputManager = new InputManager(this);
         gameStatus = GameStatus.START_SCREEN;
         uiManager = new UIManager(this, WIDTH, HEIGHT);
@@ -55,7 +58,24 @@ public class Controller {
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        start();
     }
+
+    private synchronized void start() {
+        if (isRunning)
+            return;
+
+        isRunning = true;
+        thread = new Thread(this);
+        thread.start();
+    }
+
+
+
+    private void render() {
+        uiManager.repaint();
+    }
+
 
     private String gameStateString() {
         return "player: " + playerIndex + " Nb actions left: " + (3 - nbAction);
@@ -161,6 +181,8 @@ public class Controller {
                 selectOption(false);
             }
         }
+
+
     }
 
     public ImageLoader getImageLoader() {
@@ -178,6 +200,43 @@ public class Controller {
         this.IMAGELENGTH = IMAGELENGTH;
     }
 
+
+    @Override
+    public void run() {
+        long lastTime = System.nanoTime();
+        double amountOfTicks = 60.0;
+        double ns = 1000000000 / amountOfTicks;
+        double delta = 0;
+        long timer = System.currentTimeMillis();
+
+        while (isRunning && !thread.isInterrupted()) {
+
+            long now = System.nanoTime();
+            delta += (now - lastTime) / ns;
+            lastTime = now;
+            while (delta >= 1) {
+                if (gameStatus == GameStatus.RUNNING) {
+                    gameLoop();
+                }
+                delta--;
+            }
+            render();
+
+        }
+    }
+
+    private void gameLoop() {
+        //updates
+        if (isGameOver()) {
+            setGameStatus(GameStatus.GAME_OVER);
+        }
+    }
+
+    private boolean isGameOver() {
+        if(gameStatus == GameStatus.RUNNING)
+            return island.isGameOver();
+        return false;
+    }
 
 }
 
