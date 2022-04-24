@@ -1,7 +1,10 @@
 package View.ViewGame;
 
+import Model.Player.Artefact;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class ViewPlayer  extends  GameObjectView{
     // list of artefact and list of keyu
