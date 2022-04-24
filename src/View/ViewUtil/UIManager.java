@@ -13,7 +13,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 
 public class UIManager extends JPanel{
 
@@ -78,7 +77,7 @@ public class UIManager extends JPanel{
             drawPlayer(g2,half+250,(halfH)-73,controller.getCurrPlayerIndex() ); // player for notif (current player
             drawText(g2,"player artefact: ",half-58,50);
             drawText(g2,"its round for: ",half-100,getHeight()*2/3);
-            drawText(g2,"Nb Actions Left : "+controller.getNbAction(),half-122,(getHeight()*2/3)+70);
+            drawText(g2,"Nb Actions Left : "+controller.getNbActionsLeft(),half-122,(getHeight()*2/3)+70);
             drawText(g2,"Keys:",half-130,(halfH)+140);
 
             // draw player keys:
@@ -88,6 +87,7 @@ public class UIManager extends JPanel{
             // draw real active players
             drawListOfPlayers(g2);
             drawArtefacts(g2);
+
 
             if(gameStatus == GameStatus.MISSION_PASSED){
                 drawVictoryScreen(g2);
@@ -105,7 +105,10 @@ public class UIManager extends JPanel{
     }
 
     private void drawListOfPlayers(Graphics2D g2) {
+        int i=0;
         for (ViewPlayer viewPlayer: controller.getViewIsland().getViewPlayers()){
+            viewPlayer.setX(this.controller.getIsland().getPlayer(i).getPostion().getX()*controller.getIMAGELENGTH());
+            viewPlayer.setY(this.controller.getIsland().getPlayer(i++).getPostion().getY()*controller.getIMAGELENGTH());
             viewPlayer.draw(g2);
         }
     }
@@ -183,6 +186,19 @@ public class UIManager extends JPanel{
     private void drawIsland(Graphics2D g2) {
         for (int i = 0; i < controller.getLength(); i++) {
             for (int j = 0; j < controller.getLength(); j++) {
+                //update zones
+                // get zone state switch getviw.floo
+                switch (controller.getIsland().getZone(i,j).getState()){
+                    case dry:
+                        controller.getViewIsland().getViewZones(i,j).setDry();
+                        break;
+                    case flooded:
+                        controller.getViewIsland().getViewZones(i,j).setFlooded();
+                        break;
+                    case submerged:
+                        controller.getViewIsland().getViewZones(i,j).setSubmerged();
+                        break;
+                }
                 controller.getViewIsland().getViewZones(i,j).draw(g2);
             }
         }

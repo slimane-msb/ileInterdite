@@ -29,8 +29,13 @@ public class Artefact extends  Item {
         this.position = position;
     }
 
-
-    public Zone getPosition() {
-        return  this.position;
+    public Zone getPostion() {
+        return position;
     }
+
+    public void setPostion(Zone position) {
+        this.position = position;
+    }
+
+
 }

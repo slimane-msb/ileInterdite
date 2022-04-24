@@ -29,17 +29,27 @@ public class Island {
         Zone left,right,up,down;
         for (int i=0;i<length;i++){
             for (int j=0;j<length;j++){
+                this.zones[i][j]=new Zone(Level.dry,null,null,this,null,null,null,null);
+                this.zones[i][j].setX(j);
+                this.zones[i][j].setY(i);
+            }
+        }
+        // set neighbors
+        for (int i=0;i<length;i++){
+            for (int j=0;j<length;j++){
                 up=(i==0)?null: zones[i-1][j];
                 down=(i==length-1)?null: zones[i+1][j];
                 left=(j==0)?null: zones[i][j-1];
                 right=(j==length-1)?null: zones[i][j+1];
-                this.zones[i][j]=new Zone(Level.dry,null,null,this,left,right,up,down);
-                this.zones[i][j].setX(i);
-                this.zones[i][j].setY(j);
-
+                this.zones[i][j].setUpperZone(up);
+                this.zones[i][j].setLeftZone(left);
+                this.zones[i][j].setRightZone(right);
+                this.zones[i][j].setLowerZone(down);
             }
 
         }
+        System.out.println(this);
+
 
 
 
@@ -70,8 +80,8 @@ public class Island {
 
     public void createHelicop(){
         this.rand = new Random();
-        int i = rand.nextInt(6);
-        int j = rand.nextInt(6);
+        int i = rand.nextInt(length);
+        int j = rand.nextInt(length);
         this.setHelicop(this.getZone(i, j));
     }
 
@@ -124,7 +134,7 @@ public class Island {
      */
     public boolean isSubmerged() {
         for (int i=0;i<length;i++){
-            for (int j=0;i<length;j++){
+            for (int j=0;j<length;j++){
                 if(!zones[i][j].isSubmerged()) return false;
             }
         }
@@ -146,7 +156,7 @@ public class Island {
                 i = rand.nextInt(length);
                 j = rand.nextInt(length);
             }
-            this.zones[i][j].submerge();
+            this.zones[i][j].increaseWaterLevel();
             zonesNb[k][0]= i;
             zonesNb[k][1]= j;
         }

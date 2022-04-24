@@ -48,7 +48,7 @@ public class ViewZone extends GameObjectView {
     /**
      * if the zone is dry the image will be back to original version
      */
-    public void setDru(){
+    public void setDry(){
         super.setImage(this.dryImage);
     }
 

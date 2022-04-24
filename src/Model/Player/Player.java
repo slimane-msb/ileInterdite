@@ -4,6 +4,7 @@ import Model.Island.Zone;
 import Model.Utils.Direction;
 import Model.Utils.ItemType;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
@@ -56,11 +57,12 @@ public class Player {
      *
      * @param direction take direction(up,left,down,right) and move the player to this corresponding zone if this last is not submerged
      * @return true if the player has moved, false if not
-     * @Note: that the number of action is not decreased, this number is managed by the controller
+         * @Note: that the number of action is not decreased, this number is managed by the controller
      */
     public boolean move(Direction direction){
         switch (direction) {
             case up:
+                System.out.println(this.postion.getUpperZone().isSubmerged());
                 if (this.postion.getUpperZone() == null || this.postion.getUpperZone().isSubmerged()){
                     return false;
                 }else{

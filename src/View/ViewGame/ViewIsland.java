@@ -30,11 +30,11 @@ public class ViewIsland {
         ;
         // loading the 4 artefact
         int k =0;
-        System.out.println((controller.getIsland().getAir().getPostion()));
-        this.air = new ViewArteFact(0,0,loader.loadImage("/artefact/air.png"));
-        this.land = new ViewArteFact(0,0,loader.loadImage("/artefact/land.png"));
-        this.water = new ViewArteFact(0,0,loader.loadImage("/artefact/water.png"));
-        this.fire = new ViewArteFact(0,0,loader.loadImage("/artefact/fire.png"));
+
+        this.air = new ViewArteFact(controller.getIsland().getAir().getPostion().getX()*controller.getIMAGELENGTH(),controller.getIsland().getAir().getPostion().getY()*controller.getIMAGELENGTH(),loader.loadImage("/artefact/air.png"));
+        this.land = new ViewArteFact(controller.getIsland().getLand().getPostion().getX()*controller.getIMAGELENGTH(),controller.getIsland().getLand().getPostion().getY()*controller.getIMAGELENGTH(),loader.loadImage("/artefact/land.png"));
+        this.water = new ViewArteFact(controller.getIsland().getWater().getPostion().getX()*controller.getIMAGELENGTH(),controller.getIsland().getWater().getPostion().getY()*controller.getIMAGELENGTH(),loader.loadImage("/artefact/water.png"));
+        this.fire = new ViewArteFact(controller.getIsland().getFire().getPostion().getX()*controller.getIMAGELENGTH(),controller.getIsland().getFire().getPostion().getY()*controller.getIMAGELENGTH(),loader.loadImage("/artefact/fire.png"));
 
 
         this.viewZones = new ViewZone[length][length];
@@ -43,7 +43,7 @@ public class ViewIsland {
                 //load images
                 // load first image as helicop
                 int imgIndex = (j*length+i)%14;
-                boolean heliport = i==0 && j==0;
+                boolean heliport = i==controller.getIsland().getHelicop().getX() && j==controller.getIsland().getHelicop().getY();
                 BufferedImage dryImage;
                 BufferedImage floodedImage;
                 if(heliport) {

@@ -87,8 +87,9 @@ public class Zone {
     @Override
     public String toString() {
         return "Zone{" +
-                "state=" + state +
-                ", artefactContained=" + artefact +
+                "state=" + state.toString() +
+                ", x=" + x +
+                ", y=" + y +
                 '}';
     }
 

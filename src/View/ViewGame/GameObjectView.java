@@ -27,7 +27,6 @@ public abstract class GameObjectView {
 
     public void draw(Graphics g) {
         BufferedImage style = getImage();
-
         if(style != null){
             g.drawImage(style, (int)x, (int)y, null);
         }

@@ -21,8 +21,7 @@ public class Controller implements Runnable{
 
     //manage rounds
     private int playerIndex = 0;
-    private int nbAction = 3;
-    private int currRound = 0;
+    private int nbActionDone = 0;
 
     // view attribute
     private final static int WIDTH = 1268, HEIGHT = 708;
@@ -81,7 +80,7 @@ public class Controller implements Runnable{
 
 
     private String gameStateString() {
-        return "player: " + playerIndex + " Nb actions left: " + (3 - nbAction);
+        return "player: " + playerIndex + " Nb actions left: " + (3 - nbActionDone);
     }
 
     public int getLength() {
@@ -92,8 +91,8 @@ public class Controller implements Runnable{
         this.length = length;
     }
 
-    public int getNbAction() {
-        return nbAction;
+    public int getNbActionDone() {
+        return nbActionDone;
     }
 
     public Island getIsland() {
@@ -125,20 +124,23 @@ public class Controller implements Runnable{
     }
 
     public void actionMade() {
-        if (currRound == 2) {
+        nbActionDone = (nbActionDone + 1) % 3;
+        System.out.println(nbActionDone);
+        if (nbActionDone == 0) {
             playerIndex = (playerIndex + 1) % 4;
             this.endRound();
         }
-        currRound = (currRound + 1) % 3;
 
     }
 
 
     public void move(Direction dir){ //en fonction de la position de player
+        System.out.println(island.getPlayer(playerIndex).getPostion());
         if (island.getPlayer(playerIndex).move(dir)){
+            System.out.println(island.getPlayer(playerIndex).getPostion());
             System.out.println("deplacement effectué");
         }
-        this.actionMade(); // a faire pour les autre aussi
+        System.out.println(island.getPlayer(playerIndex).getPostion());
     }
 
     public void dry(Direction dir){
@@ -335,6 +337,9 @@ public class Controller implements Runnable{
     }
 
 
+    public int getNbActionsLeft() {
+        return  3-this.nbActionDone;
+    }
 }
 
 

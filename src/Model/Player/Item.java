@@ -6,7 +6,6 @@ import Model.Utils.ItemType;
 public abstract class Item {
 
     private ItemType itemType;
-    private Zone postion;
 
     public Item(ItemType itemType) {
         this.itemType = itemType;
@@ -16,9 +15,7 @@ public abstract class Item {
     @Override
     public String toString() {
         return "Item{" +
-                "itemType=" + itemType +
-                ", postion=" + postion +
-                '}';
+                "itemType=" + itemType ;
     }
 
 
@@ -30,11 +27,5 @@ public abstract class Item {
         this.itemType = itemType;
     }
 
-    public Zone getPostion() {
-        return postion;
-    }
 
-    public void setPostion(Zone postion) {
-        this.postion = postion;
-    }
 }
