@@ -218,10 +218,12 @@ public class Controller implements Runnable{
 
             } else if (input == ButtonAction.GETARTEFACT) {
                 this.takeArtefact();
+            } else if (input == ButtonAction.SHAREP1) {
+                this.giveKey();
             } else if (input == ButtonAction.SELECT) {
                 this.nbActionDone=2;
                 this.endRound();
-            }  else if (input == ButtonAction.KEY) {
+            } else if (input == ButtonAction.KEY) {
                 this.searchKey();
             } else if (input == ButtonAction.DRY_ON) {
                 this.dry(Direction.same);
@@ -238,6 +240,18 @@ public class Controller implements Runnable{
         }
         else if(input == ButtonAction.GO_TO_START_SCREEN){
             reset();
+        }
+    }
+
+    private void giveKey() {
+        if (this.island.getPlayer(getCurrPlayerIndex()).getKeys().size()>0) {
+            Key key = getCurrPlayer().getKeys().get(0);
+            for (Player player : this.island.getPlayers()){
+                if(player.getPosition()==getCurrPlayer().getPosition()){
+                    player.getKeys().add(key);
+                    getCurrPlayer().getKeys().remove(key);
+                }
+            }
         }
     }
 

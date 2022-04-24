@@ -44,6 +44,10 @@ public class InputManager implements KeyListener, MouseListener{
             System.out.println("VK_ENTER");
             currentAction = ButtonAction.SELECT;
         }
+        else if ((keyCode == KeyEvent.VK_G)) {
+            System.out.println("vk g");
+            currentAction = ButtonAction.SHAREP1;
+        }
         else if (keyCode == KeyEvent.VK_ESCAPE) {
             System.out.println("ESC");
             currentAction = ButtonAction.GO_TO_START_SCREEN;

@@ -18,6 +18,9 @@ public enum ButtonAction {
     GETARTEFACT,
     GO_TO_START_SCREEN,
     ENDOFROUND,
+    SHAREP1,
+    SHAREP2,
+    SHAPEP3,
     NO_ACTION;
 
 }

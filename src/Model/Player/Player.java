@@ -191,6 +191,10 @@ public class Player {
         this.artefacts = artefacts;
     }
 
+    /**
+     *
+     * @return all not null neighbors of the zone
+     */
     public ArrayList<Zone> possibleNeighbors(){
         ArrayList<Zone> possN = new ArrayList<>();
         if (this.position.getLeftZone()!=null) possN.add(this.position.getLeftZone());
