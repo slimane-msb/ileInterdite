@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.Island.Island;
-import Model.Player.Artefact;
 import Model.Player.Key;
 import Model.Player.Player;
 import Model.Utils.Direction;
@@ -11,7 +10,6 @@ import View.ViewUtil.StartScreenSelection;
 import View.ViewUtil.UIManager;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 
 
@@ -166,6 +164,7 @@ public class Controller implements Runnable{
 
     // view controlller methdoes
     private void reset() {
+        setIsland(new Island(6));
         setGameStatus(GameStatus.START_SCREEN);
     }
     public void setGameStatus(GameStatus gameStatus) {
@@ -197,42 +196,45 @@ public class Controller implements Runnable{
                 setGameStatus(GameStatus.ABOUT_SCREEN);
             } else if (input == ButtonAction.SELECT && startScreenSelection == StartScreenSelection.VIEW_HELP) {
                 setGameStatus(GameStatus.HELP_SCREEN);
-            } else if (input == ButtonAction.GO_UP) {
+            } else if (input == ButtonAction.UP) {
                 selectOption(true);
-            } else if (input == ButtonAction.GO_DOWN) {
+            } else if (input == ButtonAction.DOWN) {
                 selectOption(false);
             }
         }
 
         // running
         else if (gameStatus == GameStatus.RUNNING) {
-            if (input == ButtonAction.JUMP) {
+            if (input == ButtonAction.UP) {
                 this.move(Direction.up);
-            } else if (input == ButtonAction.M_RIGHT) {
-                this.move(Direction.up);
-            } else if (input == ButtonAction.M_LEFT) {
-                this.move(Direction.up);
-            } else if (input == ButtonAction.ACTION_COMPLETED) {
-                this.move(Direction.up);
-            } else if (input == ButtonAction.FIRE) {
-                this.move(Direction.up);
-            } else if (input == ButtonAction.PAUSE_RESUME) {
-                this.move(Direction.up);
+            } else if (input == ButtonAction.DOWN) {
+                this.move(Direction.down);
+            } else if (input == ButtonAction.RIGHT) {
+                this.move(Direction.right);
+            } else if (input == ButtonAction.LEFT) {
+                this.move(Direction.left);
+
+            } else if (input == ButtonAction.SELECT) {
+                this.takeArtefact();
+            } else if (input == ButtonAction.KEY) {
+                this.searchKey();
+            } else if (input == ButtonAction.DRY_ON) {
+                this.dry(Direction.same);
+            } else if (input == ButtonAction.DRY_UP) {
+                this.dry(Direction.up);
+            } else if (input == ButtonAction.DRY_DOWN) {
+                this.dry(Direction.down);
+            } else if (input == ButtonAction.DRY_LEFT) {
+                this.dry(Direction.left);
+            } else if (input == ButtonAction.DRY_RIGHT) {
+                this.dry(Direction.right);
             }
+            this.actionMade();
         }
-        else if(gameStatus == GameStatus.GAME_OVER && input == ButtonAction.GO_TO_START_SCREEN){
-            reset();
-        } else if(gameStatus == GameStatus.MISSION_PASSED && input == ButtonAction.GO_TO_START_SCREEN){
-            reset();
-        }
-        //
-
-        if(input == ButtonAction.GO_TO_START_SCREEN){
+        else if(input == ButtonAction.GO_TO_START_SCREEN){
             setGameStatus(GameStatus.START_SCREEN);
+            reset();
         }
-
-
-
     }
 
     public int getWidth(){
@@ -288,20 +290,21 @@ public class Controller implements Runnable{
         if (isGameOver()) {
             setGameStatus(GameStatus.GAME_OVER);
         }
+        if (isWinning()) {
+            setGameStatus(GameStatus.MISSION_PASSED);
+        }
     }
 
     private boolean isGameOver() {
-        if(gameStatus == GameStatus.RUNNING && island.isGameOver()){
-            this.setGameStatus(GameStatus.GAME_OVER);
-            return true;
+        if(gameStatus == GameStatus.RUNNING){
+            return island.isGameOver();
         }
         return false;
     }
 
     private boolean isWinning(){
-        if(gameStatus == GameStatus.RUNNING && island.isWinning()) {
-            this.setGameStatus(GameStatus.MISSION_PASSED);
-            return true;
+        if(gameStatus == GameStatus.RUNNING) {
+            return island.isWinning();
         }
         return false;
     }
@@ -320,11 +323,17 @@ public class Controller implements Runnable{
         return this.getCurrPlayer().getKeys();
     }
 
+    public void selectLevel() {
+        //TODO
+    }
+
 
     public static void main(String... args) {
         Island island = new Island(6);
         new Controller(island);
     }
+
+
 }
 
 
