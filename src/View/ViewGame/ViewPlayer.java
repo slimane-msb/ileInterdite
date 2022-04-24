@@ -8,4 +8,8 @@ public class ViewPlayer  extends  GameObjectView{
     public ViewPlayer(double x, double y, BufferedImage image) {
         super(x, y, image);
     }
+
+    public ViewPlayer(ViewPlayer pp1) {
+        this(pp1.getX(), pp1.getY(), pp1.getImage());
+    }
 }

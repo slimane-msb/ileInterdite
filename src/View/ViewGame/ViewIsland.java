@@ -25,7 +25,7 @@ public class ViewIsland {
         this.viewPlayers = new ArrayList<ViewPlayer>();
         // loading the 4 players
         for (int i=1;i<5;i++)
-            this.viewPlayers.add(new ViewPlayer(controller.getWidth()*2/3.5,i*(controller.getIMAGELENGTH()-40), loader.loadImage("/player/"+i+".png") ));
+            this.viewPlayers.add(new ViewPlayer(0,0, loader.loadImage("/player/"+i+".png") ));// x y will be set in heliport
         // loading the 4 artefact
         this.land = new ViewArteFact(0,0,loader.loadImage("/artefact/land.png"));
         this.water = new ViewArteFact(0,0,loader.loadImage("/artefact/water.png"));
@@ -38,11 +38,26 @@ public class ViewIsland {
                 //load images
                 // load first image as helicop
                 int imgIndex = (j*length+i)%14;
-                BufferedImage dryImage = loader.loadImage("/zones/"+imgIndex+".png");
-                BufferedImage floodedImage = loader.loadImage("/zones/"+imgIndex+"f.png");
+                boolean heliport = i==0 && j==0;
+                BufferedImage dryImage;
+                BufferedImage floodedImage;
+                if(heliport) {
+                    dryImage = loader.loadImage("/zones/h.png");
+                    floodedImage = loader.loadImage("/zones/hf.png");
+                }else {
+                    dryImage = loader.loadImage("/zones/" + imgIndex + ".png");
+                    floodedImage = loader.loadImage("/zones/" + imgIndex + "f.png");
+                }
                 viewZones[i][j] = new ViewZone(i*controller.getIMAGELENGTH(), j* controller.getIMAGELENGTH(), dryImage, floodedImage);
             }
         }
+        for (int i=0;i<4;i++) {
+            this.viewZones[0][i].addViewPlayer(this.viewPlayers.get(i));
+        }
+        this.viewZones[1][2].setViewArtefact(this.land);
+        this.viewZones[3][1].setViewArtefact(this.water);
+        this.viewZones[2][1].setViewArtefact(this.fire);
+        this.viewZones[0][3].setViewArtefact(this.air);
     }
 
     /**
@@ -77,13 +92,7 @@ public class ViewIsland {
         sebmergeViewZone(viewZone23);
     }
 
-    public void drawIsland(Graphics2D g2) {
-        for (int i = 0; i < length; i++) {
-            for (int j = 0; j < length; j++) {
-                viewZones[i][j].draw(g2);
-            }
-        }
-    }
+
 
     public int getLength() {
         return length;

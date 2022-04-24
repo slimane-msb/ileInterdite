@@ -13,6 +13,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class UIManager extends JPanel{
 
@@ -70,6 +71,7 @@ public class UIManager extends JPanel{
         }
         else {
             drawIsland(g2);
+
             drawListOfPlayersNotif(g2);
             int half = (2*getWidth()/3);
             int halfH = (getHeight()*2/3);
@@ -83,7 +85,8 @@ public class UIManager extends JPanel{
             drawPlayersArtefact(g2,(half/3)-73+105,50);
             drawCurrPlayerKeys(g2,half-130+105,(halfH)+140);
 
-            // add more like draw point...
+            // draw real active players
+            drawListOfPlayers(g2);
 
             if(gameStatus == GameStatus.MISSION_PASSED){
                 drawVictoryScreen(g2);
@@ -91,6 +94,10 @@ public class UIManager extends JPanel{
         }
 
         g2.dispose();
+    }
+
+    private void drawListOfPlayers(Graphics2D g2) {
+
     }
 
     private void drawPlayerKeys(Graphics2D g2, double x, double y, int index) {
@@ -138,6 +145,7 @@ public class UIManager extends JPanel{
     private void drawPlayersArtefact(Graphics2D g2,double x, double y){
         int j=0;
         for (int i=0;i<4;i++){
+            // make new playuer
             drawPlayerArtefacts(g2,x,y+j,i);
             j +=105;
         }
@@ -208,9 +216,20 @@ public class UIManager extends JPanel{
 
 
 
-    private void drawListOfPlayersNotif(Graphics2D g2){
-       for (ViewPlayer viewPlayer : this.controller.getViewIsland().getViewPlayers())
-           viewPlayer.draw(g2);
+    private void drawListOfPlayersNotif(Graphics2D g2) {
+        int i=1;
+        ViewPlayer pp1 = this.controller.getViewIsland().getViewPlayers().get(0);
+        ViewPlayer p1 = new ViewPlayer(controller.getWidth()*2/3.5,(i++)*(controller.getIMAGELENGTH()-40),pp1.getImage());
+        ViewPlayer pp2 = this.controller.getViewIsland().getViewPlayers().get(1);
+        ViewPlayer p2 = new ViewPlayer(controller.getWidth()*2/3.5,(i++)*(controller.getIMAGELENGTH()-40),pp2.getImage());
+        ViewPlayer pp3 = this.controller.getViewIsland().getViewPlayers().get(2);
+        ViewPlayer p3 = new ViewPlayer(controller.getWidth()*2/3.5,(i++)*(controller.getIMAGELENGTH()-40),pp3.getImage());
+        ViewPlayer pp4 = this.controller.getViewIsland().getViewPlayers().get(3);
+        ViewPlayer p4 = new ViewPlayer(controller.getWidth()*2/3.5,(i++)*(controller.getIMAGELENGTH()-40),pp4.getImage());
+        p1.draw(g2);
+        p2.draw(g2);
+        p3.draw(g2);
+        p4.draw(g2);
     }
 
 

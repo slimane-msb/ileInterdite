@@ -18,6 +18,10 @@ public class ViewZone extends GameObjectView {
 
     }
 
+    public void floodZone(){
+        super.setImage(this.floodedImage);
+    }
+
     /**
      *
      * @param x location x
@@ -39,14 +43,16 @@ public class ViewZone extends GameObjectView {
     @Override
     public void draw(Graphics g) {
         super.draw(g);
-//        this.viewArteFact.draw(g);
-//        for (ViewPlayer viewPlayer : this.viewPlayers){
-//            viewPlayer.draw(g);
-//        }
+        if (this.viewArteFact!=null) this.viewArteFact.draw(g);
+        for (ViewPlayer viewPlayer : this.viewPlayers){
+            viewPlayer.draw(g);
+        }
     }
 
     public void addViewPlayer(ViewPlayer viewPlayer){
         this.viewPlayers.add(viewPlayer);
+        viewPlayer.setX(this.getX());
+        viewPlayer.setY(this.getY());
     }
 
     public void removeViewPlayer(ViewPlayer viewPlayer){
@@ -76,5 +82,9 @@ public class ViewZone extends GameObjectView {
     }
 
 
-
+    public void setViewArtefact(ViewArteFact arteFact) {
+        this.viewArteFact= new ViewArteFact(arteFact);
+        arteFact.setX(this.getX());
+        arteFact.setY(this.getY());
+    }
 }
