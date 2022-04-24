@@ -18,9 +18,9 @@ public class ViewIsland {
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < length; j++) {
                 //load images
-                BufferedImage dryImage = loader.loadImage("/sprite.png");
-                BufferedImage floodedImage = loader.loadImage("/sprite.png");
-                viewZones[i][j] = new ViewZone(i, j, dryImage, floodedImage);
+                BufferedImage dryImage = loader.loadImage("/zones/"+i+j+".png");
+                BufferedImage floodedImage = loader.loadImage("/zones/"+i+j+"f.png");
+                viewZones[i][j] = new ViewZone(i*controller.getIMAGELENGTH(), j* controller.getIMAGELENGTH(), dryImage, floodedImage);
             }
         }
     }
@@ -58,8 +58,11 @@ public class ViewIsland {
     }
 
     public void drawIsland(Graphics2D g2) {
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < length; j++) {
+                viewZones[i][j].draw(g2);
+            }
+        }
     }
-
-    //
 
 }

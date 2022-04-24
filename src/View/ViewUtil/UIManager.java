@@ -11,6 +11,7 @@ import java.io.InputStream;
 
 public class UIManager extends JPanel{
 
+
     private Controller controller;
     private Font gameFont;
     private BufferedImage startScreenImage, aboutScreenImage, helpScreenImage, gameOverScreen;
@@ -123,5 +124,6 @@ public class UIManager extends JPanel{
         g2.drawImage(startScreenImage, 0, 0, null);
         g2.drawImage(selectIcon, 375, row * 70 + 440, null);
     }
+
 
 }

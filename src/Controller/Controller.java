@@ -23,6 +23,7 @@ public class Controller {
 
     // view attribute
     private final static int WIDTH = 1000, HEIGHT = 700;
+    private int IMAGELENGTH = 125;
     private UIManager uiManager;
     private GameStatus gameStatus;
     private ImageLoader imageLoader;
@@ -166,6 +167,14 @@ public class Controller {
     }
     public StartScreenSelection getStartScreenSelection() {
         return startScreenSelection;
+    }
+
+    public int getIMAGELENGTH() {
+        return IMAGELENGTH;
+    }
+
+    public void setIMAGELENGTH(int IMAGELENGTH) {
+        this.IMAGELENGTH = IMAGELENGTH;
     }
 
 
