@@ -3,6 +3,7 @@ package View.ViewGame;
 import Controller.Controller;
 import View.ViewUtil.ImageLoader;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 

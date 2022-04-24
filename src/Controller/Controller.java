@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Island.Island;
+import Model.Player.Player;
 import Model.Utils.Direction;
 import View.ViewGame.ViewIsland;
 import View.ViewUtil.ImageLoader;
@@ -37,10 +38,10 @@ public class Controller implements Runnable{
 
     public Controller(Island island) {
         this.length = island.getLength();
-
         this.island = island;
         this.initView();
         this.viewIsland = new ViewIsland(this, island.getLength());
+        System.out.println("good to go");
     }
 
     private void initView() {
@@ -129,7 +130,7 @@ public class Controller implements Runnable{
     }
 
 
-    public void move(Direction dir){ //en fonction de la position de player
+    public void move(){ //en fonction de la position de player
         //TODO emilie
         //TODO emilie
         // if key= z
@@ -137,7 +138,7 @@ public class Controller implements Runnable{
         // this.action made()
     }
 
-    public void dry(Direction dir){
+    public void dry(){
         //TODO emilie
     }
 
@@ -153,9 +154,6 @@ public class Controller implements Runnable{
         this.gameStatus = gameStatus;
     }
 
-    public void drawIsland(Graphics2D g2) {
-        this.viewIsland.drawIsland(g2);
-    }
 
     public GameStatus getGameStatus() {
         return gameStatus;
@@ -165,12 +163,18 @@ public class Controller implements Runnable{
         startScreenSelection = startScreenSelection.select(selectUp);
     }
 
+    private void startGame() {
+        if (gameStatus != GameStatus.GAME_OVER) {
+            setGameStatus(GameStatus.RUNNING);
+        }
+    }
+
     // we gonna manage inputs
     public void receiveInput(ButtonAction input) {
 
         if (gameStatus == GameStatus.START_SCREEN) {
             if (input == ButtonAction.SELECT && startScreenSelection == StartScreenSelection.START_GAME) {
-                //start
+                startGame();
             } else if (input == ButtonAction.SELECT && startScreenSelection == StartScreenSelection.VIEW_ABOUT) {
                 setGameStatus(GameStatus.ABOUT_SCREEN);
             } else if (input == ButtonAction.SELECT && startScreenSelection == StartScreenSelection.VIEW_HELP) {
@@ -181,7 +185,34 @@ public class Controller implements Runnable{
                 selectOption(false);
             }
         }
-        // if not in start screen a lot of theings will happen the whole gam eactually
+
+        // running
+        else if (gameStatus == GameStatus.RUNNING) {
+            if (input == ButtonAction.JUMP) {
+                this.move();
+            } else if (input == ButtonAction.M_RIGHT) {
+                this.move();
+            } else if (input == ButtonAction.M_LEFT) {
+                this.move();
+            } else if (input == ButtonAction.ACTION_COMPLETED) {
+                this.move();
+            } else if (input == ButtonAction.FIRE) {
+                this.move();
+            } else if (input == ButtonAction.PAUSE_RESUME) {
+                this.move();
+            }
+        }
+        else if(gameStatus == GameStatus.GAME_OVER && input == ButtonAction.GO_TO_START_SCREEN){
+            reset();
+        } else if(gameStatus == GameStatus.MISSION_PASSED && input == ButtonAction.GO_TO_START_SCREEN){
+            reset();
+        }
+        //
+
+        if(input == ButtonAction.GO_TO_START_SCREEN){
+            setGameStatus(GameStatus.START_SCREEN);
+        }
+
 
 
     }

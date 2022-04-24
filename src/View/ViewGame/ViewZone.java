@@ -38,11 +38,11 @@ public class ViewZone extends GameObjectView {
      */
     @Override
     public void draw(Graphics g) {
-        this.draw(g);
-        this.viewArteFact.draw(g);
-        for (ViewPlayer viewPlayer : this.viewPlayers){
-            viewPlayer.draw(g);
-        }
+        super.draw(g);
+//        this.viewArteFact.draw(g);
+//        for (ViewPlayer viewPlayer : this.viewPlayers){
+//            viewPlayer.draw(g);
+//        }
     }
 
     public void addViewPlayer(ViewPlayer viewPlayer){

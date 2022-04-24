@@ -16,6 +16,7 @@ public class UIManager extends JPanel{
     private Font gameFont;
     private BufferedImage startScreenImage, aboutScreenImage, helpScreenImage, gameOverScreen;
     private BufferedImage selectIcon;
+    private BufferedImage coinIcon;
 
     public UIManager(Controller controller, int width, int height) {
         setPreferredSize(new Dimension(width, height));
@@ -26,6 +27,7 @@ public class UIManager extends JPanel{
         ImageLoader loader = this.controller.getImageLoader();
 
         this.selectIcon = loader.loadImage("/gameStatus/select-icon.png");
+        this.coinIcon = loader.loadImage("/gameStatus/select-icon.png");
         this.startScreenImage = loader.loadImage("/gameStatus/start-screen.png");
         this.helpScreenImage = loader.loadImage("/gameStatus/help-screen.png");
         this.aboutScreenImage = loader.loadImage("/gameStatus/about-screen.png");
@@ -60,20 +62,24 @@ public class UIManager extends JPanel{
             drawGameOverScreen(g2);
         }
         else {
-            controller.drawIsland(g2);
-
+            drawIsland(g2);
             drawPoints(g2);
             // add more like draw point...
 
-            if(gameStatus == GameStatus.PAUSED){
-                drawPauseScreen(g2);
-            }
-            else if(gameStatus == GameStatus.MISSION_PASSED){
+            if(gameStatus == GameStatus.MISSION_PASSED){
                 drawVictoryScreen(g2);
             }
         }
 
         g2.dispose();
+    }
+
+    private void drawIsland(Graphics2D g2) {
+        for (int i = 0; i < controller.getLength(); i++) {
+            for (int j = 0; j < controller.getLength(); j++) {
+                controller.getViewIsland().getViewZones(i,j).draw(g2);
+            }
+        }
     }
 
     private void drawVictoryScreen(Graphics2D g2) {
@@ -115,7 +121,7 @@ public class UIManager extends JPanel{
         g2.setColor(Color.WHITE);
         String displayedStr = "Points: " ;//+ controller.getScore();
         int stringLength = g2.getFontMetrics().stringWidth(displayedStr);;
-        //g2.drawImage(coinIcon, 50, 10, null);
+        g2.drawImage(coinIcon, 50, 10, null);
         g2.drawString(displayedStr, 300, 50);
     }
 
