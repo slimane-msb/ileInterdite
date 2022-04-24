@@ -2,10 +2,11 @@ package View.ViewUtil;
 
 import Controller.Controller;
 import Controller.GameStatus;
+import Model.Player.Key;
+import View.ViewGame.ViewArteFact;
 import View.ViewGame.ViewPlayer;
 
 import javax.swing.*;
-import javax.swing.text.View;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -68,10 +69,17 @@ public class UIManager extends JPanel{
         else {
             drawIsland(g2);
             drawListOfPlayersNotif(g2);
-            drawPlayerRound(g2);
-            drawText(g2,"player Keys: ",2*getWidth()/3,50);
-            drawText(g2,"its round for: ",2*getWidth()/3-10,getHeight()*2/3);
-            //drawText(g2,"player Keys: ",2*getWidth()/3,50);
+            int half = (2*getWidth()/3);
+            drawPlayer(g2,half+250,(getHeight()*2/3)-73,controller.getCurrPlayerIndex() ); // player for notif (current player
+            drawText(g2,"player artefact: ",half-58,50);
+            drawText(g2,"its round for: ",half-100,getHeight()*2/3);
+            drawText(g2,"Nb Actions Left : "+controller.getNbAction(),half-122,(getHeight()*2/3)+70);
+            drawText(g2,"Keys:",half-130,(getHeight()*2/3)+140);
+
+            // draw player keys:
+            drawCurrPlayerKeys(g2, (getHeight()*2/3)+140 , half-130+100 );
+            //drawPlayerArtefact(g2);
+
 
             // add more like draw point...
 
@@ -83,14 +91,47 @@ public class UIManager extends JPanel{
         g2.dispose();
     }
 
-    private void drawPlayerRound(Graphics2D g2) {
-        ViewPlayer curPlayerView = new ViewPlayer(
-                getWidth()*1.7/3,
-                getHeight()*3/4,
-                   this.controller.getViewIsland().getViewPlayers().get(controller.getCurrPlayer()).getImage());
+    private void drawPlayerArtefact(Graphics2D g2, double x, double y, int index) {
+        // get keys
+        // for each key, switch then print with corresponding image
+        // shortcut for viewKey
+        int i=0;
+        for (Key key: controller.getIsland().getPlayers().get(index).getKeys()){
+            switch (key.getItemType()){
+                case air:
+                    ViewArteFact vLand = new ViewArteFact(x+i,y,controller.getViewIsland().getLand().getImage());
+                    vLand.draw(g2);
+                    break;
+                case water:
+                    ViewArteFact vWater = new ViewArteFact(x+i,y,controller.getViewIsland().getWater().getImage());
+                    vWater.draw(g2);
+                    break;
+                case earth:
+                    ViewArteFact vAir = new ViewArteFact(x+i,y,controller.getViewIsland().getAir().getImage());
+                    vAir.draw(g2);
+                    break;
+                case fire:
+                    ViewArteFact vFire = new ViewArteFact(x+i,y,controller.getViewIsland().getFire().getImage());
+                    vFire.draw(g2);
+                    break;
+            }
+            i+=100;
+        }
+    }
+
+    private void drawCurrPlayerKeys(Graphics2D g2,double x, double y) {
+       drawPlayerArtefact(g2,x,y,controller.getCurrPlayerIndex());
+    }
+
+    private void drawPlayer(Graphics2D g2, double x, double y, int index){
+        ViewPlayer curPlayerView = new ViewPlayer(x,y,this.controller.getViewIsland().getViewPlayers().get(index).getImage());
         curPlayerView.draw(g2);
     }
 
+    private void drawArtefact(Graphics2D g2, double x, double y, ViewArteFact viewArteFact){
+        ViewArteFact viewArteFact1 = new ViewArteFact(x,y,viewArteFact.getImage());
+        viewArteFact1.draw(g2);
+    }
 
 
     private void drawText(Graphics2D g2, String text, int x, int y) {

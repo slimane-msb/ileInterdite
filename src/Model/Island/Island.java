@@ -1,5 +1,6 @@
 package Model.Island;
 
+import Model.Player.Artefact;
 import Model.Player.Key;
 import Model.Player.Player;
 import Model.Utils.ItemType;
@@ -43,6 +44,14 @@ public class Island {
             this.addPlayer(new Player(i,helicop));
         }
 
+        // adding key and artefact just for testing
+        Key k = new Key(ItemType.air,this.players.get(0));
+        Key t = new Key(ItemType.water,this.players.get(0));
+
+        Key k2 = new Key(ItemType.air,this.players.get(2));
+        Key t2 = new Key(ItemType.water,this.players.get(2));
+
+        // end test
         // choosing the fisrt zone as helicop
         this.helicop=zones[0][0];
 

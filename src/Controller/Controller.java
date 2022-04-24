@@ -1,6 +1,8 @@
 package Controller;
 
 import Model.Island.Island;
+import Model.Player.Artefact;
+import Model.Player.Key;
 import Model.Player.Player;
 import Model.Utils.Direction;
 import View.ViewGame.ViewIsland;
@@ -10,6 +12,7 @@ import View.ViewUtil.UIManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 
 public class Controller implements Runnable{
@@ -21,6 +24,10 @@ public class Controller implements Runnable{
     private int playerIndex = 0;
     private int nbAction = 3;
     private int currRound = 0;
+
+    public int getNbAction() {
+        return nbAction;
+    }
 
     // view attribute
     private final static int WIDTH = 1268, HEIGHT = 708;
@@ -278,9 +285,18 @@ public class Controller implements Runnable{
         return false;
     }
 
-    public int getCurrPlayer() {
+    public int getCurrPlayerIndex() {
         return  this.playerIndex;
     }
+
+    public Player getCurrPlayer() {
+        return this.island.getPlayers().get(playerIndex);
+    }
+
+    public ArrayList<Key> getCurrPlayerKeys(){
+        return this.getCurrPlayer().getKeys();
+    }
+
 }
 
 

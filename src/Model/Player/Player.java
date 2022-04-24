@@ -162,8 +162,9 @@ public class Player {
         return false;
     }
 
-
-
+    public ArrayList<Key> getKeys() {
+        return this.keys;
+    }
 
 
     // end of class

@@ -12,6 +12,7 @@ public class Key extends  Item{
         this.player = player;
     }
 
+
     public Player getPlayer() {
         return player;
     }
