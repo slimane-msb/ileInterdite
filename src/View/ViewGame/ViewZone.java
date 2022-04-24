@@ -43,8 +43,6 @@ public class ViewZone extends GameObjectView {
         super.draw(g);
     }
 
-
-
     /**
      * if the zone is dry the image will be back to original version
      */
