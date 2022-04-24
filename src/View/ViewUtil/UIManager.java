@@ -87,6 +87,7 @@ public class UIManager extends JPanel{
 
             // draw real active players
             drawListOfPlayers(g2);
+            drawArtefacts(g2);
 
             if(gameStatus == GameStatus.MISSION_PASSED){
                 drawVictoryScreen(g2);
@@ -94,6 +95,13 @@ public class UIManager extends JPanel{
         }
 
         g2.dispose();
+    }
+
+    private void drawArtefacts(Graphics2D g2) {
+        controller.getViewIsland().getAir().draw(g2);
+        controller.getViewIsland().getFire().draw(g2);
+        controller.getViewIsland().getLand().draw(g2);
+        controller.getViewIsland().getWater().draw(g2);
     }
 
     private void drawListOfPlayers(Graphics2D g2) {

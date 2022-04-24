@@ -1,6 +1,7 @@
 package View.ViewGame;
 
 import Controller.Controller;
+import Model.Player.Item;
 import View.ViewUtil.ImageLoader;
 
 import javax.swing.*;
@@ -29,10 +30,12 @@ public class ViewIsland {
         ;
         // loading the 4 artefact
         int k =0;
-        this.land = new ViewArteFact(0,(k++)*controller.getIMAGELENGTH(),loader.loadImage("/artefact/land.png"));
-        this.water = new ViewArteFact(0,(k++)*controller.getIMAGELENGTH(),loader.loadImage("/artefact/water.png"));
-        this.fire = new ViewArteFact(0,(k++)*controller.getIMAGELENGTH(),loader.loadImage("/artefact/fire.png"));
-        this.air = new ViewArteFact(0,(k++)*controller.getIMAGELENGTH(),loader.loadImage("/artefact/air.png"));
+        System.out.println((controller.getIsland().getAir().getPostion()));
+        this.air = new ViewArteFact(0,0,loader.loadImage("/artefact/air.png"));
+        this.land = new ViewArteFact(0,0,loader.loadImage("/artefact/land.png"));
+        this.water = new ViewArteFact(0,0,loader.loadImage("/artefact/water.png"));
+        this.fire = new ViewArteFact(0,0,loader.loadImage("/artefact/fire.png"));
+
 
         this.viewZones = new ViewZone[length][length];
         for (int i = 0; i < length; i++) {
@@ -53,13 +56,6 @@ public class ViewIsland {
                 viewZones[i][j] = new ViewZone(i*controller.getIMAGELENGTH(), j* controller.getIMAGELENGTH(), dryImage, floodedImage);
             }
         }
-        
-        // later it's gonna be done in ctroller // once it's picked remove it from zone, set zone attribute not artefect itself, it gonna printed on list
-        this.viewZones[1][2].setViewArtefact(this.land);
-        this.viewZones[3][1].setViewArtefact(this.water);
-        this.viewZones[2][1].setViewArtefact(this.fire);
-        this.viewZones[0][3].setViewArtefact(this.air);
-
 
         // testing: adding some keys to player
 

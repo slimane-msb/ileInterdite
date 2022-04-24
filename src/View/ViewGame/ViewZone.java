@@ -41,7 +41,6 @@ public class ViewZone extends GameObjectView {
     @Override
     public void draw(Graphics g) {
         super.draw(g);
-        if (this.viewArteFact!=null) this.viewArteFact.draw(g);
     }
 
 

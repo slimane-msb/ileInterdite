@@ -6,7 +6,6 @@ import Model.Player.Player;
 import Model.Utils.ItemType;
 import Model.Utils.Level;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -50,15 +49,6 @@ public class Island {
         this.players.add(new Player(0, getZone(length-1, 0)));
         this.players.add(new Player(0, getZone(length-1, length-1)));
 
-
-        // adding key and artefact just for testing
-        Key k = new Key(ItemType.air,this.players.get(0));
-        Key t = new Key(ItemType.water,this.players.get(0));
-
-        Key k2 = new Key(ItemType.air,this.players.get(2));
-        Key t2 = new Key(ItemType.water,this.players.get(2));
-        // end test
-
         this.submerged = false;
 
         this.keys = new ArrayList<Key>();
@@ -68,10 +58,10 @@ public class Island {
         this.keys.add(new Key(ItemType.fire, null));
 
         this.artefacts = new ArrayList<Artefact>();
-        createArtefact(ItemType.air);
-        createArtefact(ItemType.earth);
-        createArtefact(ItemType.water);
-        createArtefact(ItemType.fire);
+        addArtefact(ItemType.air);
+        addArtefact(ItemType.earth);
+        addArtefact(ItemType.water);
+        addArtefact(ItemType.fire);
 
         // choosing the fisrt zone as helicop
         createHelicop();
@@ -89,14 +79,17 @@ public class Island {
         this.helicop = helicop;
     }
 
-    public void createArtefact(ItemType type){
-        Artefact a = new Artefact(type, false);
-        this.getArtefacts().add(a);
+    public void addArtefact(ItemType type){
         this.rand = new Random();
-        int i = rand.nextInt(6);
-        int j = rand.nextInt(6);
-
+        int i,j;
+        do {
+            i = rand.nextInt(this.length - 1);
+            j = rand.nextInt(this.length - 1);
+        }while(this.getZone(i,j).containsArtefact());
+        Artefact a = new Artefact(type, false,this.getZone(i,j));
+        this.getArtefacts().add(a);
         this.getZone(i, j).setArtefact(a);
+        System.out.println(a.getPostion());
     }
 
     @Override
@@ -230,6 +223,19 @@ public class Island {
 
     public ArrayList<Artefact> getArtefacts() { return artefacts; }
 
+    public Artefact getAir(){
+        return this.artefacts.get(0);
+    }
+
+    public Artefact getLand(){
+        return this.artefacts.get(1);
+    }
+    public Artefact getWater(){
+        return this.artefacts.get(2);
+    }
+    public Artefact getFire(){
+        return this.artefacts.get(3);
+    }
     public Zone getHelicop() { return helicop; }
 
     // enf of class

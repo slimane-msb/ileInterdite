@@ -174,7 +174,7 @@ public class Zone {
         this.state=Level.submerged;
     }
 
-    public double getX() {
+    public int getX() {
         return  this.x;
     }
 
