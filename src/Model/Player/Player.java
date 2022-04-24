@@ -20,9 +20,20 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Joueur{" +
+        String res ="";
+        for (Artefact artefact : this.artefacts){
+            res+=artefact+",";
+        }
+        String keysS ="";
+        for (Key key : this.keys){
+            keysS+=key+",";
+        }
+
+        return "Player{" +
                 "playerNb=" + playerNb +
-                ", postion=" + position +
+                ", position=" + position +
+                ", keys=" + keysS +
+                ", artefacts=" + res +
                 '}';
     }
 
@@ -61,7 +72,6 @@ public class Player {
         System.out.println("player ---> "+this.position);
         switch (direction) {
             case up:
-                System.out.println(""+this.position.getUpperZone().getState());
                 if (this.position.getUpperZone() == null || this.position.getUpperZone().isSubmerged()){
                     return false;
                 }else{
@@ -69,7 +79,6 @@ public class Player {
                     return true;
                 }
             case down:
-                System.out.println(""+this.position.getLowerZone().getState());
                 if(this.position.getLowerZone() == null || this.position.getLowerZone().isSubmerged()){
                     return false;
                 }else{
@@ -84,7 +93,6 @@ public class Player {
                     return true;
                 }
             case left:
-                System.out.println(""+this.position.getLeftZone().getState());
                 if(this.position.getLeftZone() == null || this.position.getLeftZone().isSubmerged()){
                     return false;
                 }else{

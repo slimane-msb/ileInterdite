@@ -10,8 +10,9 @@ public class Artefact extends  Item {
 
     @Override
     public String toString() {
-        return "Artefacts{" +
+        return super.toString()+ "Artefact{" +
                 "found=" + found +
+                ", position=" + position +
                 '}';
     }
 

@@ -116,7 +116,7 @@ public class Controller implements Runnable{
      * get the number of the zone we need to submerge, and then call the methode submergeView to color ble
      */
     public void endRound() {
-        island.submerge3NotSubmergedZones();
+       //island.submerge3NotSubmergedZones();
     }
 
     public void actionMade() {
@@ -156,9 +156,12 @@ public class Controller implements Runnable{
     }
 
     public void takeArtefact(){
+        System.out.println(island.getPlayer((playerIndex)));
+        System.out.println(island.getPlayer(playerIndex).getPosition().getArtefact());
         if (island.getPlayer(playerIndex).takeArtefact()){
             System.out.println("artefact récuperé");
         }
+        System.out.println(island.getPlayer((playerIndex)));
     }
 
     // view controlller methdoes

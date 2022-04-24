@@ -23,8 +23,8 @@ public class Key extends  Item{
 
     @Override
     public String toString() {
-        return "Keys{" +
-                "found="  +
+        return super.toString()+"Key{" +
+                "player=" + player +
                 '}';
     }
 

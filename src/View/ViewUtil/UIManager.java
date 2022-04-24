@@ -81,8 +81,8 @@ public class UIManager extends JPanel{
             drawText(g2,"Keys:",half-130,(halfH)+140);
 
             // draw player keys:
-            drawPlayersArtefact(g2,controller.getWidth()*2/3.5+110,controller.getIMAGELENGTH()-40);
-            drawCurrPlayerKeys(g2,half-130+115,(halfH)+130);
+            drawPlayersArtefact(g2,controller.getWidth()*2/3.5+110,controller.getIMAGELENGTH()-20);
+            drawCurrPlayerKeys(g2,half-130+130,(halfH)+100);
 
             // draw real active players
             drawListOfPlayers(g2);
@@ -124,15 +124,36 @@ public class UIManager extends JPanel{
     private void drawPlayerArtefacts(Graphics2D g2, double x, double y, int index) {
         int i=0;
         for (Artefact artefact: controller.getIsland().getPlayer(index).getArtefacts()){
-            drawItem(g2,x+i,y,artefact);
+            drawArtefact(g2,x+i,y,artefact);
             i+=100;
         }
+    }
+    private void drawArtefact(Graphics2D g2, double x, double y, Item item) {
+        switch (item.getItemType()){
+            case air:
+                controller.getViewIsland().getAir().setX(x);
+                controller.getViewIsland().getAir().setY(y);
+                break;
+            case water:
+                controller.getViewIsland().getWater().setX(x);
+                controller.getViewIsland().getWater().setY(y);
+                break;
+            case earth:
+                controller.getViewIsland().getLand().setX(x);
+                controller.getViewIsland().getLand().setY(y);
+                break;
+            case fire:
+                controller.getViewIsland().getFire().setX(x);
+                controller.getViewIsland().getFire().setY(y);
+                break;
+        }
+
     }
 
     private void drawItem(Graphics2D g2, double x, double y, Item item) {
         switch (item.getItemType()){
             case air:
-                ViewArteFact vLand = new ViewArteFact(x,y,controller.getViewIsland().getLand().getImage());
+                ViewArteFact vLand = new ViewArteFact(x,y,controller.getViewIsland().getAir().getImage());
                 vLand.draw(g2);
                 break;
             case water:
@@ -140,7 +161,7 @@ public class UIManager extends JPanel{
                 vWater.draw(g2);
                 break;
             case earth:
-                ViewArteFact vAir = new ViewArteFact(x,y,controller.getViewIsland().getAir().getImage());
+                ViewArteFact vAir = new ViewArteFact(x,y,controller.getViewIsland().getLand().getImage());
                 vAir.draw(g2);
                 break;
             case fire:
