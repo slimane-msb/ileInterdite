@@ -81,7 +81,7 @@ public class UIManager extends JPanel{
             drawText(g2,"Keys:",half-130,(halfH)+140);
 
             // draw player keys:
-            drawPlayersArtefact(g2,controller.getWidth()*2/3.5+110,controller.getIMAGELENGTH()-20);
+            drawPlayersArtefact(g2,controller.getWidth()*2/3.5+110,controller.getIMAGELENGTH()-10);
             drawCurrPlayerKeys(g2,half-130+130,(halfH)+100);
 
             // draw real active players
@@ -181,7 +181,7 @@ public class UIManager extends JPanel{
         for (int i=0;i<4;i++){
             // make new playuer
             drawPlayerArtefacts(g2,x,y+j,i);
-            j +=105;
+            j +=75;
         }
     }
 
