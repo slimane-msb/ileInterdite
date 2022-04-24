@@ -61,32 +61,32 @@ public class Player {
     public boolean move(Direction direction){
         switch (direction) {
             case up:
-                if(!this.postion.getUpperZone().isSubmerged()){
+                if (this.postion.getUpperZone() == null || this.postion.getUpperZone().isSubmerged()){
+                    return false;
+                }else{
                     this.postion=postion.getUpperZone();
                     return true;
-                }else{
-                    return false;
                 }
             case down:
-                if(!this.postion.getLowerZone().isSubmerged()){
+                if(this.postion.getLowerZone() == null || this.postion.getLowerZone().isSubmerged()){
+                    return false;
+                }else{
                     this.postion=postion.getLowerZone();
                     return true;
-                }else{
-                    return false;
                 }
             case right:
-                if(!this.postion.getRightZone().isSubmerged()){
+                if(this.postion.getRightZone() == null || this.postion.getRightZone().isSubmerged()){
+                    return false;
+                }else {
                     this.postion=postion.getRightZone();
                     return true;
-                }else {
-                    return false;
                 }
             case left:
-                if(!this.postion.getLeftZone().isSubmerged()){
+                if(this.postion.getLeftZone() == null || this.postion.getLeftZone().isSubmerged()){
+                    return false;
+                }else{
                     this.postion=postion.getLeftZone();
                     return true;
-                }else{
-                    return false;
                 }
         }
         return false;
@@ -122,6 +122,7 @@ public class Player {
         if (this.postion.containsArtefact()){
             if(this.hasKey(this.postion.getArtefact().getItemType())){
                 this.artefacts.add(this.postion.getArtefact());
+                this.postion.setArtefact(null);
                 return true;
             }
         }
