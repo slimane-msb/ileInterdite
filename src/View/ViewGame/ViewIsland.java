@@ -4,21 +4,39 @@ import Controller.Controller;
 import View.ViewUtil.ImageLoader;
 
 import javax.swing.*;
+import javax.swing.text.PlainView;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class ViewIsland {
     private int length;
     private  Controller controller;
     private ViewZone[][] viewZones;
+    private ArrayList<ViewPlayer> viewPlayers;
+    private ViewArteFact land;
+    private ViewArteFact water;
+    private ViewArteFact air;
+    private ViewArteFact fire;
 
 
     public ViewIsland(Controller controller, int length ) {
-        this.viewZones = new ViewZone[length][length];
         ImageLoader loader = controller.getImageLoader();
+        this.viewPlayers = new ArrayList<ViewPlayer>();
+        // loading the 4 players
+        for (int i=1;i<5;i++)
+            this.viewPlayers.add(new ViewPlayer(0,0, loader.loadImage("/player/"+i+".png") ));
+        // loading the 4 artefact
+        this.land = new ViewArteFact(0,0,loader.loadImage("/artefact/land.png"));
+        this.water = new ViewArteFact(0,0,loader.loadImage("/artefact/water.png"));
+        this.fire = new ViewArteFact(0,0,loader.loadImage("/artefact/fire.png"));
+        this.air = new ViewArteFact(0,0,loader.loadImage("/artefact/air.png"));
+
+        this.viewZones = new ViewZone[length][length];
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < length; j++) {
                 //load images
+                // load first image as helicop
                 int imgIndex = (j*length+i)%14;
                 BufferedImage dryImage = loader.loadImage("/zones/"+imgIndex+".png");
                 BufferedImage floodedImage = loader.loadImage("/zones/"+imgIndex+"f.png");
@@ -67,4 +85,67 @@ public class ViewIsland {
         }
     }
 
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public Controller getController() {
+        return controller;
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
+
+    public ViewZone[][] getViewZones() {
+        return viewZones;
+    }
+
+    public void setViewZones(ViewZone[][] viewZones) {
+        this.viewZones = viewZones;
+    }
+
+    public ArrayList<ViewPlayer> getViewPlayers() {
+        return viewPlayers;
+    }
+
+    public void setViewPlayers(ArrayList<ViewPlayer> viewPlayers) {
+        this.viewPlayers = viewPlayers;
+    }
+
+    public ViewArteFact getLand() {
+        return land;
+    }
+
+    public void setLand(ViewArteFact land) {
+        this.land = land;
+    }
+
+    public ViewArteFact getWater() {
+        return water;
+    }
+
+    public void setWater(ViewArteFact water) {
+        this.water = water;
+    }
+
+    public ViewArteFact getAir() {
+        return air;
+    }
+
+    public void setAir(ViewArteFact air) {
+        this.air = air;
+    }
+
+    public ViewArteFact getFire() {
+        return fire;
+    }
+
+    public void setFire(ViewArteFact fire) {
+        this.fire = fire;
+    }
 }

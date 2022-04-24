@@ -2,6 +2,7 @@ package View.ViewUtil;
 
 import Controller.Controller;
 import Controller.GameStatus;
+import View.ViewGame.ViewPlayer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -63,7 +64,8 @@ public class UIManager extends JPanel{
         }
         else {
             drawIsland(g2);
-            drawPoints(g2);
+            drawPlayerKeyText(g2);
+            drawListOfPlayers(g2);
             // add more like draw point...
 
             if(gameStatus == GameStatus.MISSION_PASSED){
@@ -81,6 +83,8 @@ public class UIManager extends JPanel{
             }
         }
     }
+
+
 
     private void drawVictoryScreen(Graphics2D g2) {
         g2.setFont(gameFont.deriveFont(50f));
@@ -116,14 +120,21 @@ public class UIManager extends JPanel{
         g2.drawString(displayedStr, (getWidth()-stringLength)/2, getHeight()/2);
     }
 
-    private void drawPoints(Graphics2D g2){
+    private void drawPlayerKeyText(Graphics2D g2){
         g2.setFont(gameFont.deriveFont(25f));
         g2.setColor(Color.WHITE);
-        String displayedStr = "Points: " ;//+ controller.getScore();
+        String displayedStr = "player Keys: " ;//+ controller.getScore();
         int stringLength = g2.getFontMetrics().stringWidth(displayedStr);;
-        g2.drawImage(coinIcon, 50, 10, null);
-        g2.drawString(displayedStr, 300, 50);
+        g2.drawImage(coinIcon, 2*getWidth()/3, 10, null);
+        g2.drawString(displayedStr, 2*getWidth()/3, 50);
     }
+
+    private void drawListOfPlayers(Graphics2D g2){
+       for (ViewPlayer viewPlayer : this.controller.getViewIsland().getViewPlayers())
+           viewPlayer.draw(g2);
+    }
+
+
 
     private void drawStartScreen(Graphics2D g2){
         int row = controller.getStartScreenSelection().getLineNumber();

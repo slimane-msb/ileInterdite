@@ -24,7 +24,7 @@ public class Controller implements Runnable{
 
     // view attribute
     private final static int WIDTH = 1268, HEIGHT = 708;
-    private int IMAGELENGTH = 125;
+    private int IMAGELENGTH = 115;
     private UIManager uiManager;
     private GameStatus gameStatus;
     private ImageLoader imageLoader;
