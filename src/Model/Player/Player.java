@@ -4,8 +4,6 @@ import Model.Island.Zone;
 import Model.Utils.Direction;
 import Model.Utils.ItemType;
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.Random;
 
 import java.util.ArrayList;
@@ -13,7 +11,7 @@ import java.util.ArrayList;
 public class Player {
     // attributes
     private int playerNb;
-    private Zone postion;
+    private Zone position;
     private ArrayList<Key> keys;
     private ArrayList<Artefact> artefacts;
 
@@ -24,13 +22,13 @@ public class Player {
     public String toString() {
         return "Joueur{" +
                 "playerNb=" + playerNb +
-                ", postion=" + postion +
+                ", postion=" + position +
                 '}';
     }
 
     public Player(int playerNb, Zone postion) {
         this.playerNb = playerNb;
-        this.postion = postion;
+        this.position = postion;
         this.keys = new ArrayList<Key>();
         this.artefacts=new ArrayList<Artefact>();
     }
@@ -39,8 +37,8 @@ public class Player {
         return playerNb;
     }
 
-    public Zone getPostion() {
-        return postion;
+    public Zone getPosition() {
+        return position;
     }
 
 
@@ -49,8 +47,8 @@ public class Player {
         this.playerNb = playerNb;
     }
 
-    public void setPostion(Zone postion) {
-        this.postion = postion;
+    public void setPosition(Zone position) {
+        this.position = position;
     }
 
     /**
@@ -60,34 +58,37 @@ public class Player {
          * @Note: that the number of action is not decreased, this number is managed by the controller
      */
     public boolean move(Direction direction){
+        System.out.println("player ---> "+this.position);
         switch (direction) {
             case up:
-                System.out.println(this.postion.getUpperZone().isSubmerged());
-                if (this.postion.getUpperZone() == null || this.postion.getUpperZone().isSubmerged()){
+                System.out.println(""+this.position.getUpperZone().getState());
+                if (this.position.getUpperZone() == null || this.position.getUpperZone().isSubmerged()){
                     return false;
                 }else{
-                    this.postion=postion.getUpperZone();
+                    this.position = position.getUpperZone();
                     return true;
                 }
             case down:
-                if(this.postion.getLowerZone() == null || this.postion.getLowerZone().isSubmerged()){
+                System.out.println(""+this.position.getLowerZone().getState());
+                if(this.position.getLowerZone() == null || this.position.getLowerZone().isSubmerged()){
                     return false;
                 }else{
-                    this.postion=postion.getLowerZone();
+                    this.position = position.getLowerZone();
                     return true;
                 }
             case right:
-                if(this.postion.getRightZone() == null || this.postion.getRightZone().isSubmerged()){
+                if(this.position.getRightZone() == null || this.position.getRightZone().isSubmerged()){
                     return false;
                 }else {
-                    this.postion=postion.getRightZone();
+                    this.position = position.getRightZone();
                     return true;
                 }
             case left:
-                if(this.postion.getLeftZone() == null || this.postion.getLeftZone().isSubmerged()){
+                System.out.println(""+this.position.getLeftZone().getState());
+                if(this.position.getLeftZone() == null || this.position.getLeftZone().isSubmerged()){
                     return false;
                 }else{
-                    this.postion=postion.getLeftZone();
+                    this.position = position.getLeftZone();
                     return true;
                 }
         }
@@ -102,15 +103,15 @@ public class Player {
     public boolean toDry(Direction direction){
         switch (direction) {
             case up:
-                return this.postion.getUpperZone().decreaseWaterLevel();
+                return this.position.getUpperZone().decreaseWaterLevel();
             case down:
-                return this.postion.getLowerZone().decreaseWaterLevel();
+                return this.position.getLowerZone().decreaseWaterLevel();
             case right:
-                return this.postion.getRightZone().decreaseWaterLevel();
+                return this.position.getRightZone().decreaseWaterLevel();
             case left:
-                return this.postion.getLeftZone().decreaseWaterLevel();
+                return this.position.getLeftZone().decreaseWaterLevel();
             case same:
-                return this.postion.decreaseWaterLevel();
+                return this.position.decreaseWaterLevel();
         }
         return false;
     }
@@ -121,10 +122,10 @@ public class Player {
      * @return true if the player took the artefact found in his current zone by having the corresponding key to this artefact, false if not
      */
     public boolean takeArtefact(){
-        if (this.postion.containsArtefact()){
-            if(this.hasKey(this.postion.getArtefact().getItemType())){
-                this.artefacts.add(this.postion.getArtefact());
-                this.postion.setArtefact(null);
+        if (this.position.containsArtefact()){
+            if(this.hasKey(this.position.getArtefact().getItemType())){
+                this.artefacts.add(this.position.getArtefact());
+                this.position.setArtefact(null);
                 return true;
             }
         }
@@ -148,8 +149,8 @@ public class Player {
      * @return true if key is found, false if not
      */
     public boolean searchKey(){
-        float difficulty = this.postion.getIle().getDifficulty();
-        ArrayList<Key> keysNotFound = this.postion.getIle().getKeys();
+        float difficulty = this.position.getIle().getDifficulty();
+        ArrayList<Key> keysNotFound = this.position.getIle().getKeys();
         Random randomGenerator = new Random();
 
         if(keysNotFound.isEmpty()){
@@ -159,7 +160,7 @@ public class Player {
         if(randomGenerator.nextFloat() <= difficulty){
             int keyIndex = randomGenerator.nextInt(keysNotFound.size());
             this.keys.add(keysNotFound.get(keyIndex));
-            this.postion.getIle().removeKey(keyIndex);
+            this.position.getIle().removeKey(keyIndex);
             return true;
         }
         return false;

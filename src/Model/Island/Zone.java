@@ -86,8 +86,22 @@ public class Zone {
 
     @Override
     public String toString() {
+        String res = "Zone{" +
+                "state=" + state ;
+        if (leftZone!=null ) res+="left="+leftZone.toString2();
+        if (rightZone!=null ) res+="right="+rightZone.toString2();
+        if (upperZone!=null ) res+="upper="+upperZone.toString2();
+        if (lowerZone!=null ) res+="lower="+lowerZone.toString2();
+        return res+
+                ", x=" + x +
+                ", y=" + y +
+                '}';
+    }
+
+
+    public String toString2() {
         return "Zone{" +
-                "state=" + state.toString() +
+                "state=" + state +
                 ", x=" + x +
                 ", y=" + y +
                 '}';
@@ -139,7 +153,7 @@ public class Zone {
                 this.state=Level.flooded;
                 return true;
             case flooded:
-                this.state=Level.submerged;
+                this.setState(Level.submerged);
                 return true;
         }
         return false;

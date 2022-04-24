@@ -1,12 +1,8 @@
 package View.ViewGame;
 
 import Controller.Controller;
-import Model.Player.Item;
 import View.ViewUtil.ImageLoader;
 
-import javax.swing.*;
-import javax.swing.text.PlainView;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -26,7 +22,7 @@ public class ViewIsland {
         this.viewPlayers = new ArrayList<ViewPlayer>();
         // loading the 4 players
         for (int i=1;i<5;i++)
-            this.viewPlayers.add(new ViewPlayer(controller.getIsland().getPlayer(i-1).getPostion().getX()*controller.getIMAGELENGTH(),controller.getIsland().getPlayer(i-1).getPostion().getY()*controller.getIMAGELENGTH(), loader.loadImage("/player/"+i+".png") ));
+            this.viewPlayers.add(new ViewPlayer(controller.getIsland().getPlayer(i-1).getPosition().getX()*controller.getIMAGELENGTH(),controller.getIsland().getPlayer(i-1).getPosition().getY()*controller.getIMAGELENGTH(), loader.loadImage("/player/"+i+".png") ));
         ;
         // loading the 4 artefact
         int k =0;
@@ -71,28 +67,6 @@ public class ViewIsland {
      */
     public ViewZone getViewZones(int i, int j) {
         return viewZones[i][j];
-    }
-
-
-
-    /**
-     * set color of given zone to blue
-     * @param viewZone a view of zone
-     */
-    public void sebmergeViewZone( ViewZone viewZone){
-        //viewZone.setColorSubmerged();
-    }
-
-    /**
-     * set color of given 3 zones to blue
-     * @param viewZone a view of zone 1
-     * @param viewZone2 a view of zone 2
-     * @param viewZone23 a view of zone 3
-     */
-    public void submerge3ViewZones(ViewZone viewZone, ViewZone viewZone2, ViewZone viewZone23){
-        sebmergeViewZone(viewZone);
-        sebmergeViewZone(viewZone2);
-        sebmergeViewZone(viewZone23);
     }
 
 

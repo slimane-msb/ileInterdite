@@ -107,8 +107,8 @@ public class UIManager extends JPanel{
     private void drawListOfPlayers(Graphics2D g2) {
         int i=0;
         for (ViewPlayer viewPlayer: controller.getViewIsland().getViewPlayers()){
-            viewPlayer.setX(this.controller.getIsland().getPlayer(i).getPostion().getX()*controller.getIMAGELENGTH());
-            viewPlayer.setY(this.controller.getIsland().getPlayer(i++).getPostion().getY()*controller.getIMAGELENGTH());
+            viewPlayer.setX(this.controller.getIsland().getPlayer(i).getPosition().getX()*controller.getIMAGELENGTH());
+            viewPlayer.setY(this.controller.getIsland().getPlayer(i++).getPosition().getY()*controller.getIMAGELENGTH());
             viewPlayer.draw(g2);
         }
     }

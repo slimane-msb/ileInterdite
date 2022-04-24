@@ -3,6 +3,7 @@ package Model.Island;
 import Model.Player.Artefact;
 import Model.Player.Key;
 import Model.Player.Player;
+import Model.Utils.Direction;
 import Model.Utils.ItemType;
 import Model.Utils.Level;
 
@@ -30,17 +31,17 @@ public class Island {
         for (int i=0;i<length;i++){
             for (int j=0;j<length;j++){
                 this.zones[i][j]=new Zone(Level.dry,null,null,this,null,null,null,null);
-                this.zones[i][j].setX(j);
-                this.zones[i][j].setY(i);
+                this.zones[i][j].setX(i);
+                this.zones[i][j].setY(j);
             }
         }
         // set neighbors
         for (int i=0;i<length;i++){
             for (int j=0;j<length;j++){
-                up=(i==0)?null: zones[i-1][j];
-                down=(i==length-1)?null: zones[i+1][j];
-                left=(j==0)?null: zones[i][j-1];
-                right=(j==length-1)?null: zones[i][j+1];
+                up=(j==0)?null: zones[i][j-1];
+                down=(j==length-1)?null: zones[i][j+1];
+                left=(i==0)?null: zones[i-1][j];
+                right=(i==length-1)?null: zones[i+1][j];
                 this.zones[i][j].setUpperZone(up);
                 this.zones[i][j].setLeftZone(left);
                 this.zones[i][j].setRightZone(right);
@@ -133,12 +134,13 @@ public class Island {
      * @return true if all the island (all zones) are submerged
      */
     public boolean isSubmerged() {
+        int nbCaseSubmerged = 0;
         for (int i=0;i<length;i++){
             for (int j=0;j<length;j++){
-                if(!zones[i][j].isSubmerged()) return false;
+                if(zones[i][j].isSubmerged()) nbCaseSubmerged++ ;
             }
         }
-        return true;
+        return (nbCaseSubmerged >= (length*length - 1)); //s'il ne reste qu'une seule case, alors l'île est submergée
     }
 
 
@@ -157,6 +159,22 @@ public class Island {
                 j = rand.nextInt(length);
             }
             this.zones[i][j].increaseWaterLevel();
+            ArrayList<Direction> dirs = new ArrayList<>();
+            dirs.add(Direction.up);
+            dirs.add(Direction.down);
+            dirs.add(Direction.left);
+            dirs.add(Direction.right);
+            Random random = new Random();
+            for (Player player: this.players){
+                while (player.getPosition().isSubmerged() && dirs.size()>0) {
+                    int rnd = random.nextInt(dirs.size());
+                    player.move(dirs.get(rnd));
+                    dirs.remove(dirs.get(rnd));
+                }
+                if(player.getPosition().isSubmerged() && dirs.size()==0){
+                    this.submerged=true;
+                }
+            }
             zonesNb[k][0]= i;
             zonesNb[k][1]= j;
         }
@@ -184,7 +202,7 @@ public class Island {
     }
 
     public boolean isGameOver() {
-        if (this.isSubmerged()){
+        if (this.isSubmerged() || this.submerged){
             return true;
         }
         return false;
@@ -197,7 +215,7 @@ public class Island {
             }
         }
         for (Player player : this.getPlayers()){
-            if(player.getPostion() != this.getHelicop()){
+            if(player.getPosition() != this.getHelicop()){
                 return false;
             }
         }

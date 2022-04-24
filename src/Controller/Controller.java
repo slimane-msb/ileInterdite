@@ -116,11 +116,7 @@ public class Controller implements Runnable{
      * get the number of the zone we need to submerge, and then call the methode submergeView to color ble
      */
     public void endRound() {
-        int[][] zonesNb = island.submerge3NotSubmergedZones();
-        this.viewIsland.submerge3ViewZones(
-                this.viewIsland.getViewZones(zonesNb[0][0], zonesNb[0][1]),
-                this.viewIsland.getViewZones(zonesNb[1][0], zonesNb[1][1]),
-                this.viewIsland.getViewZones(zonesNb[2][0], zonesNb[2][1]));
+        island.submerge3NotSubmergedZones();
     }
 
     public void actionMade() {
@@ -135,12 +131,12 @@ public class Controller implements Runnable{
 
 
     public void move(Direction dir){ //en fonction de la position de player
-        System.out.println(island.getPlayer(playerIndex).getPostion());
+        System.out.println(island.getPlayer(playerIndex).getPosition());
         if (island.getPlayer(playerIndex).move(dir)){
-            System.out.println(island.getPlayer(playerIndex).getPostion());
+            System.out.println(island.getPlayer(playerIndex).getPosition());
             System.out.println("deplacement effectué");
         }
-        System.out.println(island.getPlayer(playerIndex).getPostion());
+        System.out.println(island.getPlayer(playerIndex).getPosition());
     }
 
     public void dry(Direction dir){
