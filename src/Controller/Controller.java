@@ -221,7 +221,6 @@ public class Controller implements Runnable{
                 this.giveKey();
             } else if (input == ButtonAction.SELECT) {
                 this.nbActionDone=2;
-                this.endRound();
             } else if (input == ButtonAction.KEY) {
                 this.searchKey();
             } else if (input == ButtonAction.DRY_ON) {

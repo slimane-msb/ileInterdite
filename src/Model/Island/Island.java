@@ -198,9 +198,14 @@ public class Island {
 
     public boolean isGameOver() {
         for (Player player : this.players){
-            if ( player.isBlocked()) return  true;
+            if (player.isBlocked()) return  true;
         }
-        if (this.isSubmerged()  || this.getHelicop().isSubmerged() ){
+        for(Artefact a : artefacts){
+            if (a.getPostion().isSubmerged()){
+                return true;
+            }
+        }
+        if (this.isSubmerged() || this.getHelicop().getState() == Level.submerged){
             return true;
         }
         return false;
